@@ -1,0 +1,138 @@
+.chat-bot-container {
+    height: 100vh;
+    width: 100vw;
+    background: #f7f7f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(247,247,247);
+background: linear-gradient(142deg, rgba(247,247,247,1) 25%, rgba(239,106,54,1) 50%, rgba(247,247,247,1) 80%);
+}
+
+.cbc-main{
+    background: #202123;
+    height: 90vh;
+    width: 90vw;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+}
+.cbc-main.no-sb{
+    gap: 0;
+}
+
+.cbc-main-sidebar{
+    flex: .17;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    color: #f7f7f7;
+    transition: all .1s ease;
+}
+.cbc-main-sidebar.op-0{
+    opacity: 0;
+    visibility: hidden;
+}
+.cbc-main-sidebar.w-0{
+    width: 0;
+    flex: 0;
+}
+
+.cbc-msb-top{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.cbc-msb-top-top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.cbc-msb-tt-logo{
+    height: 60px;
+    object-fit: cover;
+    transform: scale(2);
+}
+
+.cbc-msb-tt-icon.MuiSvgIcon-root{
+    font-size: 1.7rem;
+    color: #f7f7f7;
+}
+
+.cbc-msb-tt-icon.MuiSvgIcon-root.abs{
+    color: #202123;
+}
+
+.cbc-msb-top-bottom{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cbc-msb-tb-item{
+    cursor: pointer;
+    height: 40px;
+    width: 100%;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.cbc-msb-tb-item.active{
+    background: #343541;
+    border-radius: 8px;
+}
+
+.cbc-msb-bottom{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.cbc-msb-bottom-top{
+    height: 150px;
+    width: 100%;
+    background: #ef6a36;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cbc-msb-bottom-bottom{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 5px 20px;
+    border-top: 1px solid #f7f7f7;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.cbc-main-content{
+    flex: 1;
+    height: 100%;
+    border-radius: 20px;
+    background: #f7f7f7;
+    display: flex;
+}

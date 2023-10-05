@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import Layout from "./components/Layout";
+import RequireAuth from "./components/RequireAuth";
+import PersistLogin from "./features/auth/PersistLogin";
+import Welcome from "./pages/Welcome";
+import Chatbot from "./pages/Chatbot";
+import Chat from "./components/Chat";
+import ChatFiles from "./components/ChatFiles";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        {/* public routes */}
+
+          <Route index element={<Welcome/>} />
+          <Route path="/" element={<Chatbot/>} >
+              <Route path="/chatbot" element={<Chat />} />
+              <Route path="/chat-files" element={<ChatFiles />} />
+          </Route>
+
+
+        {/* end of public routes */}
+        {/* protected routes */}
+        <Route element={<PersistLogin />}>
+          <Route element={<RequireAuth />}>
+
+
+          </Route>
+        </Route>
+        {/* protected routes */}
+      </Route>
+    </Routes>
   );
 }
 
