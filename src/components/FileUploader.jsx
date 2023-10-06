@@ -56,8 +56,8 @@ const FileUploader = ({setFile}) => {
     ]);
     const dispatch = useDispatch()
     useEffect(()=>{
-        dispatch(uploadFile(acceptedFiles[0]))
-    },[acceptedFiles,dispatch])
+        setFile(acceptedFiles[0])
+    },[acceptedFiles])
 
 
     return (

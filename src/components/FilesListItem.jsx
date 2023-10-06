@@ -35,7 +35,7 @@ const FilesListItem = ({item}) => {
                     {item.filename}
                 </div>
                 <div className="cc-rh-fi-desc">
-                    {item.category}
+                    {item.categories[0]}
                 </div>
             </div>
         </li>

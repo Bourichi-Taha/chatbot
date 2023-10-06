@@ -65,14 +65,14 @@ const ChatFiles = () => {
             console.log(error);
         }
     }
-    const startChatting = async(e) => {
+    const startChatting = async (e) => {
         e.preventDefault();
         try {
-            const res = await selectFile({fileNames:selectedFiles})
+            const res = await selectFile({ fileNames: selectedFiles })
             navigate("/chatbot")
         } catch (error) {
             console.log(error)
-            
+
         }
     }
     return (
@@ -102,11 +102,11 @@ const ChatFiles = () => {
                     </div>
                 </div>
                 <form className="cc-left-upload-container" onSubmit={submitHandler}>
-                    {/* <FileUploader setFile={setFile} /> */}
-                    <Button component="label" variant="contained" startIcon={<CloudUploadIcon />}>
+                    <FileUploader setFile={setFile} />
+                    {/* <Button component="label" variant="contained" startIcon={<CloudUploadIcon />}>
                         Upload file
                         <VisuallyHiddenInput type="file" name='file' onChange={(e) => setFile(e.currentTarget.files[0])} />
-                    </Button>
+                    </Button> */}
                     <div className='cc-luc-form' >
                         <div className="cc-luc-form-left">
                             <TextField label="name of tender" variant='outlined' className='cc-luc-form-input' value={name_of_tender} onChange={(e) => setNameOfTender(e.target.value)} />
