@@ -85,6 +85,7 @@ background: linear-gradient(142deg, rgba(247,247,247,1) 25%, rgba(239,106,54,1) 
     display: flex;
     align-items: center;
     padding-left: 20px;
+    transition: all .3s ease;
 }
 
 .cbc-msb-tb-item.active{

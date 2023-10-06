@@ -31,7 +31,16 @@ const Chatbot = () => {
         sidebar.classList.remove("op-0");
       }, 100);
     }
-  }, [isOpen])
+  }, [isOpen]);
+
+  const ClickHandler = (e) => {
+    const allListItems = document.querySelectorAll(".cbc-msb-tb-item");
+    allListItems.forEach((item) => {
+      return item.classList.remove("active");
+    });
+    e.target.classList.add("active");
+  }
+
   return (
     <div className="chat-bot-container">
       <div className="cbc-main">
@@ -47,37 +56,37 @@ const Chatbot = () => {
               </IconButton>
             </div>
             <ul className="cbc-msb-top-bottom">
-              <li className='cbc-msb-tb-item active'>
+              <li onClick={ClickHandler} className='cbc-msb-tb-item active'>
                 <IconButton>
                   <ChatBubbleOutlineIcon className='cbc-msb-tt-icon' />
                 </IconButton>
                 AI Chat Helper
               </li>
-              <li className='cbc-msb-tb-item'>
+              <li onClick={ClickHandler} className='cbc-msb-tb-item'>
                 <IconButton>
                   <DescriptionOutlinedIcon className='cbc-msb-tt-icon' />
                 </IconButton>
                 Library
               </li>
-              <li className='cbc-msb-tb-item'>
+              <li onClick={ClickHandler} className='cbc-msb-tb-item'>
                 <IconButton>
                   <BorderAllRoundedIcon className='cbc-msb-tt-icon' />
                 </IconButton>
                 My Projects
               </li>
-              <li className='cbc-msb-tb-item'>
+              <li onClick={ClickHandler} className='cbc-msb-tb-item'>
                 <IconButton>
                   <InsertChartOutlinedRoundedIcon className='cbc-msb-tt-icon' />
                 </IconButton>
                 Statistics
               </li>
-              <li className='cbc-msb-tb-item'>
+              <li onClick={ClickHandler} className='cbc-msb-tb-item'>
                 <IconButton>
                   <SettingsOutlinedIcon className='cbc-msb-tt-icon' />
                 </IconButton>
                 Settings
               </li>
-              <li className='cbc-msb-tb-item'>
+              <li onClick={ClickHandler} className='cbc-msb-tb-item'>
                 <IconButton>
                   <HelpCenterOutlinedIcon className='cbc-msb-tt-icon' />
                 </IconButton>

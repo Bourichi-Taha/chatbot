@@ -9,7 +9,18 @@ import BotMessage from './BotMessage';
 import UploadFileOutlinedIcon from '@mui/icons-material/UploadFileOutlined';
 import SendIcon from '@mui/icons-material/Send';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import HistoryListItem from './HistoryListItem';
+import {  useSelector } from 'react-redux';
+import { useGetAllQuery } from '../features/history/historyApiSlice';
+import { useGetAllMessagesQuery } from '../features/messages/messagesApiSlice';
+import { selectCurrentConversationId } from '../features/messages/messagesSlice';
 const Chat = () => {
+
+    const selectedConversationId = useSelector(selectCurrentConversationId);
+    const {data} = useGetAllQuery();
+    const {data:messages,isError} = useGetAllMessagesQuery(selectedConversationId);
+
+
     return (
         <div className="chat-container">
             <div className="cc-left">
@@ -37,30 +48,18 @@ const Chat = () => {
                     </div>
                 </div>
                 <div className="cc-left-messages-container">
-                    <UserMessage />
-                    <BotMessage />
-                    <UserMessage />
-                    <BotMessage />
-                    <UserMessage />
-                    <BotMessage />
-                    <UserMessage />
-                    <BotMessage />
-                    <UserMessage />
-                    <BotMessage />
-                    <UserMessage />
-                    <BotMessage />
-                    <UserMessage />
-                    <BotMessage />
-                    <UserMessage />
-                    <BotMessage />
-                    <UserMessage />
-                    <BotMessage />
-                    <UserMessage />
-                    <BotMessage />
-                    <UserMessage />
-                    <BotMessage />
-                    <UserMessage />
-                    <BotMessage />
+                    {
+                        !isError && messages && messages.messages.map((msg,index)=>{
+                            if (msg.sender === "bot") {
+                                return (
+                                    <BotMessage msg={msg} key={index} />
+                                )
+                            }
+                            return(
+                                <UserMessage msg={msg} key={index}/>
+                            )
+                        })
+                    }
                 </div>
                 <div className="cc-left-input-container">
                     <div className='cc-lmc-bc-actions-icon-holder input-message'>
@@ -84,86 +83,9 @@ const Chat = () => {
                     <div className='cc-rh-total'>50</div>
                 </div>
                 <ul className="cc-right-history">
-                    <li className="cc-rh-item active">
-                        <div className="cc-rh-item-title">
-                            stockfish in chess
-                        </div>
-                        <div className="cc-rh-item-desc">
-                            has anyone before beated stockfish in chess
-                        </div>
-                    </li>
-                    <li className="cc-rh-item ">
-                        <div className="cc-rh-item-title">
-                            stockfish in chess
-                        </div>
-                        <div className="cc-rh-item-desc">
-                            has anyone before beated stockfish in chess
-                        </div>
-                    </li>
-                    <li className="cc-rh-item ">
-                        <div className="cc-rh-item-title">
-                            stockfish in chess
-                        </div>
-                        <div className="cc-rh-item-desc">
-                            has anyone before beated stockfish in chess
-                        </div>
-                    </li>
-                    <li className="cc-rh-item ">
-                        <div className="cc-rh-item-title">
-                            stockfish in chess
-                        </div>
-                        <div className="cc-rh-item-desc">
-                            has anyone before beated stockfish in chess
-                        </div>
-                    </li>
-                    <li className="cc-rh-item ">
-                        <div className="cc-rh-item-title">
-                            stockfish in chess
-                        </div>
-                        <div className="cc-rh-item-desc">
-                            has anyone before beated stockfish in chess
-                        </div>
-                    </li>
-                    <li className="cc-rh-item ">
-                        <div className="cc-rh-item-title">
-                            stockfish in chess
-                        </div>
-                        <div className="cc-rh-item-desc">
-                            has anyone before beated stockfish in chess
-                        </div>
-                    </li>
-                    <li className="cc-rh-item ">
-                        <div className="cc-rh-item-title">
-                            stockfish in chess
-                        </div>
-                        <div className="cc-rh-item-desc">
-                            has anyone before beated stockfish in chess
-                        </div>
-                    </li>
-                    <li className="cc-rh-item ">
-                        <div className="cc-rh-item-title">
-                            stockfish in chess
-                        </div>
-                        <div className="cc-rh-item-desc">
-                            has anyone before beated stockfish in chess
-                        </div>
-                    </li>
-                    <li className="cc-rh-item ">
-                        <div className="cc-rh-item-title">
-                            stockfish in chess
-                        </div>
-                        <div className="cc-rh-item-desc">
-                            has anyone before beated stockfish in chess
-                        </div>
-                    </li>
-                    <li className="cc-rh-item ">
-                        <div className="cc-rh-item-title">
-                            stockfish in chess
-                        </div>
-                        <div className="cc-rh-item-desc">
-                            has anyone before beated stockfish in chess
-                        </div>
-                    </li>
+                    {data && data.conversations?.map((item,index)=>{
+                        return <HistoryListItem key={index} item={item}/>
+                    })}
                 </ul>
                 <div className="cc-right-footer">
                     <button className='cc-rf-button'>

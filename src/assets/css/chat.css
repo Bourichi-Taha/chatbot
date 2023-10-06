@@ -140,7 +140,7 @@ border-radius: 8px;
 }
 .cc-lmc-bc-actions-icon-holder:hover{
     background: transparent;
-    border: 1px solid black ;
+    border: 1px solid  black ;
 }
 .cc-lmc-bc-actions-icon-holder.input-message{
     height: 55px;
@@ -249,6 +249,9 @@ border-radius: 8px;
     padding: 5px;
     background: transparent;
     transition: all .3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 .cc-rh-item.active{
     box-shadow: var(--box-shadow);
@@ -262,9 +265,9 @@ border-radius: 8px;
 }
 
 .cc-rh-item-title{
-    font-size: 18px;
+    font-size: 16px;
     color: #202123;
-    font-weight: bolder;
+    font-weight: bold;
 
 }
 
@@ -272,6 +275,8 @@ border-radius: 8px;
     font-size: 14px;
     color:#3d3d3d;
     font-weight: lighter;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 
@@ -298,9 +303,74 @@ border-radius: 8px;
     align-items: center;
     justify-content: center;
     border-radius: 8px;
+    gap: 10px;
 }
 .cc-rf-button:hover{
     cursor: pointer;
     background: #3d3d3d;
     color: #f1f1f1;
+}
+.cc-rf-button-upload{
+    height: 55px;
+    outline: none;
+    border: 1px solid #ef6a36;
+    background: transparent;
+    color: #ef6a36;
+    height: 50px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    gap: 10px;
+    font-size: 18px;
+}
+.cc-rf-button-upload:hover{
+    cursor: pointer;
+    background: #ef6a36;
+    color: #f1f1f1;
+}
+
+
+.cc-left-upload-container{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cf-uploaded-file{
+    padding: 20px;
+    font-size: 18px;
+    background: #b0b0b0;
+    color: #3d3d3d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.cc-luc-form{
+    display: flex;
+    gap: 10px;
+}
+.cc-luc-form-left{
+    flex: .5;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.cc-luc-form-right{
+    flex: .5;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.cc-luc-form-input.MuiTextField-root label.Mui-focused{
+    color: #ef6a36;
+}
+.cc-luc-form-input.MuiTextField-root .MuiInputBase-root.MuiOutlinedInput-root.Mui-focused fieldset{
+    border-color: #ef6a36;
 }

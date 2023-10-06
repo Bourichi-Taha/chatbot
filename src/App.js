@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import RequireAuth from "./components/RequireAuth";
-import PersistLogin from "./features/auth/PersistLogin";
 import Welcome from "./pages/Welcome";
 import Chatbot from "./pages/Chatbot";
 import Chat from "./components/Chat";
@@ -23,14 +22,14 @@ function App() {
 
         {/* end of public routes */}
         {/* protected routes */}
-        <Route element={<PersistLogin />}>
+        {/* <Route element={<PersistLogin />}> */}
           <Route element={<RequireAuth />}>
 
 
           </Route>
         </Route>
         {/* protected routes */}
-      </Route>
+      {/* </Route> */}
     </Routes>
   );
 }
