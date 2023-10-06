@@ -1,5 +1,5 @@
 import { apiSlice } from "../../app/api/apiSlice";
-import { setFiles } from "./filesSlice";
+import { selectFile, setFiles } from "./filesSlice";
 
 export const filesApiSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
@@ -24,10 +24,7 @@ export const filesApiSlice = apiSlice.injectEndpoints({
             query: (bodyFormData ) => ({
                 url: "/upload",
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'multipart/form-data;'
-                },
-                body: { bodyFormData },
+                body: bodyFormData ,
                 formData: true,
 
             }),
@@ -41,8 +38,25 @@ export const filesApiSlice = apiSlice.injectEndpoints({
                 }
             },
             invalidatesTags: ["Files"],
+        }),
+        selectFiles: builder.mutation({
+            query: ({fileNames} ) => ({
+                url: "/select",
+                method: 'POST',
+                body: { fileNames },
+
+            }),
+            async onQueryStarted(args, { dispatch, queryFulfilled }) {
+                try {
+
+                    const { data } = await queryFulfilled
+                    console.log("thisisdata:",data)
+                } catch (error) {
+                    console.log(error);
+                }
+            },
         })
     })
 })
 
-export const { useGetAllFilesQuery,useUploadFileMutation } = filesApiSlice
+export const { useGetAllFilesQuery,useUploadFileMutation,useSelectFilesMutation } = filesApiSlice

@@ -7,11 +7,12 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import MarkChatReadIcon from '@mui/icons-material/MarkChatRead';
 import FilesListItem from './FilesListItem';
 import FileUploader from './FileUploader';
-import { useGetAllFilesQuery, useUploadFileMutation } from '../features/files/filesApiSlice';
+import { useGetAllFilesQuery, useSelectFilesMutation, useUploadFileMutation } from '../features/files/filesApiSlice';
 import { useSelector } from 'react-redux';
-import { selectCurrentUploadedFile } from '../features/files/filesSlice';
+import { selectCurrentSelectedFiles, selectCurrentUploadedFile } from '../features/files/filesSlice';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { styled } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
     clipPath: 'inset(50%)',
@@ -36,7 +37,10 @@ const ChatFiles = () => {
     const [categories, setCategories] = useState("");
     const { data: files, isError } = useGetAllFilesQuery();
     const usloadedFile = useSelector(selectCurrentUploadedFile);
+    const selectedFiles = useSelector(selectCurrentSelectedFiles);
+    const [selectFile] = useSelectFilesMutation();
     const [uploadFile] = useUploadFileMutation();
+    const navigate = useNavigate()
     const submitHandler = async (e) => {
         e.preventDefault();
         let bodyFormData = new FormData();
@@ -59,6 +63,16 @@ const ChatFiles = () => {
             }
         } catch (error) {
             console.log(error);
+        }
+    }
+    const startChatting = async(e) => {
+        e.preventDefault();
+        try {
+            const res = await selectFile({fileNames:selectedFiles})
+            navigate("/chatbot")
+        } catch (error) {
+            console.log(error)
+            
         }
     }
     return (
@@ -91,7 +105,7 @@ const ChatFiles = () => {
                     {/* <FileUploader setFile={setFile} /> */}
                     <Button component="label" variant="contained" startIcon={<CloudUploadIcon />}>
                         Upload file
-                        <VisuallyHiddenInput type="file" onChange={(e) => setFile(e.currentTarget.files[0])} />
+                        <VisuallyHiddenInput type="file" name='file' onChange={(e) => setFile(e.currentTarget.files[0])} />
                     </Button>
                     <div className='cc-luc-form' >
                         <div className="cc-luc-form-left">
@@ -128,7 +142,7 @@ const ChatFiles = () => {
                     }
                 </ul>
                 <div className="cc-right-footer">
-                    <button className='cc-rf-button'>
+                    <button className='cc-rf-button' onClick={startChatting}>
                         <MarkChatReadIcon />
                         Start Chatting
                     </button>

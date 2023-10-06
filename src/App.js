@@ -15,8 +15,8 @@ function App() {
 
           <Route index element={<Welcome/>} />
           <Route path="/" element={<Chatbot/>} >
-              <Route path="/chatbot" element={<Chat />} />
               <Route path="/chat-files" element={<ChatFiles />} />
+              <Route path="/chatbot" element={<Chat />} />
           </Route>
 
 

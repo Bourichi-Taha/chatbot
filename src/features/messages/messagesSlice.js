@@ -12,11 +12,14 @@ const messagesSlice = createSlice({
         },
         setSummary : (state,action) => {
             state.summary = action.payload
+        },
+        updateMessages : (state,action) => {
+            state.messages = action.payload
         }
     }
 })
 
-export const {setMessages,setConversation,setSummary} = messagesSlice.actions;
+export const {setMessages,setConversation,setSummary,updateMessages} = messagesSlice.actions;
 
 export default messagesSlice.reducer;
 

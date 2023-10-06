@@ -10,7 +10,7 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import HelpCenterOutlinedIcon from '@mui/icons-material/HelpCenterOutlined';
 import InsertChartOutlinedRoundedIcon from '@mui/icons-material/InsertChartOutlinedRounded';
 import { IconButton } from '@mui/material';
-import { Outlet } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -32,13 +32,17 @@ const Chatbot = () => {
       }, 100);
     }
   }, [isOpen]);
-
+const navigate = useNavigate()
   const ClickHandler = (e) => {
     const allListItems = document.querySelectorAll(".cbc-msb-tb-item");
     allListItems.forEach((item) => {
       return item.classList.remove("active");
     });
     e.target.classList.add("active");
+    console.log(e.target.innerText)
+    if (e.target.innerText==="AI Chat Helper") {
+      navigate("/chat-files")
+    }
   }
 
   return (
@@ -95,9 +99,7 @@ const Chatbot = () => {
             </ul>
           </div>
           <div className="cbc-msb-bottom">
-            <div className="cbc-msb-bottom-top">
-              ads
-            </div>
+            
             <div className="cbc-msb-bottom-bottom">
               <p>logout</p>
               <IconButton>

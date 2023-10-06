@@ -1,5 +1,5 @@
 import { apiSlice } from "../../app/api/apiSlice";
-import { setMessages, setSummary } from "./messagesSlice";
+import { setConversation, setMessages, setSummary } from "./messagesSlice";
 
 export const messagesApiSlice = apiSlice.injectEndpoints({
     endpoints : builder => ({
@@ -34,8 +34,27 @@ export const messagesApiSlice = apiSlice.injectEndpoints({
                     console.log(error);
                 }
             },
-        })
+        }),
+        sendMessage : builder.mutation({
+            query : (formData) =>({
+                url: "/response",
+                method: "POST",
+                formData: true,
+                body:formData
+            }),
+            async onQueryStarted(args, {dispatch, queryFulfilled}) {
+                try {
+                    
+                    const {data}=await queryFulfilled
+                    dispatch(setConversation(data.conv));
+                    // dispatch(setSummary(data.response));
+                } catch (error) {
+                    console.log(error);
+                }
+            },
+            invalidatesTags:["Messages","History"]
+        }),
     })
 })
 
-export const {useGetAllMessagesQuery} = messagesApiSlice
+export const {useGetAllMessagesQuery,useSummarizeMutation,useSendMessageMutation} = messagesApiSlice
