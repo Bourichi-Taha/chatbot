@@ -130,7 +130,7 @@ const ChatFiles = () => {
             <div className="cc-right">
                 <div className="cc-right-header">
                     <p>Files</p>
-                    <div className='cc-rh-total'>23</div>
+                    <div className='cc-rh-total'>{files?.length}</div>
                 </div>
                 <ul className="cc-right-history">
                     {

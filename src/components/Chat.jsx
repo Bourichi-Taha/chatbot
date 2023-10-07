@@ -16,10 +16,13 @@ import { useGetAllMessagesQuery, useSendMessageMutation, useSummarizeMutation } 
 import { selectCurrentConversationId, selectCurrentSummary } from '../features/messages/messagesSlice';
 import LanguageIcon from '@mui/icons-material/Language';
 import { selectCurrentSelectedFiles } from '../features/files/filesSlice';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { useNavigate } from 'react-router-dom';
 const Chat = () => {
 
     const selectedConversationId = useSelector(selectCurrentConversationId);
     const { data } = useGetAllQuery();
+    console.log(data)
     const { data: messages, isError } = useGetAllMessagesQuery(selectedConversationId);
     const [sendMessage, { isUninitialized, isLoading }] = useSendMessageMutation();
     const [instantMessages, setInstantMessages] = useState([]);
@@ -37,47 +40,52 @@ const Chat = () => {
         if (!isError && messages && messages.messages) {
             setInstantMessages(messages.messages)
         }
-        
+
     }, [isError, messages]);
     useEffect(() => {
-        if (summary!=="") {
-            setInstantMessages(prev=>[...prev,{response:summary,sender:"bot"}])
-            
+        if (summary !== "") {
+            setInstantMessages(prev => [...prev, { response: summary, sender: "bot" }])
+
         }
-        
+
     }, [summary]);
 
     const sendMessageUser = async (e) => {
-        setLoading(true)
-        e.preventDefault();
-        let formData = new FormData();
-        formData.append("user_input", userInput);
-        if (selectedConversationId !== null) {
-            formData.append("conv", selectedConversationId);
-        }
-        formData.append("conv", "");
-        setInstantMessages(prev => [...prev, { response: userInput, sender: "user" }]);
-        try {
-            await sendMessage(formData)
+        if (selectedFiles?.length !== 0) {
             setUserInput("");
-            setLoading(false)
+            setLoading(true)
+            e.preventDefault();
+            let formData = new FormData();
+            formData.append("user_input", userInput);
+            if (selectedConversationId !== null) {
+                formData.append("conv", selectedConversationId);
+            }
+            formData.append("conv", "");
+            setInstantMessages(prev => [...prev, { response: userInput, sender: "user" }]);
+            try {
+                await sendMessage(formData)
+                setLoading(false)
 
-        } catch (error) {
-            console.log(error)
+            } catch (error) {
+                console.log(error)
+            }
         }
     }
     //Lang
     const [anchorEl, setAnchorEl] = useState(null);
 
+    const [isLang, setIsLang] = useState(false)
+    const handleLanguageMenuClose = () => {
+        setIsLang(false)
+    };
+    const handleLanguageMenuOpen = (e) => {
+        setAnchorEl(e.currentTarget);
+        setIsLang(true)
+    };
     const handleLanguageChange = (language) => {
         //call api
-        handleLanguageMenuClose();
+        setIsLang(false)
     };
-
-    const handleLanguageMenuClose = () => {
-        setAnchorEl(null);
-    };
-
     //auto scroll
     const messagesEndRef = useRef(null);
     useEffect(() => {
@@ -92,8 +100,8 @@ const Chat = () => {
         setIsDialog(false);
         setIsDialogAdded(bool)
     }
-    useEffect(()=>{
-        const get_summary = async() => {
+    useEffect(() => {
+        const get_summary = async () => {
             try {
                 const res = await summarize(selectedFileSumm);
                 console.log(res)
@@ -102,12 +110,12 @@ const Chat = () => {
                 console.log(error)
             }
         }
-        if(isDialogAdded){
+        if (isDialogAdded) {
             setLoading(true)
             get_summary()
         }
-    },[isDialogAdded])
-
+    }, [isDialogAdded])
+    const navigate = useNavigate();
     return (
         <div className="chat-container">
             <div className="cc-left">
@@ -129,8 +137,8 @@ const Chat = () => {
                         <Button variant="outlined" className='cc-lh-right-button'>
                             <NotificationsOutlinedIcon className='cc-lh-rb-icon' />
                         </Button>
-                        <Button variant="outlined" className='cc-lh-right-button'>
-                            <AssignmentLateOutlinedIcon className='cc-lh-rb-icon' />
+                        <Button variant="outlined" className='cc-lh-right-button' onClick={() => navigate("/chat-files")}>
+                            <CloudUploadIcon className='cc-lh-rb-icon' />
                         </Button>
                     </div>
                 </div>
@@ -153,24 +161,26 @@ const Chat = () => {
                     <div className='cc-lmc-bc-actions-icon-holder input-message' onClick={handleClick}>
                         <UploadFileOutlinedIcon sx={{ fontSize: 18 }} />
                     </div>
-                    <div className='cc-lmc-bc-actions-icon-holder input-message' onClick={() => { }}>
+                    <div className='cc-lmc-bc-actions-icon-holder input-message' onClick={handleLanguageMenuOpen}>
                         <LanguageIcon sx={{ fontSize: 18 }} />
-                        <Menu
-                            anchorEl={anchorEl}
-                            open={Boolean(anchorEl)}
-                            onClose={handleLanguageMenuClose}
-                        >
-                            <MenuItem onClick={() => handleLanguageChange("eng")}>
-                                English
-                            </MenuItem>
-                            <MenuItem onClick={() => handleLanguageChange("dutch")}>
-                                Dutch
-                            </MenuItem>
-                            <MenuItem onClick={() => handleLanguageChange("fr")}>
-                                French
-                            </MenuItem>
-                        </Menu>
+
                     </div>
+                    <Menu
+                    className='lang-menu'
+                        anchorEl={anchorEl}
+                        open={isLang}
+                        onClose={handleLanguageMenuClose}
+                    >
+                        <MenuItem onClick={() => handleLanguageChange("eng")}>
+                            English
+                        </MenuItem>
+                        <MenuItem onClick={() => handleLanguageChange("dutch")}>
+                            Dutch
+                        </MenuItem>
+                        <MenuItem onClick={() => handleLanguageChange("fr")}>
+                            French
+                        </MenuItem>
+                    </Menu>
                     <TextField
                         className='cc-left-ic-input'
                         variant="outlined"
@@ -178,7 +188,12 @@ const Chat = () => {
                         multiline
                         maxRows={3}
                         value={userInput}
-                        onChange={(e) => setUserInput(e.target.value)}
+                        onChange={(e) => {
+                            if (selectedFiles?.length !== 0) {
+                                setUserInput(e.target.value)
+                            }
+                        }}
+
                     />
                     <div className='cc-lmc-bc-actions-icon-holder input-message' onClick={sendMessageUser}>
                         {!loading ? <SendIcon sx={{ fontSize: 18 }} /> :
@@ -217,13 +232,13 @@ const Chat = () => {
                         value={selectedFileSumm}
                         fullWidth
                         label="Files"
-                        onChange={(e)=>setSelectedFileSumm(e.target.value)}
+                        onChange={(e) => setSelectedFileSumm(e.target.value)}
                     >
                         <MenuItem value="">
                             <em>None</em>
                         </MenuItem>
                         {
-                            selectedFiles.map((item,index)=>{
+                            selectedFiles.map((item, index) => {
                                 return (
                                     <MenuItem key={index} value={item}>{item}</MenuItem>
                                 )

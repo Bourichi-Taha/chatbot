@@ -63,6 +63,10 @@ background: linear-gradient(142deg, rgba(247,247,247,1) 25%, rgba(239,106,54,1) 
     font-size: 1.7rem;
     color: #f7f7f7;
 }
+.cbc-msb-tb-item.active .cbc-msb-tt-icon.MuiSvgIcon-root{
+    font-size: 1.7rem;
+    color: #ef6a36;
+}
 
 .cbc-msb-tt-icon.MuiSvgIcon-root.abs{
     color: #202123;
@@ -91,6 +95,7 @@ background: linear-gradient(142deg, rgba(247,247,247,1) 25%, rgba(239,106,54,1) 
 .cbc-msb-tb-item.active{
     background: #343541;
     border-radius: 8px;
+    color:#ef6a36 ;
 }
 
 .cbc-msb-bottom{

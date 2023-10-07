@@ -2,7 +2,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 
 const baseQuery = fetchBaseQuery({
-    baseUrl: 'https://flasktest-vkre.onrender.com',
+    // baseUrl: 'https://flasktest-vkre.onrender.com',
+    baseUrl: 'http://127.0.0.1:5000',
     prepareHeaders: (headers, { getState }) => {
         const token = getState().auth.access_token;
         if (token) {
