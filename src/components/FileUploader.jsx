@@ -1,7 +1,5 @@
 import React, {  useEffect, useMemo } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { useDispatch } from 'react-redux';
-import { uploadFile } from '../features/files/filesSlice';
 
 
 const baseStyle = {
@@ -54,10 +52,9 @@ const FileUploader = ({setFile}) => {
         isDragAccept,
         isDragReject
     ]);
-    const dispatch = useDispatch()
     useEffect(()=>{
         setFile(acceptedFiles[0])
-    },[acceptedFiles])
+    },[acceptedFiles,setFile]);
 
 
     return (

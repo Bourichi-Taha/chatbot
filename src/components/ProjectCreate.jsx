@@ -1,20 +1,15 @@
 import React, { useState } from 'react'
-import "../assets/css/chat.css";
-import { Button, InputAdornment, TextField } from '@mui/material';
-import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
-import AssignmentLateOutlinedIcon from '@mui/icons-material/AssignmentLateOutlined';
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import MarkChatReadIcon from '@mui/icons-material/MarkChatRead';
-import FilesListItem from './FilesListItem';
-import FileUploader from './FileUploader';
-import { useGetAllFilesQuery, useSelectFilesMutation, useUploadFileMutation } from '../features/files/filesApiSlice';
-import { useSelector } from 'react-redux';
-import { selectCurrentSelectedFiles } from '../features/files/filesSlice';
 import { useNavigate } from 'react-router-dom';
-
-
-
-const ChatFiles = () => {
+import PageTransition from './PageTransition';
+import { Button, InputAdornment, TextField } from '@mui/material';
+import FileUploader from './FileUploader';
+import MarkChatReadIcon from '@mui/icons-material/MarkChatRead';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import DatasetOutlinedIcon from '@mui/icons-material/DatasetOutlined';
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import { useUploadFileMutation } from '../features/files/filesApiSlice';
+const ProjectCreate = () => {
+    const navigate = useNavigate();
     const [name_of_tender, setNameOfTender] = useState("");
     const [file, setFile] = useState(null);
     const [submission_date, setSubmissionDate] = useState("");
@@ -23,11 +18,7 @@ const ChatFiles = () => {
     const [status, setStatus] = useState("");
     const [results, setResults] = useState("");
     const [categories, setCategories] = useState("");
-    const { data: files, isError } = useGetAllFilesQuery();
-    const selectedFiles = useSelector(selectCurrentSelectedFiles);
-    const [selectFile] = useSelectFilesMutation();
     const [uploadFile] = useUploadFileMutation();
-    const navigate = useNavigate()
     const submitHandler = async (e) => {
         e.preventDefault();
         let bodyFormData = new FormData();
@@ -52,24 +43,15 @@ const ChatFiles = () => {
             console.log(error);
         }
     }
-    const startChatting = async (e) => {
-        e.preventDefault();
-        try {
-            await selectFile({ fileNames: selectedFiles })
-            navigate("/chatbot")
-        } catch (error) {
-            console.log(error)
-
-        }
-    }
     return (
-        <div className="chat-container">
-            <div className="cc-left">
-                <div className="cc-left-header">
-                    <div className="cc-lh-left">AI Chat Helper</div>
-                    <div className="cc-lh-right">
+
+        <div className='project-item-container' style={{ position: "relative" }}>
+            <div className="pci-left">
+                <div className="pci-left-header">
+                    <div className="pci-lh-left"><span style={{ cursor: "pointer" }} onClick={() => navigate("/projects")}>My Projects</span>/New Project</div>
+                    <div className="pci-lh-right">
                         <TextField
-                            className='cc-lh-right-input'
+                            className='pci-lh-right-input'
                             variant="outlined"
                             placeholder='Search'
                             InputProps={{
@@ -80,20 +62,16 @@ const ChatFiles = () => {
                                 )
                             }}
                         />
-                        <Button variant="outlined" className='cc-lh-right-button'>
-                            <NotificationsOutlinedIcon className='cc-lh-rb-icon' />
+                        <Button variant="outlined" className='pci-lh-right-button'>
+                            <AddCircleOutlineIcon className='pci-lh-rb-icon' />
                         </Button>
-                        <Button variant="outlined" className='cc-lh-right-button'>
-                            <AssignmentLateOutlinedIcon className='cc-lh-rb-icon' />
+                        <Button variant="outlined" className='pci-lh-right-button' onClick={() => navigate("/chat-files")}>
+                            <DatasetOutlinedIcon className='pci-lh-rb-icon' />
                         </Button>
                     </div>
                 </div>
                 <form className="cc-left-upload-container" onSubmit={submitHandler}>
                     <FileUploader setFile={setFile} />
-                    {/* <Button component="label" variant="contained" startIcon={<CloudUploadIcon />}>
-                        Upload file
-                        <VisuallyHiddenInput type="file" name='file' onChange={(e) => setFile(e.currentTarget.files[0])} />
-                    </Button> */}
                     <div className='cc-luc-form' >
                         <div className="cc-luc-form-left">
                             <TextField label="name of tender" variant='outlined' className='cc-luc-form-input' value={name_of_tender} onChange={(e) => setNameOfTender(e.target.value)} />
@@ -114,29 +92,9 @@ const ChatFiles = () => {
                 </form>
 
             </div>
-            <div className="cc-right">
-                <div className="cc-right-header">
-                    <p>Files</p>
-                    <div className='cc-rh-total'>{files?.length}</div>
-                </div>
-                <ul className="cc-right-history">
-                    {
-                        !isError && files && files.map((item, index) => {
-                            return (
-                                <FilesListItem item={item} key={index} />
-                            )
-                        })
-                    }
-                </ul>
-                <div className="cc-right-footer">
-                    <button className='cc-rf-button' onClick={startChatting}>
-                        <MarkChatReadIcon />
-                        Start Chatting
-                    </button>
-                </div>
-            </div>
-        </div>
+            <PageTransition />
+        </div >
     )
 }
 
-export default ChatFiles
+export default ProjectCreate

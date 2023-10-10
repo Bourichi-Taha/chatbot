@@ -10,7 +10,7 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import HelpCenterOutlinedIcon from '@mui/icons-material/HelpCenterOutlined';
 import InsertChartOutlinedRoundedIcon from '@mui/icons-material/InsertChartOutlinedRounded';
 import { IconButton } from '@mui/material';
-import { Outlet, useNavigate } from 'react-router-dom'
+import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -24,7 +24,7 @@ const Chatbot = () => {
         sidebar.classList.add("w-0");
         main.classList.add("no-sb");
       }, 100);
-    }else{
+    } else {
       sidebar.classList.remove("w-0");
       main.classList.remove("no-sb");
       setTimeout(() => {
@@ -32,23 +32,42 @@ const Chatbot = () => {
       }, 100);
     }
   }, [isOpen]);
-const navigate = useNavigate()
+  const navigate = useNavigate()
+  const location = useLocation()
+  useEffect(() => {
+    if (location.pathname.split('/')[1] === "projects") {
+      const allListItems = document.querySelectorAll(".cbc-msb-tb-item");
+      allListItems.forEach((item) => {
+        return item.classList.remove("active");
+      });
+      document.querySelector('.projects').classList.add("active");
+    }else if (location.pathname.split('/')[1] === "library") {
+      const allListItems = document.querySelectorAll(".cbc-msb-tb-item");
+      allListItems.forEach((item) => {
+        return item.classList.remove("active");
+      });
+      document.querySelector('.library').classList.add("active");
+    }else if (location.pathname.split('/')[1] === "chatbot"){
+      const allListItems = document.querySelectorAll(".cbc-msb-tb-item");
+      allListItems.forEach((item) => {
+        return item.classList.remove("active");
+      });
+      document.querySelector('.chatbot').classList.add("active");
+    }
+  }, [location])
   const ClickHandler = (e) => {
-    const allListItems = document.querySelectorAll(".cbc-msb-tb-item");
-    allListItems.forEach((item) => {
-      return item.classList.remove("active");
-    });
-    e.target.classList.add("active");
-    console.log(e.target.innerText)
-    if (e.target.innerText==="AI Chat Helper") {
+    if (e.target.innerText === "AI Chat Helper") {
       navigate("/chat-files")
+    } else if (e.target.innerText === "My Projects") {
+      navigate("/projects")
+    } else if (e.target.innerText === "Library") {
+      navigate("/library")
     }
   }
-
   return (
     <div className="chat-bot-container">
       <div className="cbc-main">
-        <IconButton onClick={sidebarTrigger} sx={{ display: isOpen ? "none" : "flex", position: "fixed", top: 10, left: 10 }}>
+        <IconButton onClick={sidebarTrigger} sx={{ display: isOpen ? "none" : "flex", position: "fixed", top: -6, left: -6 }}>
           <AutoAwesomeMosaicIcon className='cbc-msb-tt-icon abs' />
         </IconButton>
         <div className="cbc-main-sidebar">
@@ -59,20 +78,20 @@ const navigate = useNavigate()
                 <AutoAwesomeMosaicIcon className='cbc-msb-tt-icon' />
               </IconButton>
             </div>
-            <ul className="cbc-msb-top-bottom">
-              <li onClick={ClickHandler} className='cbc-msb-tb-item active'>
+            <ul className="cbc-msb-top-bottom chatHelper" >
+              <li onClick={ClickHandler} className='cbc-msb-tb-item chatbot'>
                 <IconButton>
                   <ChatBubbleOutlineIcon className='cbc-msb-tt-icon' />
                 </IconButton>
                 AI Chat Helper
               </li>
-              <li onClick={ClickHandler} className='cbc-msb-tb-item'>
+              <li onClick={ClickHandler} className='cbc-msb-tb-item library'>
                 <IconButton>
                   <DescriptionOutlinedIcon className='cbc-msb-tt-icon' />
                 </IconButton>
                 Library
               </li>
-              <li onClick={ClickHandler} className='cbc-msb-tb-item'>
+              <li onClick={ClickHandler} className='cbc-msb-tb-item projects'>
                 <IconButton>
                   <BorderAllRoundedIcon className='cbc-msb-tt-icon' />
                 </IconButton>
@@ -99,7 +118,7 @@ const navigate = useNavigate()
             </ul>
           </div>
           <div className="cbc-msb-bottom">
-            
+
             <div className="cbc-msb-bottom-bottom">
               <p>logout</p>
               <IconButton>

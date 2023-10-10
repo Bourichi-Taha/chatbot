@@ -1,5 +1,5 @@
 import { apiSlice } from "../../app/api/apiSlice";
-import { selectFile, setFiles } from "./filesSlice";
+import {  setFiles } from "./filesSlice";
 
 export const filesApiSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
@@ -49,8 +49,7 @@ export const filesApiSlice = apiSlice.injectEndpoints({
             async onQueryStarted(args, { dispatch, queryFulfilled }) {
                 try {
 
-                    const { data } = await queryFulfilled
-                    console.log("thisisdata:",data)
+                    await queryFulfilled
                 } catch (error) {
                     console.log(error);
                 }

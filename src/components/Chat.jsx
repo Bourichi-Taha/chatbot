@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react'
 import "../assets/css/chat.css";
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, InputAdornment, Menu, MenuItem, Select, TextField } from '@mui/material';
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
-import AssignmentLateOutlinedIcon from '@mui/icons-material/AssignmentLateOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import UserMessage from './UserMessage';
 import BotMessage from './BotMessage';
@@ -10,7 +9,7 @@ import UploadFileOutlinedIcon from '@mui/icons-material/UploadFileOutlined';
 import SendIcon from '@mui/icons-material/Send';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import HistoryListItem from './HistoryListItem';
-import { useDispatch, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 import { useGetAllQuery } from '../features/history/historyApiSlice';
 import { useGetAllMessagesQuery, useSendMessageMutation, useSummarizeMutation } from '../features/messages/messagesApiSlice';
 import { selectCurrentConversationId, selectCurrentSummary } from '../features/messages/messagesSlice';
@@ -24,10 +23,9 @@ const Chat = () => {
     const { data } = useGetAllQuery();
     console.log(data)
     const { data: messages, isError } = useGetAllMessagesQuery(selectedConversationId);
-    const [sendMessage, { isUninitialized, isLoading }] = useSendMessageMutation();
+    const [sendMessage] = useSendMessageMutation();
     const [instantMessages, setInstantMessages] = useState([]);
     const summary = useSelector(selectCurrentSummary);
-    const dispatch = useDispatch()
     const [summarize] = useSummarizeMutation();
     const [userInput, setUserInput] = useState("");
     const [loading, setLoading] = useState(false);
@@ -103,8 +101,7 @@ const Chat = () => {
     useEffect(() => {
         const get_summary = async () => {
             try {
-                const res = await summarize(selectedFileSumm);
-                console.log(res)
+                await summarize(selectedFileSumm);
                 setLoading(false)
             } catch (error) {
                 console.log(error)
@@ -114,7 +111,7 @@ const Chat = () => {
             setLoading(true)
             get_summary()
         }
-    }, [isDialogAdded])
+    }, [isDialogAdded,summarize,selectedFileSumm]);
     const navigate = useNavigate();
     return (
         <div className="chat-container">

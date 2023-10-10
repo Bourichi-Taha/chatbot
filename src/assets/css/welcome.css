@@ -1,0 +1,71 @@
+table {
+    width          : 100%;
+    border-collapse: separate;
+    border-spacing : 0 10px;
+}
+td,
+th {
+  text-align: left;
+  font-size: 14px;
+}
+
+td {
+  border: none;
+  padding: 5px;
+  text-align: left;
+  background-color: white;
+}
+
+th {
+  text-align: left;
+  border: none;
+  padding: 5px;
+  font-size: 12px;
+  color: #888;
+}
+
+td > div,
+th > div {
+  padding: 10px 10px 10px 0;
+  margin: 5px 0;
+  background-color: #fff;
+}
+
+td:first-child > div,
+th:first-child > div {
+  padding-left: 10px;
+}
+
+tr {
+  position: relative;
+}
+
+tr:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 5px; /* Adjust for desired width */
+  background-color: purple; /* Adjust for desired color */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+tr.active-row {
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+tr.active-row:before {
+  opacity: 1;
+}
+
+button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: purple;
+  color: white;
+  cursor: pointer;
+}
