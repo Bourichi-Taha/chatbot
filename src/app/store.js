@@ -4,6 +4,7 @@ import authReducer from '../features/auth/authSlice';
 import historyReducer from '../features/history/historySlice';
 import messagesReducer from '../features/messages/messagesSlice';
 import filesReducer from '../features/files/filesSlice';
+import projectReducer from '../features/projects/ProjectSlice';
 
 
 export const store = configureStore({
@@ -13,6 +14,7 @@ export const store = configureStore({
         history:historyReducer,
         messages:messagesReducer,
         files:filesReducer,
+        projects:projectReducer,
     },
     middleware: getDefaultMiddleware =>
         getDefaultMiddleware({serializableCheck: false}).concat(apiSlice.middleware),

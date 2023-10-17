@@ -1,4 +1,4 @@
-table {
+/* table {
     width          : 100%;
     border-collapse: separate;
     border-spacing : 0 10px;
@@ -47,7 +47,7 @@ tr:before {
   bottom: 0;
   left: 0;
   width: 5px; /* Adjust for desired width */
-  background-color: purple; /* Adjust for desired color */
+/*  background-color: purple;  Adjust for desired color 
   opacity: 0;
   transition: opacity 0.3s;
 }
@@ -68,4 +68,4 @@ button {
   background-color: purple;
   color: white;
   cursor: pointer;
-}
+} */
