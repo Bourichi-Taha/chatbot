@@ -3,27 +3,21 @@ import { logOut, setCredentials } from "./authSlice";
 
 export const authApiSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
-        register: builder.query({
-            query: () => ({
-                url: '/user',
-                method: 'GET',
-                
+        login: builder.mutation({
+            query: credentials => ({
+                url: '/login',
+                method: 'POST',
+                body: {...credentials}
             }),
             async onQueryStarted(args, {dispatch, queryFulfilled}) {
                 try {
-                    const data = await queryFulfilled;
-                    return data
+                    
+                    const {data}=await queryFulfilled
+                    dispatch(setCredentials(data));
                 } catch (error) {
-                    console.log(error)
+                    console.log(error);
                 }
             }
-        }) ,
-        login: builder.mutation({
-            query: credentials => ({
-                url: '/auth/login',
-                method: 'POST',
-                body: {...credentials}
-            })
         }),
         sendLogout : builder.mutation({
             query: () => ({
@@ -42,22 +36,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
                 }
             }
         }),
-        refresh: builder.mutation({
-            query: () => ({
-                url: '/auth/refresh',
-                method: 'GET',
-            }),
-            async onQueryStarted(args, {dispatch, queryFulfilled}) {
-                try {
-                    const {data} = await queryFulfilled;
-                    const {accessToken} = data
-                    dispatch(setCredentials({accessToken}))
-                } catch (error) {
-                    console.log(error)
-                }
-            }
-        }),
     })
 })
 
-export const {useLoginMutation,useSendLogoutMutation,useRefreshMutation,useRegisterQuery} = authApiSlice
+export const {useLoginMutation,useSendLogoutMutation} = authApiSlice

@@ -11,9 +11,8 @@ background: linear-gradient(142deg, rgba(247,247,247,1) 25%, rgba(239,106,54,1) 
 
 .cbc-main{
     background: #202123;
-    height: 90vh;
-    width: 90vw;
-    border-radius: 20px;
+    height: 100vh;
+    width: 100vw;
     padding: 20px;
     display: flex;
     gap: 20px;
@@ -63,9 +62,13 @@ background: linear-gradient(142deg, rgba(247,247,247,1) 25%, rgba(239,106,54,1) 
     font-size: 1.7rem;
     color: #f7f7f7;
 }
+.cbc-msb-tb-item.active .cbc-msb-tt-icon.MuiSvgIcon-root{
+    font-size: 1.7rem;
+    color: #ef6a36;
+}
 
 .cbc-msb-tt-icon.MuiSvgIcon-root.abs{
-    color: #202123;
+    color: #ef6a36;
 }
 
 .cbc-msb-top-bottom{
@@ -85,11 +88,13 @@ background: linear-gradient(142deg, rgba(247,247,247,1) 25%, rgba(239,106,54,1) 
     display: flex;
     align-items: center;
     padding-left: 20px;
+    transition: all .3s ease;
 }
 
 .cbc-msb-tb-item.active{
     background: #343541;
     border-radius: 8px;
+    color:#ef6a36 ;
 }
 
 .cbc-msb-bottom{

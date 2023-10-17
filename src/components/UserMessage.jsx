@@ -3,11 +3,11 @@ import "../assets/css/chat.css"
 
 
 
-const UserMessage = () => {
+const UserMessage = ({msg}) => {
     return (
         <div className="cc-lmc-bot-container">
             <div className="cc-lmc-bc-body user">
-                has anyone before beated stockfish in chess
+                {msg.response}
             </div>
         </div>
     )

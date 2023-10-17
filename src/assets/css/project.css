@@ -1,0 +1,366 @@
+.project-item-container {
+    height : 100%;
+    width  : 100%;
+    display: flex;
+}
+
+.pci-left {
+    flex          : 1;
+    height        : 100%;
+    display       : flex;
+    flex-direction: column;
+
+}
+
+.pci-left-header {
+    height         : 60px;
+    width          : 100%;
+    padding        : 0 20px;
+    display        : flex;
+    align-items    : center;
+    justify-content: space-between;
+    background     : #ffffff;
+    border-radius  : 20px 0 0 0;
+    border-bottom  : 1px solid #d0d0d0;
+}
+
+.pci-lh-left {
+    color      : #202123;
+    font-size  : 20px;
+    font-weight: bolder;
+}
+.pci-lh-left span:hover{
+    color: #ef6a36;
+}
+
+.pci-lh-right {
+    display    : flex;
+    align-items: center;
+    gap        : 10px;
+}
+
+.MuiTextField-root.pci-lh-right-input,
+.MuiTextField-root.pci-lh-right-input:hover {
+    border-radius: 8px;
+    background   : #d9d9d9;
+
+}
+
+.MuiTextField-root.pci-lh-right-input .MuiInputBase-root,
+.MuiTextField-root.pci-lh-right-input .MuiInputBase-root:hover {
+    box-shadow: var(--box-shadow);
+    height    : 35px;
+}
+
+.MuiTextField-root.pci-lh-right-input .MuiInputBase-root fieldset {
+    border : none;
+    outline: none;
+}
+
+.MuiButtonBase-root.pci-lh-right-button,
+.MuiButtonBase-root.pci-lh-right-button:hover {
+    border-color: #d0d0d0;
+    color       : #d0d0d0;
+    min-width   : 0;
+    box-shadow  : var(--box-shadow);
+}
+
+.pci-left-content {
+    padding       : 20px;
+    display       : flex;
+    flex-direction: column;
+    flex          : 1;
+    width         : 100%;
+    overflow-y    : scroll;
+    gap           : 20px;
+}
+
+.pci-lc-row {
+    display    : flex;
+    align-items: center;
+    flex-wrap  : wrap;
+}
+
+.pci-lc-row-item {
+    position      : relative;
+    display       : flex;
+    flex-direction: column;
+    gap           : 10px;
+    height        : 200px;
+    flex          : .25;
+    max-width     : calc(25% - 20px);
+    background    : white;
+    border-radius : 20px;
+    cursor        : pointer;
+    transition    : all .3 ease;
+    margin-right  : 20px;
+    border: 1px solid #d0d0d0;
+}
+
+.pci-lc-row-item:last-child {
+    margin-right: 0;
+}
+
+.pci-lc-row-item:hover {
+    transform: scale(1.05);
+    box-shadow    : var(--box-shadow);
+}
+
+.pci-lc-ri-pill {
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    position       : absolute;
+    right          : -10px;
+    opacity        : 0;
+    visibility     : hidden;
+    z-index        : -2;
+    top            : 0;
+    height         : 30px;
+    width          : 90px;
+    font-size      : 12px;
+    font-weight    : lighter;
+    color          : #202123;
+    border-radius  : 0 20px 0 20px;
+    background     : #ef6a3665;
+    transition     : all .3s ease;
+}
+
+.pci-lc-row-item:hover .pci-lc-ri-pill {
+    right     : 0;
+    opacity   : 1;
+    visibility: visible;
+    z-index   : 2;
+}
+
+.pci-lc-ri-header {
+    display        : flex;
+    align-items    : center;
+    justify-content: flex-start;
+    width          : 100%;
+    padding        : 10px;
+    font-size      : 18px;
+    font-weight    : bold;
+    color          : #202123;
+    border-bottom  : 1px solid #d0d0d0;
+}
+
+.pci-lc-ri-desc {
+    padding    : 0 10px 10px 10px;
+    flex       : 1;
+    display    : flex;
+    font-size  : 14px;
+    font-weight: normal;
+    color      : #969696;
+}
+
+
+
+.pci-lc-ri-desc-date {
+    font-size  : 12px;
+    font-weight: lighter;
+    color      : #d0d0d0;
+    align-self : flex-end;
+    padding    : 0 10px 10px 10px;
+
+}
+
+.pci-right{
+    flex          : .25;
+    height        : 100%;
+    /* border     : 1px solid blue; */
+    background    : #f1f1f1;
+    border-radius : 0 20px 20px 0;
+    display       : flex;
+    flex-direction: column;
+    border-left: 1px solid #d9d9d9;
+}
+
+.pci-right-header {
+    height         : 60px;
+    width          : 100%;
+    padding        : 0 20px;
+    display        : flex;
+    align-items    : center;
+    justify-content: space-between;
+    border-bottom  : 1px solid #d0d0d0;
+    background     : #f1f1f1;
+    border-radius  : 0 20px 0 0;
+    color          : #202123;
+    font-size      : 20px;
+    font-weight    : bolder;
+}
+
+.pci-rh-total {
+    font-size      : 14px;
+    font-weight    : lighter;
+    height         : 30px;
+    width          : 80px;
+    border-radius  : 20px;
+    background     : #d9d9d9;
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+}
+
+
+.pci-right-history {
+    flex          : 1;
+    list-style    : none;
+    margin        : 0;
+    padding       : 10px;
+    display       : flex;
+    flex-direction: column;
+    gap           : 10px;
+    overflow-y    : scroll;
+}
+
+.pci-right-history::-webkit-scrollbar {
+    width: 8px;
+}
+
+.pci-right-history::-webkit-scrollbar-thumb {
+    background   : #ccc;
+    border-radius: 4px;
+}
+
+.pci-right-history::-webkit-scrollbar-thumb:hover {
+    background: #888;
+}
+
+.pci-right-history::-webkit-scrollbar-track {
+    background   : #f1f1f1;
+    border-radius: 4px;
+}
+
+.pci-rh-item {
+    border-radius : 8px;
+    padding       : 5px;
+    background    : transparent;
+    transition    : all .3s ease;
+    display       : flex;
+    flex-direction: column;
+    gap           : 10px;
+}
+
+.pci-rh-item.active {
+    box-shadow: var(--box-shadow);
+    background: white;
+
+}
+
+.pci-rh-item:hover {
+    cursor    : pointer;
+    box-shadow: var(--box-shadow);
+
+}
+
+.pci-rh-item-title {
+    font-size  : 16px;
+    color      : #202123;
+    font-weight: bold;
+
+}
+
+.pci-rh-item-desc {
+    font-size    : 14px;
+    color        : #3d3d3d;
+    font-weight  : lighter;
+    overflow     : hidden;
+    text-overflow: ellipsis;
+}
+
+.pci-right-footer {
+    height         : 80px;
+    width          : 100%;
+    padding        : 0 20px;
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+}
+
+.pci-rf-button {
+    flex           : 1;
+    outline        : none;
+    border         : 1px solid #3d3d3d;
+    background     : transparent;
+    color          : #3d3d3d;
+    height         : 50px;
+    font-size      : 14px;
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    border-radius  : 8px;
+    gap            : 10px;
+}
+
+.pci-rf-button:hover {
+    cursor    : pointer;
+    background: #3d3d3d;
+    color     : #f1f1f1;
+}
+
+.pci-left-upload-container {
+    padding       : 20px;
+    display       : flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    gap           : 20px;
+}
+
+.pci-rf-button-upload {
+    min-height         : 55px;
+    outline        : none;
+    border         : 1px solid #ef6a36;
+    background     : transparent;
+    color          : #ef6a36;
+    font-size      : 14px;
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    border-radius  : 8px;
+    gap            : 10px;
+    font-size      : 18px;
+}
+
+.pci-rf-button-upload:hover {
+    cursor    : pointer;
+    background: #ef6a36;
+    color     : #f1f1f1;
+}
+
+.pci-luc-form {
+    display: flex;
+    gap    : 10px;
+}
+
+.pci-luc-form-left {
+    flex          : .5;
+    display       : flex;
+    flex-direction: column;
+    gap           : 20px;
+}
+
+.pci-luc-form-right {
+    flex          : .5;
+    display       : flex;
+    flex-direction: column;
+    gap           : 20px;
+}
+
+.pci-luc-form-input.MuiTextField-root label.Mui-focused,.pci-luc-form-input.MuiInputBase-root {
+    color: #ef6a36;
+}
+
+.pci-luc-form-input.MuiTextField-root .MuiInputBase-root.MuiOutlinedInput-root.Mui-focused fieldset,.pci-luc-form-input.MuiInputBase-root .Mui-focused fieldset{
+    border-color: #ef6a36;
+}
+.pci-luc-fi-label.MuiInputLabel-root.Mui-focused{
+    color: #ef6a36;
+}
+.pci-luc-form-input.MuiInputBase-root.Mui-focused .MuiSelect-icon{
+    color: #ef6a36;
+}
+.pci-luc-form-input.MuiInputBase-root.Mui-focused fieldset{
+    border-color: #ef6a36;
+}
