@@ -8,12 +8,13 @@ import App from '../App'
 const AnimatedRoutes = () => {
     const location = useLocation();
     return (
-        <AnimatePresence mode="wait" initial={false}>
-          <Routes location={location} key={location.pathname}>
-            <Route path='/*' element={<App />} />
-          </Routes>
+        <AnimatePresence exitBeforeEnter initial={false}>
+            <Routes location={location} key={location.pathname}>
+                <Route path='/*' element={<App />} />
+            </Routes>
         </AnimatePresence>
-    )
-}
+    );
+  }
+  
 
 export default AnimatedRoutes

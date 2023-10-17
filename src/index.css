@@ -12,9 +12,34 @@
 
 
 @import url('https://fonts.cdnfonts.com/css/gilroy-bold');
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+*{
+  box-sizing: border-box;
+}
 
-body {
+body.dark{
+  --dark-bg-color:#1f265c;
+  --lighter-bg-color:#343e8b;
+  --secondary-black-color:#212229;
+  --text-black-color:white;
+  --text-white-color:#121212;
+  --bg-black-color:#121212;
+  --bg-category-color:#212229;
+  --dark-category-color:rgba(255, 255, 255, 0.61);
+  --grid-bg-color:rgba(255, 255, 255, 0.61);
+  --button-category-color:white;
+  --text-category-black-color:#121212;
+  --box-shadow: 0px 0px 7px 5px rgba(255, 255, 255, 0.1);
+  --box-shadow-bottom: 0px 0px 7px 5px rgba(255, 255, 255, 0.1);
+
+}
+
+body{
   /* --box-shadow: 0px 0px 7px 5px rgba(0,0,0,0.1); */
+  box-sizing: ;
   --box-shadow: 0px 9px 15px 5px rgba(0,0,0,0.1);
 
   font-family: 'Gilroy-Bold', sans-serif;
@@ -27,13 +52,20 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   user-select: none;
+  --dark-bg-color:#ef6a36;
+  --lighter-bg-color:#222;
+  --secondary-black-color:#222;
+  --text-white-color:white;
+  --bg-black-color:  #f4f5f8;
+  --dark-category-color:#222;
+  
+  --text-black-color:#121212;
+  --grid-bg-color:#bccded;
+  --bg-category-color:#f4f5f8;
+  --button-category-color:#222;
+  --text-category-black-color:#121212;
+  --box-shadow: 0px 0px 7px 5px rgba(0,0,0,0.1);
+  --box-shadow-bottom: 0px 0px 7px 5px rgba(0,0,0,0.1);
+  --font-family:'Courier New', Courier, monospace;
+  /*  */
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-*{
-  box-sizing: border-box;
-}
-
