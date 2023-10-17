@@ -18,26 +18,26 @@ function App() {
       <Route path="/" element={<Layout />}>
         {/* public routes */}
 
-          <Route index element={<Welcome/>} />
-          <Route path="/" element={<Chatbot/>} >
-              <Route path="/chat-files" element={<ChatFiles />} />
-              <Route path="/chatbot" element={<Chat />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/projects/:projectName" element={<Project />} />
-              <Route path="/projects/create" element={<ProjectCreate />} />
+        <Route index element={<Welcome />} />
+        <Route path="/" element={<Chatbot />} >
+          <Route path="/chat-files" element={<ChatFiles />} />
+          <Route path="/chatbot" element={<Chat />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/projects/:projectName" element={<Project />} />
+          <Route path="/projects/create" element={<ProjectCreate />} />
 
-          </Route>
+        </Route>
 
 
         {/* end of public routes */}
         {/* protected routes */}
         {/* <Route element={<PersistLogin />}> */}
-          <Route element={<RequireAuth />}>
+        <Route element={<RequireAuth />}>
 
 
-          </Route>
         </Route>
-        {/* protected routes */}
+      </Route>
+      {/* protected routes */}
       {/* </Route> */}
     </Routes>
   );

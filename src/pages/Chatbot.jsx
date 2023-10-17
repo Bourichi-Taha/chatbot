@@ -73,7 +73,7 @@ const Chatbot = () => {
         <div className="cbc-main-sidebar">
           <div className="cbc-msb-top">
             <div className="cbc-msb-top-top">
-              <img src={logo} alt="" className="cbc-msb-tt-logo" />
+              <img src={logo} alt="" onClick={()=>{navigate("/login")}} className="cbc-msb-tt-logo" />
               <IconButton onClick={sidebarTrigger}>
                 <AutoAwesomeMosaicIcon className='cbc-msb-tt-icon' />
               </IconButton>

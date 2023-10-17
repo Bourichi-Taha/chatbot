@@ -7,11 +7,13 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import ProjectItem from "./ProjectItem";
 import PageTransition from "./PageTransition";
+import { useFetchUserProjectsQuery } from "../features/projects/ProjectApiSlice";
 
 const Projects = () => {
 
     const navigate = useNavigate();
-
+    const {data } = useFetchUserProjectsQuery();
+    console.log(data);
 
     return (
         <div className="projects-container" style={{position:"relative"}}>

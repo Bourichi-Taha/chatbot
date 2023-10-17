@@ -1,6 +1,6 @@
 import React, {  useEffect, useMemo } from 'react';
 import { useDropzone } from 'react-dropzone';
-
+import "../assets/css/chat.css";
 
 const baseStyle = {
     flex: 1,
@@ -29,7 +29,7 @@ const acceptStyle = {
 const rejectStyle = {
     borderColor: 'red'
 };
-const FileUploader = ({setFile}) => {
+const FileUploader = ({setFile,setFiles,multi}) => {
     const {
         acceptedFiles,
         getRootProps,
@@ -40,7 +40,7 @@ const FileUploader = ({setFile}) => {
     } = useDropzone({
         accept: {
             'application/pdf': []
-        }, maxFiles: 1
+        }, maxFiles: multi ? 5 : 1
     });
     const style = useMemo(() => ({
         ...baseStyle,
@@ -53,8 +53,12 @@ const FileUploader = ({setFile}) => {
         isDragReject
     ]);
     useEffect(()=>{
-        setFile(acceptedFiles[0])
-    },[acceptedFiles,setFile]);
+        if (multi) {
+            setFiles(acceptedFiles)
+        }else{
+            setFile(acceptedFiles[0])
+        }
+    },[acceptedFiles,setFile,setFiles,multi]);
 
 
     return (
@@ -67,8 +71,16 @@ const FileUploader = ({setFile}) => {
             <aside>
                 {acceptedFiles.length !== 0 &&
                     <div className="cf-uploaded-file">
-
-                        {acceptedFiles[0].path}
+                        {
+                            multi ?
+                            acceptedFiles.map((acceptedFile,index)=>{
+                                return (
+                                    <span key={index}>{acceptedFile.path}</span>
+                                )
+                            })
+                            :
+                            <span>{acceptedFiles[0].path}</span>
+                        }
                     </div>
                 }
             </aside>

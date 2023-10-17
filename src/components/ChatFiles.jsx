@@ -11,6 +11,7 @@ import { useGetAllFilesQuery, useSelectFilesMutation, useUploadFileMutation } fr
 import { useSelector } from 'react-redux';
 import { selectCurrentSelectedFiles } from '../features/files/filesSlice';
 import { useNavigate } from 'react-router-dom';
+import PageTransition from './PageTransition';
 
 
 
@@ -63,7 +64,7 @@ const ChatFiles = () => {
         }
     }
     return (
-        <div className="chat-container">
+        <div className="chat-container" style={{position:'relative'}}>
             <div className="cc-left">
                 <div className="cc-left-header">
                     <div className="cc-lh-left">AI Chat Helper</div>
@@ -135,6 +136,7 @@ const ChatFiles = () => {
                     </button>
                 </div>
             </div>
+            <PageTransition />
         </div>
     )
 }

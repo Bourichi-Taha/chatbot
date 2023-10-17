@@ -20,7 +20,7 @@
     align-items    : center;
     justify-content: space-between;
     background     : #ffffff;
-    border-radius  : 20px 20px 0 0;
+    border-radius  : 20px 0 0 0;
     border-bottom  : 1px solid #d0d0d0;
 }
 
@@ -165,3 +165,202 @@
 
 }
 
+.pci-right{
+    flex          : .25;
+    height        : 100%;
+    /* border     : 1px solid blue; */
+    background    : #f1f1f1;
+    border-radius : 0 20px 20px 0;
+    display       : flex;
+    flex-direction: column;
+    border-left: 1px solid #d9d9d9;
+}
+
+.pci-right-header {
+    height         : 60px;
+    width          : 100%;
+    padding        : 0 20px;
+    display        : flex;
+    align-items    : center;
+    justify-content: space-between;
+    border-bottom  : 1px solid #d0d0d0;
+    background     : #f1f1f1;
+    border-radius  : 0 20px 0 0;
+    color          : #202123;
+    font-size      : 20px;
+    font-weight    : bolder;
+}
+
+.pci-rh-total {
+    font-size      : 14px;
+    font-weight    : lighter;
+    height         : 30px;
+    width          : 80px;
+    border-radius  : 20px;
+    background     : #d9d9d9;
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+}
+
+
+.pci-right-history {
+    flex          : 1;
+    list-style    : none;
+    margin        : 0;
+    padding       : 10px;
+    display       : flex;
+    flex-direction: column;
+    gap           : 10px;
+    overflow-y    : scroll;
+}
+
+.pci-right-history::-webkit-scrollbar {
+    width: 8px;
+}
+
+.pci-right-history::-webkit-scrollbar-thumb {
+    background   : #ccc;
+    border-radius: 4px;
+}
+
+.pci-right-history::-webkit-scrollbar-thumb:hover {
+    background: #888;
+}
+
+.pci-right-history::-webkit-scrollbar-track {
+    background   : #f1f1f1;
+    border-radius: 4px;
+}
+
+.pci-rh-item {
+    border-radius : 8px;
+    padding       : 5px;
+    background    : transparent;
+    transition    : all .3s ease;
+    display       : flex;
+    flex-direction: column;
+    gap           : 10px;
+}
+
+.pci-rh-item.active {
+    box-shadow: var(--box-shadow);
+    background: white;
+
+}
+
+.pci-rh-item:hover {
+    cursor    : pointer;
+    box-shadow: var(--box-shadow);
+
+}
+
+.pci-rh-item-title {
+    font-size  : 16px;
+    color      : #202123;
+    font-weight: bold;
+
+}
+
+.pci-rh-item-desc {
+    font-size    : 14px;
+    color        : #3d3d3d;
+    font-weight  : lighter;
+    overflow     : hidden;
+    text-overflow: ellipsis;
+}
+
+.pci-right-footer {
+    height         : 80px;
+    width          : 100%;
+    padding        : 0 20px;
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+}
+
+.pci-rf-button {
+    flex           : 1;
+    outline        : none;
+    border         : 1px solid #3d3d3d;
+    background     : transparent;
+    color          : #3d3d3d;
+    height         : 50px;
+    font-size      : 14px;
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    border-radius  : 8px;
+    gap            : 10px;
+}
+
+.pci-rf-button:hover {
+    cursor    : pointer;
+    background: #3d3d3d;
+    color     : #f1f1f1;
+}
+
+.pci-left-upload-container {
+    padding       : 20px;
+    display       : flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    gap           : 20px;
+}
+
+.pci-rf-button-upload {
+    min-height         : 55px;
+    outline        : none;
+    border         : 1px solid #ef6a36;
+    background     : transparent;
+    color          : #ef6a36;
+    font-size      : 14px;
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    border-radius  : 8px;
+    gap            : 10px;
+    font-size      : 18px;
+}
+
+.pci-rf-button-upload:hover {
+    cursor    : pointer;
+    background: #ef6a36;
+    color     : #f1f1f1;
+}
+
+.pci-luc-form {
+    display: flex;
+    gap    : 10px;
+}
+
+.pci-luc-form-left {
+    flex          : .5;
+    display       : flex;
+    flex-direction: column;
+    gap           : 20px;
+}
+
+.pci-luc-form-right {
+    flex          : .5;
+    display       : flex;
+    flex-direction: column;
+    gap           : 20px;
+}
+
+.pci-luc-form-input.MuiTextField-root label.Mui-focused,.pci-luc-form-input.MuiInputBase-root {
+    color: #ef6a36;
+}
+
+.pci-luc-form-input.MuiTextField-root .MuiInputBase-root.MuiOutlinedInput-root.Mui-focused fieldset,.pci-luc-form-input.MuiInputBase-root .Mui-focused fieldset{
+    border-color: #ef6a36;
+}
+.pci-luc-fi-label.MuiInputLabel-root.Mui-focused{
+    color: #ef6a36;
+}
+.pci-luc-form-input.MuiInputBase-root.Mui-focused .MuiSelect-icon{
+    color: #ef6a36;
+}
+.pci-luc-form-input.MuiInputBase-root.Mui-focused fieldset{
+    border-color: #ef6a36;
+}
