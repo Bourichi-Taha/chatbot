@@ -5,16 +5,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #1e4186;
+    background: #ef6a36;
     position: relative;
 }
+.create-account {
+    color: #ef6a36;
+    cursor: pointer;
+    text-decoration: underline;
+    padding-left: 5px; 
+}
+
 
 .login-container {
     height: 70vh;
     width: 50vw;
     display: flex;
     align-items: center;
-    background: #3464c4;
+    background: var(--lighter-bg-color);
     border-radius: 20px;
     box-shadow: 0px 0px 17px -5px black;
 }
@@ -25,7 +32,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #3464c4;
+    background: var(--lighter-bg-color);
     border-radius: 20px;
 
 }
@@ -44,7 +51,7 @@
     background: #f9f1fe;
     border-radius: 20px;
     box-shadow: 5px 0px 17px -5px black;
-    color: #3464c4;
+    color: var(--lighter-bg-color);
 }
 
 .login-form-flex {

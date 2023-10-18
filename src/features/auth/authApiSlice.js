@@ -1,42 +1,31 @@
 import { apiSlice } from "../../app/api/apiSlice";
-import { logOut, setCredentials } from "./authSlice";
+import { setCredentials } from "./authSlice";
 
 export const authApiSlice = apiSlice.injectEndpoints({
-    endpoints: builder => ({
-        login: builder.mutation({
-            query: credentials => ({
-                url: '/login',
-                method: 'POST',
-                body: {...credentials}
-            }),
-            async onQueryStarted(args, {dispatch, queryFulfilled}) {
-                try {
-                    
-                    const {data}=await queryFulfilled
-                    dispatch(setCredentials(data));
-                } catch (error) {
-                    console.log(error);
-                }
-            }
-        }),
-        sendLogout : builder.mutation({
-            query: () => ({
-                url: '/auth/logout',
-                method: 'POST',
-            }),
-            async onQueryStarted(args, {dispatch, queryFulfilled}) {
-                try {
-                    
-                    await queryFulfilled
+  endpoints: (builder) => ({
+    login: builder.mutation({
+      query: (credentials) => ({
+        url: "http://127.0.0.1:8000/login/",
+        method: "POST", 
+        body: credentials,
+      }),
+      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setCredentials(data.token));  
+        } catch (error) {
+          console.log(error);
+        }
+      },
+    }),
+    register: builder.mutation({
+      query: (credentials) => ({
+        url: "http://127.0.0.1:8000/register/",
+        method: "POST",
+        body: credentials,
+      }),
+    }),
+  }),
+});
 
-                    dispatch(logOut());
-                    dispatch(apiSlice.util.resetApiState());
-                } catch (error) {
-                    console.log(error);
-                }
-            }
-        }),
-    })
-})
-
-export const {useLoginMutation,useSendLogoutMutation} = authApiSlice
+export const { useLoginMutation, useRegisterMutation } = authApiSlice;

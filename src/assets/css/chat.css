@@ -418,7 +418,6 @@
 .cc-luc-form-input.MuiTextField-root .MuiInputBase-root.MuiOutlinedInput-root.Mui-focused fieldset {
     border-color: #ef6a36;
 }
-
 .typingDots {
     display        : flex;
     align-items    : center;

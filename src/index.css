@@ -13,8 +13,10 @@
 
 @import url('https://fonts.cdnfonts.com/css/gilroy-bold');
 
-body {
+
+body{
   /* --box-shadow: 0px 0px 7px 5px rgba(0,0,0,0.1); */
+  box-sizing:border-box ;
   --box-shadow: 0px 9px 15px 5px rgba(0,0,0,0.1);
 
   font-family: 'Gilroy-Bold', sans-serif;
@@ -27,6 +29,22 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   user-select: none;
+  --dark-bg-color:#ef6a36;
+  --lighter-bg-color:#222;
+  --secondary-black-color:#222;
+  --text-white-color:white;
+  --bg-black-color:  #f4f5f8;
+  --dark-category-color:#222;
+  
+  --text-black-color:#121212;
+  --grid-bg-color:#bccded;
+  --bg-category-color:#f4f5f8;
+  --button-category-color:#222;
+  --text-category-black-color:#121212;
+  --box-shadow: 0px 0px 7px 5px rgba(0,0,0,0.1);
+  --box-shadow-bottom: 0px 0px 7px 5px rgba(0,0,0,0.1);
+  --font-family:'Courier New', Courier, monospace;
+  /*  */
 }
 
 code {
