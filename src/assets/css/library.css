@@ -1,10 +1,10 @@
-.project-item-container {
+.library-container {
     height : 100%;
     width  : 100%;
     display: flex;
 }
 
-.pci-left {
+.lc-left {
     flex          : 1;
     height        : 100%;
     display       : flex;
@@ -12,7 +12,7 @@
 
 }
 
-.pci-left-header {
+.lc-left-header {
     height         : 60px;
     width          : 100%;
     padding        : 0 20px;
@@ -24,154 +24,91 @@
     border-bottom  : 1px solid #d0d0d0;
 }
 
-.pci-lh-left {
+.lc-lh-left {
     color      : #202123;
     font-size  : 20px;
     font-weight: bolder;
 }
-.pci-lh-left span:hover{
+.lc-lh-left span:hover{
     color: #ef6a36;
 }
 
-.pci-lh-right {
+.lc-lh-right {
     display    : flex;
     align-items: center;
     gap        : 10px;
 }
 
-.MuiTextField-root.pci-lh-right-input,
-.MuiTextField-root.pci-lh-right-input:hover {
+.MuiTextField-root.lc-lh-right-input,
+.MuiTextField-root.lc-lh-right-input:hover {
     border-radius: 8px;
     background   : #d9d9d9;
 
 }
 
-.MuiTextField-root.pci-lh-right-input .MuiInputBase-root,
-.MuiTextField-root.pci-lh-right-input .MuiInputBase-root:hover {
+.MuiTextField-root.lc-lh-right-input .MuiInputBase-root,
+.MuiTextField-root.lc-lh-right-input .MuiInputBase-root:hover {
     box-shadow: var(--box-shadow);
     height    : 35px;
 }
 
-.MuiTextField-root.pci-lh-right-input .MuiInputBase-root fieldset {
+.MuiTextField-root.lc-lh-right-input .MuiInputBase-root fieldset {
     border : none;
     outline: none;
 }
 
-.MuiButtonBase-root.pci-lh-right-button,
-.MuiButtonBase-root.pci-lh-right-button:hover {
+.MuiButtonBase-root.lc-lh-right-button,
+.MuiButtonBase-root.lc-lh-right-button:hover {
     border-color: #d0d0d0;
     color       : #d0d0d0;
     min-width   : 0;
     box-shadow  : var(--box-shadow);
 }
 
-.pci-left-content {
+.lc-left-content {
     padding       : 20px;
     display       : flex;
     flex-direction: column;
     flex          : 1;
     width         : 100%;
     overflow-y    : scroll;
-    gap           : 10px;
+    gap           : 20px;
 }
 
-.pci-lc-title{
-    margin: 0;
-    font-size: 24px;
-    font-weight: lighter;
-    color: #3d3d3d;
-}
-
-.pci-lc-desc{
-    font-size: 16px;
-    line-height: 1.5;
-    letter-spacing: 1.5px;
-    color: #202123;
-}
-
-
-.pci-lc-row {
-    display    : flex;
+.lc-lc-top{
+    width: 100%;
+    display: flex;
     align-items: center;
     justify-content: space-between;
 }
-
-.pci-lc-col {
-    display       : flex;
-    flex-direction: column;
-    gap           : 10px;
-    flex          : .5;
+.lc-lc-top-search{
+    display: flex;
+    align-items: flex-start;
+}
+.lc-lc-top-search-input.MuiTextField-root label.Mui-focused,.lc-lc-top-search-input.MuiInputBase-root  {
+    color: #ef6a36;
 }
 
-.pci-lc-row-item:last-child {
-    margin-right: 0;
+.lc-lc-top-search-input.MuiTextField-root .MuiInputBase-root.MuiOutlinedInput-root.Mui-focused fieldset,.lc-lc-top-search-input.MuiInputBase-root .Mui-focused fieldset{
+    border-color: #ef6a36;
+}
+.lc-lc-top-buttons{
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+.lc-lc-top-buttons .lc-rf-button{
+    gap: 5px;
+}
+.lc-lc-bottom{
+    flex: 1;
+    width: 100%;
+    height: max-content;
+    border: 1px solid #3d3d3d;
+    border-radius: 10px;
 }
 
-.pci-lc-row-item:hover {
-    transform: scale(1.05);
-    box-shadow    : var(--box-shadow);
-}
-
-.pci-lc-ri-pill {
-    display        : flex;
-    align-items    : center;
-    justify-content: center;
-    position       : absolute;
-    right          : -10px;
-    opacity        : 0;
-    visibility     : hidden;
-    z-index        : -2;
-    top            : 0;
-    height         : 30px;
-    width          : 90px;
-    font-size      : 12px;
-    font-weight    : lighter;
-    color          : #202123;
-    border-radius  : 0 20px 0 20px;
-    background     : #ef6a3665;
-    transition     : all .3s ease;
-}
-
-.pci-lc-row-item:hover .pci-lc-ri-pill {
-    right     : 0;
-    opacity   : 1;
-    visibility: visible;
-    z-index   : 2;
-}
-
-.pci-lc-ri-header {
-    display        : flex;
-    align-items    : center;
-    justify-content: flex-start;
-    width          : 100%;
-    padding        : 10px;
-    font-size      : 18px;
-    font-weight    : bold;
-    color          : #202123;
-    border-bottom  : 1px solid #d0d0d0;
-}
-
-.pci-lc-ri-desc {
-    padding    : 0 10px 10px 10px;
-    flex       : 1;
-    display    : flex;
-    font-size  : 14px;
-    font-weight: normal;
-    color      : #969696;
-}
-
-
-
-.pci-lc-ri-desc-date {
-    font-size  : 12px;
-    font-weight: lighter;
-    color      : #d0d0d0;
-    align-self : flex-end;
-    padding    : 0 10px 10px 10px;
-
-}
-
-.pci-right{
+.lc-right{
     flex          : .25;
     height        : 100%;
     /* border     : 1px solid blue; */
@@ -180,9 +117,15 @@
     display       : flex;
     flex-direction: column;
     border-left: 1px solid #d9d9d9;
+    transition: all .3s ease;
+}
+.lc-right.closed{
+    width: 0;
+    opacity: 0;
+    flex: 0;
 }
 
-.pci-right-header {
+.lc-right-header {
     height         : 60px;
     width          : 100%;
     padding        : 0 20px;
@@ -197,7 +140,7 @@
     font-weight    : bolder;
 }
 
-.pci-rh-total {
+.lc-rh-total {
     font-size      : 14px;
     font-weight    : lighter;
     height         : 30px;
@@ -210,7 +153,7 @@
 }
 
 
-.pci-right-history {
+.lc-right-history {
     flex          : 1;
     list-style    : none;
     margin        : 0;
@@ -221,25 +164,25 @@
     overflow-y    : scroll;
 }
 
-.pci-right-history::-webkit-scrollbar {
+.lc-right-history::-webkit-scrollbar {
     width: 8px;
 }
 
-.pci-right-history::-webkit-scrollbar-thumb {
+.lc-right-history::-webkit-scrollbar-thumb {
     background   : #ccc;
     border-radius: 4px;
 }
 
-.pci-right-history::-webkit-scrollbar-thumb:hover {
+.lc-right-history::-webkit-scrollbar-thumb:hover {
     background: #888;
 }
 
-.pci-right-history::-webkit-scrollbar-track {
+.lc-right-history::-webkit-scrollbar-track {
     background   : #f1f1f1;
     border-radius: 4px;
 }
 
-.pci-rh-item {
+.lc-rh-item {
     border-radius : 8px;
     padding       : 5px;
     background    : transparent;
@@ -249,26 +192,26 @@
     gap           : 10px;
 }
 
-.pci-rh-item.active {
+.lc-rh-item.active {
     box-shadow: var(--box-shadow);
     background: white;
 
 }
 
-.pci-rh-item:hover {
+.lc-rh-item:hover {
     cursor    : pointer;
     box-shadow: var(--box-shadow);
 
 }
 
-.pci-rh-item-title {
+.lc-rh-item-title {
     font-size  : 16px;
     color      : #202123;
     font-weight: bold;
 
 }
 
-.pci-rh-item-desc {
+.lc-rh-item-desc {
     font-size    : 14px;
     color        : #3d3d3d;
     font-weight  : lighter;
@@ -276,16 +219,18 @@
     text-overflow: ellipsis;
 }
 
-.pci-right-footer {
+.lc-right-footer {
+    height         : 120px;
     width          : 100%;
     padding        : 10px;
     display        : flex;
-    flex-direction: column;
+    align-items    : center;
+    justify-content: center;
     gap: 10px;
 }
 
-.pci-rf-button {
-    height: 60px;
+.lc-rf-button {
+    flex           : .5;
     outline        : none;
     border         : 1px solid #3d3d3d;
     background     : transparent;
@@ -297,15 +242,17 @@
     justify-content: center;
     border-radius  : 8px;
     gap            : 10px;
+    padding: 5px 10px;
+    width: 100%;
 }
 
-.pci-rf-button:hover {
+.lc-rf-button:hover {
     cursor    : pointer;
     background: #3d3d3d;
     color     : #f1f1f1;
 }
 
-.pci-left-upload-container {
+.lc-left-upload-container {
     padding       : 20px;
     display       : flex;
     flex-direction: column;
@@ -313,7 +260,7 @@
     gap           : 20px;
 }
 
-.pci-rf-button-upload {
+.lc-rf-button-upload {
     min-height         : 55px;
     outline        : none;
     border         : 1px solid #ef6a36;
@@ -328,44 +275,48 @@
     font-size      : 18px;
 }
 
-.pci-rf-button-upload:hover {
+.lc-rf-button-upload:hover {
     cursor    : pointer;
     background: #ef6a36;
     color     : #f1f1f1;
 }
 
-.pci-luc-form {
+.lc-luc-form {
     display: flex;
     gap    : 10px;
 }
 
-.pci-luc-form-left {
+.lc-luc-form-left {
     flex          : .5;
     display       : flex;
     flex-direction: column;
     gap           : 20px;
 }
 
-.pci-luc-form-right {
+.lc-luc-form-right {
     flex          : .5;
     display       : flex;
     flex-direction: column;
     gap           : 20px;
 }
 
-.pci-luc-form-input.MuiTextField-root label.Mui-focused,.pci-luc-form-input.MuiInputBase-root {
+.lc-luc-form-input.MuiTextField-root label.Mui-focused,.lc-luc-form-input.MuiInputBase-root {
     color: #ef6a36;
 }
 
-.pci-luc-form-input.MuiTextField-root .MuiInputBase-root.MuiOutlinedInput-root.Mui-focused fieldset,.pci-luc-form-input.MuiInputBase-root .Mui-focused fieldset{
+.lc-luc-form-input.MuiTextField-root .MuiInputBase-root.MuiOutlinedInput-root.Mui-focused fieldset,.lc-luc-form-input.MuiInputBase-root .Mui-focused fieldset{
     border-color: #ef6a36;
 }
-.pci-luc-fi-label.MuiInputLabel-root.Mui-focused{
+.lc-luc-fi-label.MuiInputLabel-root.Mui-focused{
     color: #ef6a36;
 }
-.pci-luc-form-input.MuiInputBase-root.Mui-focused .MuiSelect-icon{
+.lc-luc-form-input.MuiInputBase-root.Mui-focused .MuiSelect-icon{
     color: #ef6a36;
 }
-.pci-luc-form-input.MuiInputBase-root.Mui-focused fieldset{
+.lc-luc-form-input.MuiInputBase-root.Mui-focused fieldset{
     border-color: #ef6a36;
+}
+.lc-right-header.closed,.lc-right-history.closed,.lc-right-footer.closed
+{
+    display: none;
 }

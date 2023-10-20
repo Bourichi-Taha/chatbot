@@ -7,7 +7,7 @@ const UserMessage = ({msg}) => {
     return (
         <div className="cc-lmc-bot-container">
             <div className="cc-lmc-bc-body user">
-                {msg.response}
+                {msg.message_content}
             </div>
         </div>
     )

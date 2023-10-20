@@ -57,7 +57,7 @@ const Chatbot = () => {
   }, [location])
   const ClickHandler = (e) => {
     if (e.target.innerText === "AI Chat Helper") {
-      navigate("/chat-files")
+      return;
     } else if (e.target.innerText === "My Projects") {
       navigate("/projects")
     } else if (e.target.innerText === "Library") {

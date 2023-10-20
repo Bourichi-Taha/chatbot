@@ -11,7 +11,7 @@ const BotMessage = ({msg}) => {
         <div className="cc-lmc-bot-container">
             <div className="cc-lmc-bc-body">
                 <p>
-                    {msg.response}
+                    {msg.message_content}
                 </p>
                 <div className="cc-lmc-bc-actions">
                     <div className="cc-lmc-bc-actions-left">

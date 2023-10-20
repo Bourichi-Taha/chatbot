@@ -5,6 +5,7 @@ import historyReducer from '../features/history/historySlice';
 import messagesReducer from '../features/messages/messagesSlice';
 import filesReducer from '../features/files/filesSlice';
 import projectReducer from '../features/projects/ProjectSlice';
+import libraryReducer from '../features/Library/LibrarySlice';
 
 
 export const store = configureStore({
@@ -15,6 +16,7 @@ export const store = configureStore({
         messages:messagesReducer,
         files:filesReducer,
         projects:projectReducer,
+        library:libraryReducer,
     },
     middleware: getDefaultMiddleware =>
         getDefaultMiddleware({serializableCheck: false}).concat(apiSlice.middleware),

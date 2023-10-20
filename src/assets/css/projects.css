@@ -142,12 +142,12 @@
 }
 
 .pc-lc-ri-desc {
-    padding    : 0 10px 10px 10px;
-    flex       : 1;
-    display    : flex;
-    font-size  : 14px;
-    font-weight: normal;
-    color      : #969696;
+    padding      : 0 10px 10px 10px;
+    flex         : 1;
+    display      : flex;
+    font-size    : 14px;
+    font-weight  : normal;
+    color        : #969696;
 }
 
 
@@ -160,4 +160,3 @@
     padding    : 0 10px 10px 10px;
 
 }
-

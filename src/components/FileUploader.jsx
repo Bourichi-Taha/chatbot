@@ -1,6 +1,9 @@
-import React, {  useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useDropzone } from 'react-dropzone';
 import "../assets/css/chat.css";
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { selectCurrentShow } from '../features/files/filesSlice';
 
 const baseStyle = {
     flex: 1,
@@ -29,7 +32,7 @@ const acceptStyle = {
 const rejectStyle = {
     borderColor: 'red'
 };
-const FileUploader = ({setFile,setFiles,multi}) => {
+const FileUploader = ({ setFile, setFiles, multi, setType, type }) => {
     const {
         acceptedFiles,
         getRootProps,
@@ -40,7 +43,7 @@ const FileUploader = ({setFile,setFiles,multi}) => {
     } = useDropzone({
         accept: {
             'application/pdf': []
-        }, maxFiles: multi ? 5 : 1
+        }, maxFiles: multi ? 3 : 1
     });
     const style = useMemo(() => ({
         ...baseStyle,
@@ -52,37 +55,57 @@ const FileUploader = ({setFile,setFiles,multi}) => {
         isDragAccept,
         isDragReject
     ]);
-    useEffect(()=>{
+    const show = useSelector(selectCurrentShow);
+    useEffect(() => {
         if (multi) {
             setFiles(acceptedFiles)
-        }else{
+        } else {
             setFile(acceptedFiles[0])
         }
-    },[acceptedFiles,setFile,setFiles,multi]);
+    }, [acceptedFiles, setFile, setFiles, multi]);
 
 
     return (
         <section className="container">
             <div {...getRootProps({ style })}>
                 <input className='file-uploader-input-field' {...getInputProps()} />
-                <p>Drag 'n' drop some files here, or click to select files</p>
-                <em>(Only *.pdf files will be accepted)</em>
+                <em style={{ fontSize: "12px" }}>(Only *.pdf files will be accepted)</em>
             </div>
             <aside>
-                {acceptedFiles.length !== 0 &&
+                {acceptedFiles.length !== 0 && show ?
                     <div className="cf-uploaded-file">
                         {
                             multi ?
-                            acceptedFiles.map((acceptedFile,index)=>{
-                                return (
-                                    <span key={index}>{acceptedFile.path}</span>
-                                )
-                            })
-                            :
-                            <span>{acceptedFiles[0].path}</span>
+                                acceptedFiles.map((acceptedFile, index) => {
+                                    return (
+                                        <span key={index}>{acceptedFile.path}</span>
+                                    )
+                                })
+                                :
+                                <span>{acceptedFiles[0].path}</span>
                         }
                     </div>
+                    : null
                 }
+                {
+                    acceptedFiles.length !== 0 && !multi && show ?
+                    <FormControl style={{marginTop:"10px"}} fullWidth>
+                        <InputLabel className='pci-luc-fi-label' id="demo-simple-select-label">Type</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            value={type}
+                            label="Type"
+                            onChange={(e) => setType(e.target.value)}
+                            className='pci-luc-form-input'
+                        >
+                            <MenuItem value={"results"}>Results</MenuItem>
+                            <MenuItem value={"plan"}>Plan</MenuItem>
+                            <MenuItem value={"guidelines"}>Guidelines</MenuItem>
+                        </Select>
+                    </FormControl>
+                    : null
+                }
+
             </aside>
         </section>
     );

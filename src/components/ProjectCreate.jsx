@@ -12,39 +12,31 @@ import "../assets/css/project.css"
 import { useAddProjectMutation } from '../features/projects/ProjectApiSlice';
 const ProjectCreate = () => {
     const navigate = useNavigate();
-    const [name_of_tender, setNameOfTender] = useState("");
+    const [project_name, setProject_Name] = useState("New project");
     const [files, setFiles] = useState([]);
-    const [submission_date, setSubmissionDate] = useState("");
+    const [type, setType] = useState("guidelines");
+    const [werkinhood, setWerkinhood] = useState("");
     const [client, setClient] = useState("");
     const [contract_type, setContractType] = useState("");
     const [status, setStatus] = useState("");
-    const [results, setResults] = useState("");
+    const [desc, setDesc] = useState("");
     const [categories, setCategories] = useState("");
     const [uploadFile] = useUploadFileMutation();
     const [addProject] = useAddProjectMutation();
     const submitHandler = async (e) => {
         e.preventDefault();
-        let bodyFormData = new FormData();
         try {
-            // if (files.length !== 0) {
-            //     bodyFormData.append('name_of_tender', name_of_tender);
-            //     bodyFormData.append('submission_date', submission_date);
-            //     bodyFormData.append('client', client);
-            //     bodyFormData.append('contract_type', contract_type);
-            //     bodyFormData.append('results', results);
-            //     bodyFormData.append('status', status);
-            //     bodyFormData.append('categories', categories);
-            //     bodyFormData.append('file', files[0], files[0].name); // Corrected this line
-
-            //     console.log(bodyFormData);
-            //     const res = await uploadFile(bodyFormData);
-            //     console.log(res);
-            // } else {
-            //     console.log("no file");
-            // }
-            const obj = {project_name:name_of_tender};
-            let res = await addProject(obj)
-            console.log(res)
+            const obj = { project_name, werkinhood, client, contract_type, status, categories, description: desc };
+            const res = await addProject(obj);
+            if (files.length !== 0) {
+                const formData = new FormData();
+                formData.append('uploaded_file', files);
+                formData.append('project_id', res.data.project_id);
+                formData.append('type', type);
+                uploadFile(formData);
+                setFiles(null)
+            }
+            navigate(`/projects/${res.data.project_id}`);
         } catch (error) {
             console.log(error);
         }
@@ -54,7 +46,7 @@ const ProjectCreate = () => {
         <div className='project-item-container' style={{ position: "relative" }}>
             <div className="pci-left">
                 <div className="pci-left-header">
-                    <div className="pci-lh-left"><span style={{ cursor: "pointer" }} onClick={() => navigate("/projects")}>My Projects</span>/New Project</div>
+                    <div className="pci-lh-left"><span style={{ cursor: "pointer" }} onClick={() => navigate("/projects")}>My Projects</span>/{project_name}</div>
                     <div className="pci-lh-right">
                         <TextField
                             className='pci-lh-right-input'
@@ -77,35 +69,35 @@ const ProjectCreate = () => {
                     </div>
                 </div>
                 <form className="pci-left-upload-container" onSubmit={submitHandler}>
-                    <FileUploader setFiles={setFiles} multi />
+                    <FileUploader setFile={setFiles} multi={false} type={type} setType={setType} />
                     <div className='pci-luc-form' >
                         <div className="pci-luc-form-left">
-                            <TextField label="name of tender" variant='outlined' className='pci-luc-form-input' value={name_of_tender} onChange={(e) => setNameOfTender(e.target.value)} />
-                            <TextField label="Submission date" variant='outlined' className='pci-luc-form-input' value={submission_date} onChange={(e) => setSubmissionDate(e.target.value)} />
+                            <TextField label="Project name" variant='outlined' className='pci-luc-form-input' value={project_name} onChange={(e) => setProject_Name(e.target.value)} />
+                            <TextField label="werkinhood" variant='outlined' className='pci-luc-form-input' value={werkinhood} onChange={(e) => setWerkinhood(e.target.value)} />
                             <TextField label="client" variant='outlined' className='pci-luc-form-input' value={client} onChange={(e) => setClient(e.target.value)} />
                         </div>
                         <div className="pci-luc-form-right">
                             <FormControl fullWidth>
-                                <InputLabel className='pci-luc-fi-label' id="demo-simple-select-label">status</InputLabel>
+                                <InputLabel className='pci-luc-fi-label' id="demo-simple-select-label">Status</InputLabel>
                                 <Select
                                     labelId="demo-simple-select-label"
                                     value={status}
-                                    label="status"
+                                    label="Status"
                                     onChange={(e) => setStatus(e.target.value)}
                                     className='pci-luc-form-input'
                                 >
-                                    <MenuItem value={10}>Ten</MenuItem>
-                                    <MenuItem value={20}>Twenty</MenuItem>
-                                    <MenuItem value={30}>Thirty</MenuItem>
+                                    <MenuItem value={"in-progress"}>In progress</MenuItem>
+                                    <MenuItem value={"pending"}>Pending</MenuItem>
+                                    <MenuItem value={"finished"}>Finished</MenuItem>
                                 </Select>
                             </FormControl>
                             <FormControl fullWidth>
-                                <InputLabel className='pci-luc-fi-label' id="demo-simple-select-label-results">results</InputLabel>
+                                <InputLabel className='pci-luc-fi-label' id="demo-simple-select-label-results">Category</InputLabel>
                                 <Select
                                     labelId="demo-simple-select-label-results"
-                                    value={results}
-                                    label="results"
-                                    onChange={(e) => setResults(e.target.value)}
+                                    value={categories}
+                                    label="Category"
+                                    onChange={(e) => setCategories(e.target.value)}
                                     className='pci-luc-form-input'
                                 >
                                     <MenuItem value={10}>Ten</MenuItem>
@@ -113,13 +105,13 @@ const ProjectCreate = () => {
                                     <MenuItem value={30}>Thirty</MenuItem>
                                 </Select>
                             </FormControl>
-                            <TextField label="contract type" variant='outlined' className='pci-luc-form-input' value={contract_type} onChange={(e) => setContractType(e.target.value)} />
+                            <TextField label="Contract type" variant='outlined' className='pci-luc-form-input' value={contract_type} onChange={(e) => setContractType(e.target.value)} />
                         </div>
                     </div>
-                    <TextField label="category" variant='outlined' className='pci-luc-form-input' value={categories} onChange={(e) => setCategories(e.target.value)} />
+                    <TextField label="Description" multiline maxRows={4} minRows={4} variant='outlined' className='pci-luc-form-input' value={desc} onChange={(e) => setDesc(e.target.value)} />
                     <button type='submit' className='pci-rf-button-upload'>
                         <MarkChatReadIcon />
-                        Upload
+                        Create
                     </button>
                 </form>
 

@@ -1,28 +1,11 @@
 import { apiSlice } from "../../app/api/apiSlice";
-import {  setFiles } from "./filesSlice";
+import {   toggleShow } from "./filesSlice";
 
 export const filesApiSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
-        getAllFiles: builder.query({
-            query: () => ({
-                url: "/get_files",
-                method: 'GET',
-
-            }),
-            async onQueryStarted(args, { dispatch, queryFulfilled }) {
-                try {
-
-                    const { data } = await queryFulfilled
-                    dispatch(setFiles(data));
-                } catch (error) {
-                    console.log(error);
-                }
-            },
-            providesTags: ["Files"]
-        }),
         uploadFile: builder.mutation({
             query: (bodyFormData ) => ({
-                url: "/upload",
+                url: "/upload-file/",
                 method: 'POST',
                 body: bodyFormData ,
                 formData: true,
@@ -30,32 +13,32 @@ export const filesApiSlice = apiSlice.injectEndpoints({
             }),
             async onQueryStarted(args, { dispatch, queryFulfilled }) {
                 try {
-
-                    const { data } = await queryFulfilled
-                    console.log("thisisdata:",data)
+                    await queryFulfilled
+                    dispatch(toggleShow(false))
                 } catch (error) {
                     console.log(error);
                 }
             },
-            invalidatesTags: ["Files"],
+            invalidatesTags: ["Files","Projects"],
         }),
         selectFiles: builder.mutation({
-            query: ({fileNames} ) => ({
-                url: "/select",
+            query: (body) => ({
+                url: "/select/",
                 method: 'POST',
-                body: { fileNames },
+                body: body,
 
             }),
             async onQueryStarted(args, { dispatch, queryFulfilled }) {
                 try {
-
-                    await queryFulfilled
+                    const {data} = await queryFulfilled;
+                    
                 } catch (error) {
                     console.log(error);
                 }
             },
+            invalidatesTags: ["Files","Projects"],
         })
     })
 })
 
-export const { useGetAllFilesQuery,useUploadFileMutation,useSelectFilesMutation } = filesApiSlice
+export const { useUploadFileMutation,useSelectFilesMutation } = filesApiSlice
