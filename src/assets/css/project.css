@@ -29,7 +29,8 @@
     font-size  : 20px;
     font-weight: bolder;
 }
-.pci-lh-left span:hover{
+
+.pci-lh-left span:hover {
     color: #ef6a36;
 }
 
@@ -75,24 +76,36 @@
     gap           : 10px;
 }
 
-.pci-lc-title{
-    margin: 0;
-    font-size: 24px;
-    font-weight: lighter;
-    color: #3d3d3d;
+.pci-lc-title {
+    margin         : 0;
+    font-size      : 24px;
+    font-weight    : lighter;
+    color          : #3d3d3d;
+    text-decoration: underline #ef6a36 2px;
 }
 
-.pci-lc-desc{
-    font-size: 16px;
-    line-height: 1.5;
+
+.pci-lc-desc {
+    font-size     : 16px;
+    line-height   : 1.5;
     letter-spacing: 1.5px;
-    color: #202123;
+    color         : #202123;
+    padding       : 10px;
+    width         : 90%;
+    background    : #f3f4f6;
+    border-radius : 8px;
+    box-shadow    : inset -10px -10px 15px rgba(70, 70, 70, 0.12), 
+    inset 10px 10px 15px rgba(70, 70, 70, 0.12);
 }
+.pci-lc-desc.full{
+    width: 95%;
+}
+
 
 
 .pci-lc-row {
-    display    : flex;
-    align-items: center;
+    display        : flex;
+    align-items    : center;
     justify-content: space-between;
 }
 
@@ -108,8 +121,8 @@
 }
 
 .pci-lc-row-item:hover {
-    transform: scale(1.05);
-    box-shadow    : var(--box-shadow);
+    transform : scale(1.05);
+    box-shadow: var(--box-shadow);
 }
 
 .pci-lc-ri-pill {
@@ -171,7 +184,7 @@
 
 }
 
-.pci-right{
+.pci-right {
     flex          : .25;
     height        : 100%;
     /* border     : 1px solid blue; */
@@ -179,7 +192,7 @@
     border-radius : 0 20px 20px 0;
     display       : flex;
     flex-direction: column;
-    border-left: 1px solid #d9d9d9;
+    border-left   : 1px solid #d9d9d9;
 }
 
 .pci-right-header {
@@ -277,15 +290,15 @@
 }
 
 .pci-right-footer {
-    width          : 100%;
-    padding        : 10px;
-    display        : flex;
+    width         : 100%;
+    padding       : 10px;
+    display       : flex;
     flex-direction: column;
-    gap: 10px;
+    gap           : 10px;
 }
 
 .pci-rf-button {
-    height: 60px;
+    height         : 60px;
     outline        : none;
     border         : 1px solid #3d3d3d;
     background     : transparent;
@@ -309,12 +322,12 @@
     padding       : 20px;
     display       : flex;
     flex-direction: column;
-    overflow-y: scroll;
+    overflow-y    : scroll;
     gap           : 20px;
 }
 
 .pci-rf-button-upload {
-    min-height         : 55px;
+    min-height     : 55px;
     outline        : none;
     border         : 1px solid #ef6a36;
     background     : transparent;
@@ -353,19 +366,24 @@
     gap           : 20px;
 }
 
-.pci-luc-form-input.MuiTextField-root label.Mui-focused,.pci-luc-form-input.MuiInputBase-root {
+.pci-luc-form-input.MuiTextField-root label.Mui-focused,
+.pci-luc-form-input.MuiInputBase-root {
     color: #ef6a36;
 }
 
-.pci-luc-form-input.MuiTextField-root .MuiInputBase-root.MuiOutlinedInput-root.Mui-focused fieldset,.pci-luc-form-input.MuiInputBase-root .Mui-focused fieldset{
+.pci-luc-form-input.MuiTextField-root .MuiInputBase-root.MuiOutlinedInput-root.Mui-focused fieldset,
+.pci-luc-form-input.MuiInputBase-root .Mui-focused fieldset {
     border-color: #ef6a36;
 }
-.pci-luc-fi-label.MuiInputLabel-root.Mui-focused{
+
+.pci-luc-fi-label.MuiInputLabel-root.Mui-focused {
     color: #ef6a36;
 }
-.pci-luc-form-input.MuiInputBase-root.Mui-focused .MuiSelect-icon{
+
+.pci-luc-form-input.MuiInputBase-root.Mui-focused .MuiSelect-icon {
     color: #ef6a36;
 }
-.pci-luc-form-input.MuiInputBase-root.Mui-focused fieldset{
+
+.pci-luc-form-input.MuiInputBase-root.Mui-focused fieldset {
     border-color: #ef6a36;
 }

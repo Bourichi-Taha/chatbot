@@ -274,6 +274,20 @@
     gap            : 10px;
     font-size      : 18px;
 }
+.lc-rf-form-input.MuiTextField-root{
+    background: lightgray;
+}
+.lc-rf-form-input.MuiTextField-root label.Mui-focused,.lc-rf-form-input.MuiInputBase-root {
+    color: #ef6a36;
+    border: 1px solid black;
+    background: transparent;
+}
+
+.lc-rf-form-input.MuiTextField-root .MuiInputBase-root.MuiOutlinedInput-root.Mui-focused fieldset,.lc-rf-form-input.MuiInputBase-root .Mui-focused fieldset{
+    border: 1px solid black;
+    border-color: #ef6a36;
+    background: transparent;
+}
 
 .lc-rf-button-upload:hover {
     cursor    : pointer;

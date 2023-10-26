@@ -16,6 +16,8 @@
 body {
   /* --box-shadow: 0px 0px 7px 5px rgba(0,0,0,0.1); */
   --box-shadow: 0px 9px 15px 5px rgba(0,0,0,0.1);
+  --box-shadow-even: inset 0px 2px 5px 0px rgba(0, 0, 0, 0.5);
+
 
   font-family: 'Gilroy-Bold', sans-serif;
   font-family: 'Gilroy-Heavy', sans-serif;

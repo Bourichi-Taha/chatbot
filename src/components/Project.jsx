@@ -94,9 +94,9 @@ const Project = () => {
                     </div>
                     <div className="pci-left-content">
                         <h3 className="pci-lc-title">Description:</h3>
-                        <p className="pci-lc-desc">{project.description}</p>
+                        <p className="pci-lc-desc full">{project.description || "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas dolores voluptate reiciendis dignissimos, expedita earum nesciunt voluptatum omnis ut quod."}</p>
                         <h3 className="pci-lc-title">Werkinhoud:</h3>
-                        <p className="pci-lc-desc">{project.werkinhood}</p>
+                        <p className="pci-lc-desc full">{project.werkinhood || "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas dolores voluptate reiciendis dignissimos, expedita earum nesciunt voluptatum omnis ut quod."}</p>
                         <div className="pci-lc-row">
                             <div className="pci-lc-col">
                                 <h3 className="pci-lc-title">Contract type:</h3>

@@ -127,8 +127,8 @@ const Library = () => {
                     <p>Advance Filters</p>
                 </div>
                 <ul className="lc-right-history">
-                    <TextField label="Topic" variant='outlined' className='pci-luc-form-input' value={topic} onChange={(e) => setTopic(e.target.value)} />
-                    <TextField label="Mesure" variant='outlined' className='pci-luc-form-input' value={mesure} onChange={(e) => setMesure(e.target.value)} />
+                    <TextField label="Topic" variant='outlined' className='lc-rf-form-input' value={topic} onChange={(e) => setTopic(e.target.value)} />
+                    <TextField label="Mesure" variant='outlined' className='lc-rf-form-input' value={mesure} onChange={(e) => setMesure(e.target.value)} />
 
                 </ul>
                 <div className="lc-right-footer" style={{flexDirection:'column'}}>
