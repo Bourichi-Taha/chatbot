@@ -67,7 +67,7 @@ const Chatbot = () => {
   return (
     <div className="chat-bot-container">
       <div className="cbc-main">
-        <IconButton onClick={sidebarTrigger} sx={{ display: isOpen ? "none" : "flex", position: "fixed", top: -6, left: -6 }}>
+        <IconButton onClick={sidebarTrigger} sx={{ display: isOpen ? "none" : "flex", position: "fixed", top: "30px", left: "14px" }}>
           <AutoAwesomeMosaicIcon className='cbc-msb-tt-icon abs' />
         </IconButton>
         <div className="cbc-main-sidebar">

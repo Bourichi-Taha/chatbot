@@ -91,6 +91,12 @@ const Chat = () => {
         //call api
         setIsLang(false)
     };
+    const keyHandler = (event) => {
+        if (event.key === 'Enter' && !event.shiftKey ) {
+            // Submit the form when the "Enter" key is pressed
+            sendMessageUser(event)
+        }
+    }
     //auto scroll
     const messagesEndRef = useRef(null);
     useEffect(() => {
@@ -121,7 +127,7 @@ const Chat = () => {
     }, [isDialogAdded, summarize, selectedFileSumm]);
     const navigate = useNavigate();
     let content;
-    if (isLoading && !isError) {
+    if (isLoading && !isSuccess) {
         content = (
             <div>Loading ...</div>
         )
@@ -130,7 +136,7 @@ const Chat = () => {
             <div className="chat-container">
                 <div className="cc-left">
                     <div className="cc-left-header">
-                        <div className="cc-lh-left">AI Chat Helper/{project.project_name}/{selectedConversationId}</div>{/* get project Name by id */}
+                        <div className="cc-lh-left">AI Chat Helper/{project?.project_name}/{selectedConversationId}</div>{/* get project Name by id */}
                         <div className="cc-lh-right">
                             <TextField
                                 className='cc-lh-right-input'
@@ -203,7 +209,7 @@ const Chat = () => {
                                     setUserInput(e.target.value)
                                 }
                             }}
-
+                            onKeyDown={keyHandler}
                         />
                         <div className='cc-lmc-bc-actions-icon-holder input-message' onClick={sendMessageUser}>
                             {!loading ? <SendIcon sx={{ fontSize: 18 }} /> :
@@ -218,7 +224,7 @@ const Chat = () => {
                 <div className="cc-right">
                     <div className="cc-right-header">
                         <p>History</p>
-                        <div className='cc-rh-total'>{history.length}</div>
+                        <div className='cc-rh-total'>{history?.length}</div>
                     </div>
                     <ul className="cc-right-history">
                         {history && history?.map((item, index) => {

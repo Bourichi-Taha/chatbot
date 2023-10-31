@@ -2,6 +2,7 @@
     height : 100%;
     width  : 100%;
     display: flex;
+    user-select: text;
 }
 
 .pci-left {
@@ -79,9 +80,8 @@
 .pci-lc-title {
     margin         : 0;
     font-size      : 24px;
-    font-weight    : lighter;
+    font-weight    : normal;
     color          : #3d3d3d;
-    text-decoration: underline #ef6a36 2px;
 }
 
 
@@ -94,8 +94,8 @@
     width         : 90%;
     background    : #f3f4f6;
     border-radius : 8px;
-    box-shadow    : inset -10px -10px 15px rgba(70, 70, 70, 0.12), 
-    inset 10px 10px 15px rgba(70, 70, 70, 0.12);
+    box-shadow    :  -10px -10px 15px rgba(70, 70, 70, 0.12), 
+     10px 10px 15px rgba(70, 70, 70, 0.12);
 }
 .pci-lc-desc.full{
     width: 95%;

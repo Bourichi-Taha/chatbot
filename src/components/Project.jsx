@@ -95,8 +95,18 @@ const Project = () => {
                     <div className="pci-left-content">
                         <h3 className="pci-lc-title">Description:</h3>
                         <p className="pci-lc-desc full">{project.description || "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas dolores voluptate reiciendis dignissimos, expedita earum nesciunt voluptatum omnis ut quod."}</p>
-                        <h3 className="pci-lc-title">Werkinhoud:</h3>
-                        <p className="pci-lc-desc full">{project.werkinhood || "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas dolores voluptate reiciendis dignissimos, expedita earum nesciunt voluptatum omnis ut quod."}</p>
+                        <h3 className="pci-lc-title">Extracted scores:</h3>
+                        <p className="pci-lc-desc full">{project.extracted_scores || "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas dolores voluptate reiciendis dignissimos, expedita earum nesciunt voluptatum omnis ut quod."}</p>
+                        <div className="pci-lc-row">
+                            <div className="pci-lc-col">
+                                <h3 className="pci-lc-title">Werkinhoud:</h3>
+                                <p className="pci-lc-desc">{project.werkinhood || "NAN"}</p>
+                            </div>
+                            <div className="pci-lc-col">
+                                <h3 className="pci-lc-title">Enclosure:</h3>
+                                <p className="pci-lc-desc">{project.enclosure || "NAN"}</p>
+                            </div>
+                        </div>
                         <div className="pci-lc-row">
                             <div className="pci-lc-col">
                                 <h3 className="pci-lc-title">Contract type:</h3>
@@ -113,8 +123,8 @@ const Project = () => {
                                 <p className="pci-lc-desc">{project.status || "In progress"}</p>
                             </div>
                             <div className="pci-lc-col">
-                                <h3 className="pci-lc-title">Category:</h3>
-                                <p className="pci-lc-desc">{project.category || "NAN"}</p>
+                                <h3 className="pci-lc-title">Results:</h3>
+                                <p className="pci-lc-desc">{project.result || "Pending"}</p>
                             </div>
                         </div>
                     </div>

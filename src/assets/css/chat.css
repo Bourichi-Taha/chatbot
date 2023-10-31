@@ -301,6 +301,44 @@
     overflow     : hidden;
     text-overflow: ellipsis;
 }
+.cc-rht-item {
+    border-radius : 8px;
+    padding       : 10px;
+    background    : transparent;
+    transition    : all .3s ease;
+    display       : flex;
+    flex-direction: column;
+    gap           : 10px;
+    box-shadow: var(--box-shadow);
+    background: white;
+}
+
+.cc-rht-item.active {
+    box-shadow: var(--box-shadow);
+    background: white;
+
+}
+
+.cc-rht-item:hover {
+    cursor    : pointer;
+    box-shadow: var(--box-shadow);
+
+}
+
+.cc-rht-item-title {
+    font-size  : 16px;
+    color      : #202123;
+    font-weight: bold;
+
+}
+
+.cc-rht-item-desc {
+    font-size    : 14px;
+    color        : #3d3d3d;
+    font-weight  : lighter;
+    overflow     : hidden;
+    text-overflow: ellipsis;
+}
 
 
 

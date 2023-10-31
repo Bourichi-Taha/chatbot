@@ -1,39 +1,50 @@
 import { DataGrid } from '@mui/x-data-grid';
-import AttachFileOutlinedIcon from '@mui/icons-material/AttachFileOutlined';
+import LastPageIcon from '@mui/icons-material/LastPage';
 import { useEffect, useState } from 'react';
 import { IconButton } from '@mui/material';
 import { useFetchLibraryQuery } from '../features/Library/LibraryApiSlice';
-import { useSelector } from 'react-redux';
-import { selectCurrentIsFiltered, selectCurrentLibraryFiltered } from '../features/Library/LibrarySlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCurrentIsFiltered, selectCurrentIsOpen, selectCurrentLibraryFiltered, selectCurrentSidebar, selectCurrentSidebarFiles, setSidebarFiles, toggleSidebar } from '../features/Library/LibrarySlice';
 import { useNavigate } from 'react-router-dom';
 
 export default function CustomDataGrid() {
 
   const { data, isLoading, isSuccess } = useFetchLibraryQuery();
   const isFiltered = useSelector(selectCurrentIsFiltered);
+  const open = useSelector(selectCurrentIsOpen);
+  const sidebar = useSelector(selectCurrentSidebar);
+  const sidebarFiles = useSelector(selectCurrentSidebarFiles);
   const filteredLibrary = useSelector(selectCurrentLibraryFiltered);
   const [projects, setProjects] = useState([]);
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const clickFiles = (files) => {
+    if (open && sidebar === "files" && files[0] === sidebarFiles[0]) {
+      dispatch(toggleSidebar({ sidebar: "files", isOpen: false }));
+      dispatch(setSidebarFiles(files));
+    } else {
+      dispatch(toggleSidebar({ sidebar: "files", isOpen: true }));
+      dispatch(setSidebarFiles(files))
+    }
+  }
   const columns = [
     { field: "project_name", headerName: "Project name", width: 150, hide: true },
     { field: "werkinhood", headerName: "Werkinhoud", width: 150, hide: true },
     { field: "client", headerName: "Client", width: 150, hide: true },
     { field: "timestamp", headerName: "Created date", width: 150, hide: true },
     // { field: "status",headerName:"Status",width:150, hide: true },
-    // { field: "category",headerName:"Category",width:150, hide: true },
-    // { field: "contract_type",headerName:"Contract type",width:150, hide: true },
+    { field: "result", headerName: "Result", width: 150, hide: true },
+    { field: "enclosure", headerName: "Enclosure", width: 150, hide: true },
+    { field: "status", headerName: "Status", width: 150, hide: true },
+    { field: "contract_type", headerName: "Contract type", width: 150, hide: true },
     {
-      field: "files", headerName: "File", width: 50, hide: true, renderCell: (params) => (
+      field: "files", headerName: "Files", width: 50, hide: false, renderCell: (params) => (
         <div style={{ display: 'flex' }}>
-          {
-            params?.value?.map((file, index) => {
-              return (
-                <IconButton key={index} href={file.uploaded_file} target="_blank" >
-                  <AttachFileOutlinedIcon />
-                </IconButton>
-              )
-            })
-          }
+
+          <IconButton onClick={() => { clickFiles(params.value) }} >
+            <LastPageIcon />
+          </IconButton>
+
         </div>
       ),
     },
@@ -46,6 +57,12 @@ export default function CustomDataGrid() {
           ...p,
           id: p.project_id,
           timestamp: p.timestamp.split('T')[0],
+          files: p.files,
+          status: p.status || "in progress",
+          contract_type : p.contract_type || "NAN",
+          enclosure : p.enclosure || "NAN",
+          result : p.result || "Pending",
+          client : p.client || "NAN",
         }
         return arr.push(obj);
       });
@@ -64,7 +81,7 @@ export default function CustomDataGrid() {
         }
         return arr.push(obj);
       });
-    }else{
+    } else {
       (data)?.map((p) => {
         const obj = {
           ...p,
@@ -75,9 +92,12 @@ export default function CustomDataGrid() {
       });
     }
     setProjects(arr)
-  }, [isFiltered,filteredLibrary]);
+  }, [isFiltered, filteredLibrary]);
   const handleCellClick = (params) => {
-    navigate(`/projects/${params.id}`)
+    if (params.field !== "files") {
+      navigate(`/projects/${params.id}`)
+    }
+
   }
   return (
     <div style={{ width: '100%', height: "100%", display: 'flex', alignItems: "center", justifyContent: "center" }}>

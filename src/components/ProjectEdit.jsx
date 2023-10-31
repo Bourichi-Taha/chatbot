@@ -19,7 +19,9 @@ const ProjectEdit = () => {
     const [contract_type, setContractType] = useState("");
     const [status, setStatus] = useState("");
     const [desc, setDesc] = useState("");
-    const [categories, setCategories] = useState("");
+    const [result, setResult] = useState("");
+    const [enclosure, setEnclosure] = useState("");
+    const [extracted_scores, setExtractedScores] = useState("");
     const [updateProject] = useUpdateProjectMutation();
     useEffect(() => {
         if (isSuccess && project) {
@@ -27,15 +29,17 @@ const ProjectEdit = () => {
             setWerkinhood(project.werkinhood);
             setClient(project.client);
             setContractType("NAN");
-            setStatus("NAN");
+            setStatus(project.status || "in progress");
             setDesc(project.description);
-            setCategories("NAN");
+            setResult(project.result || "in progress");
+            setEnclosure(project.enclosure || "NAN");
+            setExtractedScores(project.extracted_scores || "in progress");
         }
     }, [project, isSuccess])
     const submitHandler = async (e) => {
         e.preventDefault();
         try {
-            const obj = { project_name, werkinhood, client, contract_type, status, categories, description: desc };
+            const obj = { project_name, werkinhood, client, contract_type, status, result, description: desc,extracted_scores,enclosure };
             const res = await updateProject({data:obj,project_id:project_id});
             navigate(`/projects/${project_id}`);
         } catch (error) {
@@ -76,8 +80,8 @@ const ProjectEdit = () => {
                         <div className='pci-luc-form' >
                             <div className="pci-luc-form-left">
                                 <TextField label="Project name" variant='outlined' className='pci-luc-form-input' value={project_name} onChange={(e) => setProject_Name(e.target.value)} />
-                                <TextField label="werkinhood" variant='outlined' className='pci-luc-form-input' value={werkinhood} onChange={(e) => setWerkinhood(e.target.value)} />
                                 <TextField label="client" variant='outlined' className='pci-luc-form-input' value={client} onChange={(e) => setClient(e.target.value)} />
+                                <TextField label="Enclosure" variant='outlined' className='pci-luc-form-input' value={enclosure} onChange={(e) => setEnclosure(e.target.value)} />
                             </div>
                             <div className="pci-luc-form-right">
                                 <FormControl fullWidth>
@@ -89,29 +93,31 @@ const ProjectEdit = () => {
                                         onChange={(e) => setStatus(e.target.value)}
                                         className='pci-luc-form-input'
                                     >
-                                        <MenuItem value={"in-progress"}>In progress</MenuItem>
+                                        <MenuItem value={"in progress"}>In progress</MenuItem>
                                         <MenuItem value={"pending"}>Pending</MenuItem>
                                         <MenuItem value={"finished"}>Finished</MenuItem>
                                     </Select>
                                 </FormControl>
                                 <FormControl fullWidth>
-                                    <InputLabel className='pci-luc-fi-label' id="demo-simple-select-label-results">Category</InputLabel>
+                                    <InputLabel className='pci-luc-fi-label' id="demo-simple-select-label-results">Result</InputLabel>
                                     <Select
                                         labelId="demo-simple-select-label-results"
-                                        value={categories}
-                                        label="Category"
-                                        onChange={(e) => setCategories(e.target.value)}
+                                        value={result}
+                                        label="Result"
+                                        onChange={(e) => setResult(e.target.value)}
                                         className='pci-luc-form-input'
                                     >
-                                        <MenuItem value={10}>Ten</MenuItem>
-                                        <MenuItem value={20}>Twenty</MenuItem>
-                                        <MenuItem value={30}>Thirty</MenuItem>
+                                        <MenuItem value={"WON"}>Won</MenuItem>
+                                        <MenuItem value={"LOST"}>Lost</MenuItem>
+                                        <MenuItem value={"PENDING"}>Pending</MenuItem>
                                     </Select>
                                 </FormControl>
                                 <TextField label="Contract type" variant='outlined' className='pci-luc-form-input' value={contract_type} onChange={(e) => setContractType(e.target.value)} />
                             </div>
                         </div>
+                        <TextField label="werkinhood" multiline maxRows={2} minRows={2} variant='outlined' className='pci-luc-form-input' value={werkinhood} onChange={(e) => setWerkinhood(e.target.value)} />
                         <TextField label="Description" multiline maxRows={4} minRows={4} variant='outlined' className='pci-luc-form-input' value={desc} onChange={(e) => setDesc(e.target.value)} />
+                        <TextField label="Extracted scores" multiline maxRows={4} minRows={4} variant='outlined' className='pci-luc-form-input' value={extracted_scores} onChange={(e) => setExtractedScores(e.target.value)} />
                         <button type='submit' className='pci-rf-button-upload'>
                             <MarkChatReadIcon />
                             Update
