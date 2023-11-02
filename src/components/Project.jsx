@@ -49,6 +49,7 @@ const Project = () => {
             console.log(error);
         }
     }
+    let string = ['"overall": ""','"Organisatie van het werk": "5,40"','"Borgen bereikbaarheid, veiligheid, voorkomen hinder": "5,00"','"Invulling digitalisering opdracht": "5,27"','"Voorbereiding en kostencalculatie deelopdrachten": "6,00"','"Inrichten groeiplaats": "4,72"','"Planten van bomen": "4,60"','"Nazorgfase": "5,35"','"Brandstoffen < 3500kg": "120.000"','"Brandstoffen > 3500kg": "0"','"CO2-prestatieladder": "275.000"','"Extra inzet SROI": "50.000"']
     useEffect(() => {
         dispatch(toggleShow(true));
     }, [files, dispatch]);
@@ -95,8 +96,8 @@ const Project = () => {
                     <div className="pci-left-content">
                         <h3 className="pci-lc-title">Description:</h3>
                         <p className="pci-lc-desc full">{project.description || "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas dolores voluptate reiciendis dignissimos, expedita earum nesciunt voluptatum omnis ut quod."}</p>
-                        <h3 className="pci-lc-title">Extracted scores:</h3>
-                        <p className="pci-lc-desc full">{project.extracted_scores || '"overall": "","Organisatie van het werk": "5,40","Borgen bereikbaarheid, veiligheid, voorkomen hinder": "5,00","Invulling digitalisering opdracht": "5,27","Voorbereiding en kostencalculatie deelopdrachten": "6,00","Inrichten groeiplaats": "4,72","Planten van bomen": "4,60","Nazorgfase": "5,35","Brandstoffen < 3500kg": "120.000","Brandstoffen > 3500kg": "0","CO2-prestatieladder": "275.000","Extra inzet SROI": "50.000"'}</p>
+                        
+
                         <div className="pci-lc-row">
                             <div className="pci-lc-col">
                                 <h3 className="pci-lc-title">Werkinhoud:</h3>
@@ -127,6 +128,70 @@ const Project = () => {
                                 <p className="pci-lc-desc">{project.result || "Pending"}</p>
                             </div>
                         </div>
+                        <h3 className="pci-lc-title" style={{fontWeight:"bolder"}}>Extracted scores:</h3>
+                        {/* <p className="pci-lc-desc full">{project.extracted_scores || '"overall": "","Organisatie van het werk": "5,40","Borgen bereikbaarheid, veiligheid, voorkomen hinder": "5,00","Invulling digitalisering opdracht": "5,27","Voorbereiding en kostencalculatie deelopdrachten": "6,00","Inrichten groeiplaats": "4,72","Planten van bomen": "4,60","Nazorgfase": "5,35","Brandstoffen < 3500kg": "120.000","Brandstoffen > 3500kg": "0","CO2-prestatieladder": "275.000","Extra inzet SROI": "50.000"'}</p> */}
+                        {/* temp */}
+                        <div className="pci-lc-row">
+                            <div className="pci-lc-col">
+                                <h3 className="pci-lc-title" style={{fontSize:18,color:"#3d3d3d"}}>{string[0].split(":")[0] + ":"}</h3>
+                                <p className="pci-lc-desc">{string[0].split(":")[1]}</p>
+                            </div>
+                            <div className="pci-lc-col">
+                                <h3 className="pci-lc-title" style={{fontSize:18,color:"#3d3d3d"}}>{string[1].split(":")[0] + ":"}</h3>
+                                <p className="pci-lc-desc">{string[1].split(":")[1] }</p>
+                            </div>
+                        </div>
+                        <div className="pci-lc-row">
+                            <div className="pci-lc-col">
+                                <h3 className="pci-lc-title" style={{fontSize:18,color:"#3d3d3d"}}>{string[2].split(":")[0] + ":"}</h3>
+                                <p className="pci-lc-desc">{string[2].split(":")[1]}</p>
+                            </div>
+                            <div className="pci-lc-col">
+                                <h3 className="pci-lc-title" style={{fontSize:18,color:"#3d3d3d"}}>{string[3].split(":")[0] + ":"}</h3>
+                                <p className="pci-lc-desc">{string[3].split(":")[1]}</p>
+                            </div>
+                        </div>
+                        <div className="pci-lc-row">
+                            <div className="pci-lc-col">
+                                <h3 className="pci-lc-title" style={{fontSize:18,color:"#3d3d3d"}}>{string[4].split(":")[0] + ":"}</h3>
+                                <p className="pci-lc-desc">{string[4].split(":")[1]}</p>
+                            </div>
+                            <div className="pci-lc-col">
+                                <h3 className="pci-lc-title" style={{fontSize:18,color:"#3d3d3d"}}>{string[5].split(":")[0] + ":"}</h3>
+                                <p className="pci-lc-desc">{string[5].split(":")[1]}</p>
+                            </div>
+                        </div>
+                        <div className="pci-lc-row">
+                            <div className="pci-lc-col">
+                                <h3 className="pci-lc-title" style={{fontSize:18,color:"#3d3d3d"}}>{string[6].split(":")[0] + ":"}</h3>
+                                <p className="pci-lc-desc">{string[6].split(":")[1]}</p>
+                            </div>
+                            <div className="pci-lc-col">
+                                <h3 className="pci-lc-title" style={{fontSize:18,color:"#3d3d3d"}}>{string[7].split(":")[0] + ":"}</h3>
+                                <p className="pci-lc-desc">{string[7].split(":")[1]}</p>
+                            </div>
+                        </div>
+                        <div className="pci-lc-row">
+                            <div className="pci-lc-col">
+                                <h3 className="pci-lc-title" style={{fontSize:18,color:"#3d3d3d"}}>{string[8].split(":")[0] + ":"}</h3>
+                                <p className="pci-lc-desc">{string[8].split(":")[1]}</p>
+                            </div>
+                            <div className="pci-lc-col">
+                                <h3 className="pci-lc-title" style={{fontSize:18,color:"#3d3d3d"}}>{string[9].split(":")[0] + ":"}</h3>
+                                <p className="pci-lc-desc">{string[9].split(":")[1]}</p>
+                            </div>
+                        </div>
+                        <div className="pci-lc-row">
+                            <div className="pci-lc-col">
+                                <h3 className="pci-lc-title" style={{fontSize:18,color:"#3d3d3d"}}>{string[10].split(":")[0] + ":"}</h3>
+                                <p className="pci-lc-desc">{string[10].split(":")[1]}</p>
+                            </div>
+                            <div className="pci-lc-col">
+                                <h3 className="pci-lc-title" style={{fontSize:18,color:"#3d3d3d"}}>{string[11].split(":")[0] + ":"}</h3>
+                                <p className="pci-lc-desc">{string[11].split(":")[1] }</p>
+                            </div>
+                        </div>
+                        {/* temp */}
                     </div>
                 </div>
                 <div className="pci-right">
