@@ -1,1 +1,1 @@
-export const baseUrl = 'https://silent-icons-pick.loca.lt'
+export const baseUrl = 'https://tired-ties-worry.loca.lt'
