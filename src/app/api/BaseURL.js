@@ -1,1 +1,1 @@
-export const baseUrl = 'https://vast-bugs-work.loca.lt'
+export const baseUrl = 'https://silent-icons-pick.loca.lt'
