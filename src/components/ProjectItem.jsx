@@ -12,9 +12,9 @@ const ProjectItem = ({ item }) => {
             <div className="pc-lc-ri-header">
                 {item?.project_name}
             </div>
-            <div className="pc-lc-ri-desc">
-                {item?.description.substring(0, 260)}...
-            </div>
+            <p className="pc-lc-ri-desc">
+                {item?.description}
+            </p>
             <div className="pc-lc-ri-desc-date">{item?.timestamp?.split("T")[0]}</div>
             <div className="pc-lc-ri-pill">active</div>
         </div>
