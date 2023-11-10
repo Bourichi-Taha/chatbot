@@ -8,6 +8,7 @@ const NoneAnimatedRoutes = () => {
     return (
         <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Layout />}>
+                <Route index element={<Login />} />
                 <Route path='/login' element={<Login />} />
             </Route>
         </Routes>

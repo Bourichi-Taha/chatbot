@@ -11,10 +11,13 @@ import HelpCenterOutlinedIcon from '@mui/icons-material/HelpCenterOutlined';
 import InsertChartOutlinedRoundedIcon from '@mui/icons-material/InsertChartOutlinedRounded';
 import { IconButton } from '@mui/material';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import { logOut } from '../features/auth/authSlice';
+import { apiSlice } from '../app/api/apiSlice';
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(true);
-  const sidebarTrigger = () => setIsOpen(prev => !prev)
+  const sidebarTrigger = () => setIsOpen(prev => !prev);
   useEffect(() => {
     const sidebar = document.querySelector(".cbc-main-sidebar");
     const main = document.querySelector(".cbc-main");
@@ -64,6 +67,8 @@ const Chatbot = () => {
       navigate("/library")
     }
   }
+  const dispatch = useDispatch();
+
   return (
     <div className="chat-bot-container">
       <div className="cbc-main">
@@ -119,7 +124,7 @@ const Chatbot = () => {
           </div>
           <div className="cbc-msb-bottom">
 
-            <div className="cbc-msb-bottom-bottom">
+            <div className="cbc-msb-bottom-bottom" onClick={()=>{dispatch(logOut());dispatch(apiSlice.util.resetApiState());}}>
               <p>logout</p>
               <IconButton>
                 <LogoutIcon className='cbc-msb-tt-icon' />
