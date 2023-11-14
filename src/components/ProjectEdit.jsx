@@ -21,7 +21,6 @@ const ProjectEdit = () => {
     const [desc, setDesc] = useState("");
     const [result, setResult] = useState("");
     const [enclosure, setEnclosure] = useState("");
-    const [extracted_scores, setExtractedScores] = useState("");
     const [updateProject] = useUpdateProjectMutation();
     useEffect(() => {
         if (isSuccess && project) {
@@ -33,14 +32,13 @@ const ProjectEdit = () => {
             setDesc(project.description);
             setResult(project.result || "in progress");
             setEnclosure(project.enclosure || "NAN");
-            setExtractedScores(project.extracted_scores || "in progress");
         }
     }, [project, isSuccess])
     const submitHandler = async (e) => {
         e.preventDefault();
         try {
-            const obj = { project_name, werkinhood, client, contract_type, status, result, description: desc,extracted_scores,enclosure };
-            const res = await updateProject({data:obj,project_id:project_id});
+            const obj = { project_name, werkinhood, client, contract_type, status, result, description: desc,enclosure };
+            await updateProject({data:obj,project_id:project_id});
             navigate(`/projects/${project_id}`);
         } catch (error) {
             console.log(error);
@@ -117,7 +115,6 @@ const ProjectEdit = () => {
                         </div>
                         <TextField label="werkinhood" multiline maxRows={2} minRows={2} variant='outlined' className='pci-luc-form-input' value={werkinhood} onChange={(e) => setWerkinhood(e.target.value)} />
                         <TextField label="Description" multiline maxRows={4} minRows={4} variant='outlined' className='pci-luc-form-input' value={desc} onChange={(e) => setDesc(e.target.value)} />
-                        <TextField label="Extracted scores" multiline maxRows={4} minRows={4} variant='outlined' className='pci-luc-form-input' value={extracted_scores} onChange={(e) => setExtractedScores(e.target.value)} />
                         <button type='submit' className='pci-rf-button-upload'>
                             <MarkChatReadIcon />
                             Update
