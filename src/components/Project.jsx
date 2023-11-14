@@ -62,7 +62,7 @@ const Project = () => {
         }
     }
     const renderScores = () => {
-        if (project && project.extracted_scores) {
+        if (project && project.extracted_scores !== null) {
             const result = [];
             const array = Object.entries(project.extracted_scores);
             for (let i = 0; i < array.length; i += 2) {
@@ -84,7 +84,7 @@ const Project = () => {
             return result;
         }else{
             return (
-                <h3 className="pci-lc-title" style={{ fontWeight: "bolder",color:"crimson",textAlign:"center" }}>Documents are still proccessing ...</h3>
+                <h3 className="pci-lc-title" style={{ fontWeight: "bolder",color:"crimson",textAlign:"center" }}>Scores will be affected after being proccessed ...</h3>
             )
         }
 

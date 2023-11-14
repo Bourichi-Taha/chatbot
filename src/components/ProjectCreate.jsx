@@ -113,7 +113,7 @@ const ProjectCreate = () => {
                         <TextField label="Description" multiline maxRows={4} minRows={4} variant='outlined' className='pci-luc-form-input' value={desc} onChange={(e) => setDesc(e.target.value)} />
                         <button type='submit' className='pci-rf-button-upload'>
                             <MarkChatReadIcon />
-                            Update
+                            Create
                         </button>
                     </form>
 
