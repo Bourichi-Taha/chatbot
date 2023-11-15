@@ -42,16 +42,10 @@ const Projects = () => {
                     </div>
                 </div>
                 <div className="pc-left-content">
-                    <div className="pc-lc-row" >
-                        {[0, 0, 0, 0].map((n, index) => {
+                        {[...Array(9).keys()].map((n, index) => {
                             return (<ProjectItem key={index} />)
                         })}
-                    </div>
-                    <div className="pc-lc-row" >
-                        {[0, 0,0].map((n, index) => {
-                            return (<ProjectItem key={index} />)
-                        })}
-                    </div>
+                   
                 </div>
 
 

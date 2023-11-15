@@ -205,7 +205,7 @@ const Chat = () => {
             <div className="cc-right">
                 <div className="cc-right-header">
                     <p>History</p>
-                    <div className='cc-rh-total'>{data?.conversations?.length}</div>
+                   {data?.conversations?.length && <div className='cc-rh-total'>{data?.conversations?.length}</div>  }
                 </div>
                 <ul className="cc-right-history">
                     {data && data.conversations?.map((item, index) => {
