@@ -13,7 +13,7 @@ const ProjectItem = ({ item }) => {
                 {item?.project_name}
             </div>
             <p className="pc-lc-ri-desc">
-                {item?.description}
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi nemo facilis et iure quod error dolore fugit! Autem quibusdam unde saepe quisquam aut. Quibusdam maxime culpa quos alias, delectus recusandae facere dolores quae deserunt architecto est impedit magni inventore dolorum suscipit vitae nihil reiciendis illo provident, quas, placeat earum. Magni.
             </p>
             <div className="pc-lc-ri-desc-date">{item?.timestamp?.split("T")[0]}</div>
             <div className="pc-lc-ri-pill">active</div>

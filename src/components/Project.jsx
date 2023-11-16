@@ -84,7 +84,7 @@ const Project = () => {
             return result;
         }else{
             return (
-                [<h3 className="pci-lc-title" style={{ fontWeight: "bolder",color:"crimson",textAlign:"center" }}>Scores will be affected after being proccessed ...</h3>]
+                [<h3 className="pci-lc-title mt-auto" style={{ fontWeight: "bolder",color:"crimson",textAlign:"center" }}>Scores will be affected after being proccessed ...</h3>]
             )
         }
 
@@ -170,7 +170,7 @@ const Project = () => {
                 <div className="pci-right">
                     <div className="pci-right-header">
                         <p>Files</p>
-                        <div className='pci-rh-total'>{project?.files?.length}</div>
+                        <div className='cc-rh-total'>{project?.files?.length}</div>
                     </div>
                     <ul className="pci-right-history">
                         {

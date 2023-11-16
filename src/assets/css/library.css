@@ -30,7 +30,7 @@
     font-weight: bolder;
 }
 .lc-lh-left span:hover{
-    color: #ef6a36;
+    color: var(--primary);
 }
 
 .lc-lh-right {
@@ -42,7 +42,8 @@
 .MuiTextField-root.lc-lh-right-input,
 .MuiTextField-root.lc-lh-right-input:hover {
     border-radius: 8px;
-    background   : #d9d9d9;
+    background   : white;
+    border: 1px solid var(--primary);
 
 }
 
@@ -59,8 +60,8 @@
 
 .MuiButtonBase-root.lc-lh-right-button,
 .MuiButtonBase-root.lc-lh-right-button:hover {
-    border-color: #d0d0d0;
-    color       : #d0d0d0;
+    border-color: var(--primary);
+    color       : var(--primary);;
     min-width   : 0;
     box-shadow  : var(--box-shadow);
 }
@@ -85,21 +86,29 @@
     display: flex;
     align-items: flex-start;
 }
+
+.lc-lc-top-search-input{
+    border: 1px solid var(--primary) !important;
+}
+
 .lc-lc-top-search-input.MuiTextField-root label.Mui-focused,.lc-lc-top-search-input.MuiInputBase-root  {
-    color: #ef6a36;
+    color: var(--primary);
 }
 
 .lc-lc-top-search-input.MuiTextField-root .MuiInputBase-root.MuiOutlinedInput-root.Mui-focused fieldset,.lc-lc-top-search-input.MuiInputBase-root .Mui-focused fieldset{
-    border-color: #ef6a36;
+    border-color: var(--primary);
 }
+
 .lc-lc-top-buttons{
     display: flex;
     align-items: flex-start;
     gap: 20px;
 }
+
 .lc-lc-top-buttons .lc-rf-button{
     gap: 5px;
 }
+
 .lc-lc-bottom{
     flex: 1;
     width: 100%;
@@ -119,6 +128,7 @@
     border-left: 1px solid #d9d9d9;
     transition: all .3s ease;
 }
+
 .lc-right.closed{
     width: 0;
     opacity: 0;
@@ -232,9 +242,9 @@
 .lc-rf-button {
     flex           : .5;
     outline        : none;
-    border         : 1px solid #3d3d3d;
+    border         : 1px solid var(--primary);
     background     : transparent;
-    color          : #3d3d3d;
+    color          : var(--primary);
     height         : 50px;
     font-size      : 14px;
     display        : flex;
@@ -248,7 +258,7 @@
 
 .lc-rf-button:hover {
     cursor    : pointer;
-    background: #3d3d3d;
+    background: var(--primary);
     color     : #f1f1f1;
 }
 
@@ -263,9 +273,9 @@
 .lc-rf-button-upload {
     min-height         : 55px;
     outline        : none;
-    border         : 1px solid #ef6a36;
+    border         : 1px solid var(--primary);
     background     : transparent;
-    color          : #ef6a36;
+    color          : var(--primary);
     font-size      : 14px;
     display        : flex;
     align-items    : center;
@@ -278,20 +288,20 @@
     background: lightgray;
 }
 .lc-rf-form-input.MuiTextField-root label.Mui-focused,.lc-rf-form-input.MuiInputBase-root {
-    color: #ef6a36;
+    color: var(--primary);
     border: 1px solid black;
     background: transparent;
 }
 
 .lc-rf-form-input.MuiTextField-root .MuiInputBase-root.MuiOutlinedInput-root.Mui-focused fieldset,.lc-rf-form-input.MuiInputBase-root .Mui-focused fieldset{
     border: 1px solid black;
-    border-color: #ef6a36;
+    border-color: var(--primary);
     background: transparent;
 }
 
 .lc-rf-button-upload:hover {
     cursor    : pointer;
-    background: #ef6a36;
+    background: var(--primary);
     color     : #f1f1f1;
 }
 
@@ -315,20 +325,20 @@
 }
 
 .lc-luc-form-input.MuiTextField-root label.Mui-focused,.lc-luc-form-input.MuiInputBase-root {
-    color: #ef6a36;
+    color: var(--primary);
 }
 
 .lc-luc-form-input.MuiTextField-root .MuiInputBase-root.MuiOutlinedInput-root.Mui-focused fieldset,.lc-luc-form-input.MuiInputBase-root .Mui-focused fieldset{
-    border-color: #ef6a36;
+    border-color: var(--primary);
 }
 .lc-luc-fi-label.MuiInputLabel-root.Mui-focused{
-    color: #ef6a36;
+    color: var(--primary);
 }
 .lc-luc-form-input.MuiInputBase-root.Mui-focused .MuiSelect-icon{
-    color: #ef6a36;
+    color: var(--primary);
 }
 .lc-luc-form-input.MuiInputBase-root.Mui-focused fieldset{
-    border-color: #ef6a36;
+    border-color: var(--primary);
 }
 .lc-right-header.closed,.lc-right-history.closed,.lc-right-footer.closed
 {

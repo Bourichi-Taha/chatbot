@@ -49,15 +49,16 @@ const Projects = () => {
                 <div className="pc-left-content">
                         {projects?.map((arr,key) => {
                             return (
-                                <div key={key} className="pc-lc-row" >
-                                    {
-                                        arr?.map((item, index) => {
-                                            return (<ProjectItem key={index} item={item} />)
-                                        })
-                                    }
-                                </div>
+                               
+                                
+                                    arr?.map((item, index) => {
+                                        return (<ProjectItem key={index} item={item} />)
+                                    })
+                            
+                               
                             )
                         })}
+                        
                 </div>
 
 
