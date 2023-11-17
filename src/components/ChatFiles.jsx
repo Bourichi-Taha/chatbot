@@ -7,6 +7,7 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import MarkChatReadIcon from '@mui/icons-material/MarkChatRead';
 import FilesListItem from './FilesListItem';
 import FileUploader from './FileUploader';
+import { Badge } from './ui/Badge';
 import {  useUploadFileMutation } from '../features/files/filesApiSlice';
 
 import PageTransition from './PageTransition';
@@ -112,7 +113,7 @@ const ChatFiles = () => {
             <div className="cc-right">
                 <div className="cc-right-header">
                     <p>Files</p>
-                    <div className='cc-rh-total'>8</div>
+                    <Badge value={8} />
                 </div>
                 <ul className="cc-right-history">
                     <FilesListItem  />

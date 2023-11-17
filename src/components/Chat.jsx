@@ -18,6 +18,8 @@ import { selectCurrentSelectedFiles } from '../features/files/filesSlice';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useFetchProjectByIdQuery } from '../features/projects/ProjectApiSlice';
+import { Badge } from './ui/Badge';
+
 const Chat = () => {
     const projectId = useParams().projectId;
     const { data: project, isSuccess } = useFetchProjectByIdQuery(projectId)
@@ -225,6 +227,7 @@ const Chat = () => {
                     <div className="cc-right-header">
                         <p>History</p>
                         <div className='cc-rh-total'>{history?.length}</div>
+                        <Badge value={history?.length}/>
                     </div>
                     <ul className="cc-right-history">
                         {history && history?.map((item, index) => {

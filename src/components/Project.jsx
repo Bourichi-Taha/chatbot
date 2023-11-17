@@ -9,6 +9,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import PageTransition from "./PageTransition";
 import FilesListItem from "./FilesListItem";
 import MarkChatReadIcon from "@mui/icons-material/MarkChatRead";
+import { useTranslation } from "react-i18next";
+
+import { Badge } from './ui/Badge';
 import {
   useSelectFilesMutation,
   useUploadFileMutation,
@@ -35,6 +38,9 @@ const Project = () => {
   const [deleteProject] = useDeleteProjectMutation();
   const selectedFiles = useSelector(selectCurrentSelectedFiles);
   const { data: project, isLoading } = useFetchProjectByIdQuery(project_id);
+  const { t } = useTranslation();
+ 
+
 
   const dispatch = useDispatch();
   const startChatting = async (e) => {
@@ -83,9 +89,12 @@ const Project = () => {
               style={{ cursor: "pointer" }}
               onClick={() => navigate("/projects")}
             >
-              My Projects
+              {t('my_projects')}
             </span>
             /{project?.project_name}
+
+
+            
           </div>
           <div className="pci-lh-right">
             <TextField
@@ -180,7 +189,7 @@ const Project = () => {
             </div>
           </form>
 
-          <h3 className="pci-lc-title" style={{ fontWeight: "bolder" }}>
+          <h3 className="block text-lg font-medium leading-6 text-gray-900">
             Extracted scores:
           </h3>
           <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -200,7 +209,7 @@ const Project = () => {
       <div className="pci-right">
         <div className="pci-right-header">
           <p>Files</p>
-          <div className="cc-rh-total">{project?.files?.length}</div>
+          <Badge value={project?.files?.length} />
         </div>
         <ul className="pci-right-history">
           {project?.files?.map((f, index) => {

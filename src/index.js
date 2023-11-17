@@ -6,6 +6,7 @@ import { store } from './app/store';
 import { BrowserRouter } from 'react-router-dom';
 import AnimatedRoutes from './components/AnimatedRoutes';
 import NoneAnimatedRoutes from './components/NoneAnimatedRoutes';
+import './i18n.js'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

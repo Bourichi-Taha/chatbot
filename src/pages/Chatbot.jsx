@@ -1,23 +1,24 @@
-import React, { useEffect, useState } from 'react'
-import "../assets/css/chatbot.css"
+import React, { useEffect, useState } from "react";
+import "../assets/css/chatbot.css";
 import logo from "../assets/images/logo .png";
-import AutoAwesomeMosaicIcon from '@mui/icons-material/AutoAwesomeMosaic';
-import LogoutIcon from '@mui/icons-material/Logout';
-import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
-import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
-import BorderAllRoundedIcon from '@mui/icons-material/BorderAllRounded';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import HelpCenterOutlinedIcon from '@mui/icons-material/HelpCenterOutlined';
-import InsertChartOutlinedRoundedIcon from '@mui/icons-material/InsertChartOutlinedRounded';
-import { IconButton } from '@mui/material';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
-import { logOut } from '../features/auth/authSlice';
-import { apiSlice } from '../app/api/apiSlice';
+import AutoAwesomeMosaicIcon from "@mui/icons-material/AutoAwesomeMosaic";
+import LogoutIcon from "@mui/icons-material/Logout";
+import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
+import BorderAllRoundedIcon from "@mui/icons-material/BorderAllRounded";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import HelpCenterOutlinedIcon from "@mui/icons-material/HelpCenterOutlined";
+import InsertChartOutlinedRoundedIcon from "@mui/icons-material/InsertChartOutlinedRounded";
+import { IconButton } from "@mui/material";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logOut } from "../features/auth/authSlice";
+import { apiSlice } from "../app/api/apiSlice";
+import { useTranslation } from "react-i18next";
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(true);
-  const sidebarTrigger = () => setIsOpen(prev => !prev);
+  const sidebarTrigger = () => setIsOpen((prev) => !prev);
   useEffect(() => {
     const sidebar = document.querySelector(".cbc-main-sidebar");
     const main = document.querySelector(".cbc-main");
@@ -35,100 +36,136 @@ const Chatbot = () => {
       }, 100);
     }
   }, [isOpen]);
-  const navigate = useNavigate()
-  const location = useLocation()
+  const navigate = useNavigate();
+  const location = useLocation();
   useEffect(() => {
-    if (location.pathname.split('/')[1] === "projects") {
+    if (location.pathname.split("/")[1] === "projects") {
       const allListItems = document.querySelectorAll(".cbc-msb-tb-item");
       allListItems.forEach((item) => {
         return item.classList.remove("active");
       });
-      document.querySelector('.projects').classList.add("active");
-    }else if (location.pathname.split('/')[1] === "library") {
+      document.querySelector(".projects").classList.add("active");
+    } else if (location.pathname.split("/")[1] === "library") {
       const allListItems = document.querySelectorAll(".cbc-msb-tb-item");
       allListItems.forEach((item) => {
         return item.classList.remove("active");
       });
-      document.querySelector('.library').classList.add("active");
-    }else if (location.pathname.split('/')[1] === "chatbot"){
+      document.querySelector(".library").classList.add("active");
+    } else if (location.pathname.split("/")[1] === "chatbot") {
       const allListItems = document.querySelectorAll(".cbc-msb-tb-item");
       allListItems.forEach((item) => {
         return item.classList.remove("active");
       });
-      document.querySelector('.chatbot').classList.add("active");
+      document.querySelector(".chatbot").classList.add("active");
     }
-  }, [location])
+  }, [location]);
   const ClickHandler = (e) => {
     if (e.target.innerText === "AI Chat Helper") {
       return;
     } else if (e.target.innerText === "My Projects") {
-      navigate("/projects")
+      navigate("/projects");
     } else if (e.target.innerText === "Library") {
-      navigate("/library")
+      navigate("/library");
     }
-  }
+  };
   const dispatch = useDispatch();
+  const {
+    t,
+    i18n: { changeLanguage, language },
+  } = useTranslation();
+  const [currentLanguage, setCurrentLanguage] = useState(language);
 
+  const handleChangeLanguage = () => {
+    const newLanguage = currentLanguage === "en" ? "nl" : "en";
+    setCurrentLanguage(newLanguage);
+    changeLanguage(newLanguage);
+  };
   return (
     <div className="chat-bot-container">
       <div className="cbc-main">
-        <IconButton onClick={sidebarTrigger} sx={{ display: isOpen ? "none" : "flex", position: "fixed", top: "30px", left: "14px" }}>
-          <AutoAwesomeMosaicIcon className='cbc-msb-tt-icon abs' />
+        <IconButton
+          onClick={sidebarTrigger}
+          sx={{
+            display: isOpen ? "none" : "flex",
+            position: "fixed",
+            top: "30px",
+            left: "14px",
+          }}
+        >
+          <AutoAwesomeMosaicIcon className="cbc-msb-tt-icon abs" />
         </IconButton>
         <div className="cbc-main-sidebar">
           <div className="cbc-msb-top">
             <div className="cbc-msb-top-top">
-              <img src={logo} alt="" onClick={()=>{navigate("/login")}} className="cbc-msb-tt-logo" />
+              <img
+                src={logo}
+                alt=""
+                onClick={() => {
+                  navigate("/login");
+                }}
+                className="cbc-msb-tt-logo"
+              />
               <IconButton onClick={sidebarTrigger}>
-                <AutoAwesomeMosaicIcon className='cbc-msb-tt-icon' />
+                <AutoAwesomeMosaicIcon className="cbc-msb-tt-icon" />
               </IconButton>
             </div>
-            <ul className="cbc-msb-top-bottom chatHelper" >
-              <li onClick={ClickHandler} className='cbc-msb-tb-item chatbot'>
+            <ul className="cbc-msb-top-bottom chatHelper">
+              <li onClick={ClickHandler} className="cbc-msb-tb-item chatbot">
                 <IconButton>
-                  <ChatBubbleOutlineIcon className='cbc-msb-tt-icon' />
+                  <ChatBubbleOutlineIcon className="cbc-msb-tt-icon" />
                 </IconButton>
                 AI Chat Helper
               </li>
-              <li onClick={ClickHandler} className='cbc-msb-tb-item library'>
+              <li onClick={ClickHandler} className="cbc-msb-tb-item library">
                 <IconButton>
-                  <DescriptionOutlinedIcon className='cbc-msb-tt-icon' />
+                  <DescriptionOutlinedIcon className="cbc-msb-tt-icon" />
                 </IconButton>
                 Library
               </li>
-              <li onClick={ClickHandler} className='cbc-msb-tb-item projects'>
+              <li onClick={ClickHandler} className="cbc-msb-tb-item projects">
                 <IconButton>
-                  <BorderAllRoundedIcon className='cbc-msb-tt-icon' />
+                  <BorderAllRoundedIcon className="cbc-msb-tt-icon" />
                 </IconButton>
                 My Projects
               </li>
-              <li onClick={ClickHandler} className='cbc-msb-tb-item'>
+              <li onClick={ClickHandler} className="cbc-msb-tb-item">
                 <IconButton>
-                  <InsertChartOutlinedRoundedIcon className='cbc-msb-tt-icon' />
+                  <InsertChartOutlinedRoundedIcon className="cbc-msb-tt-icon" />
                 </IconButton>
                 Statistics
               </li>
-              <li onClick={ClickHandler} className='cbc-msb-tb-item'>
+              <li onClick={ClickHandler} className="cbc-msb-tb-item">
                 <IconButton>
-                  <SettingsOutlinedIcon className='cbc-msb-tt-icon' />
+                  <SettingsOutlinedIcon className="cbc-msb-tt-icon" />
                 </IconButton>
                 Settings
               </li>
-              <li onClick={ClickHandler} className='cbc-msb-tb-item'>
+              <li onClick={ClickHandler} className="cbc-msb-tb-item">
                 <IconButton>
-                  <HelpCenterOutlinedIcon className='cbc-msb-tt-icon' />
+                  <HelpCenterOutlinedIcon className="cbc-msb-tt-icon" />
                 </IconButton>
                 Updates & FAQ
               </li>
             </ul>
           </div>
           <div className="cbc-msb-bottom">
+            <div className="cbc-msb-bottom-bottom">
+              <span>
+                <span onClick={handleChangeLanguage}> {language}</span>
+              </span>
+              <span>
+                {t("Logout")}
 
-            <div className="cbc-msb-bottom-bottom" onClick={()=>{dispatch(logOut());dispatch(apiSlice.util.resetApiState());}}>
-              <p>logout</p>
-              <IconButton>
-                <LogoutIcon className='cbc-msb-tt-icon' />
-              </IconButton>
+                <IconButton>
+                  <LogoutIcon
+                    onClick={() => {
+                      dispatch(logOut());
+                      dispatch(apiSlice.util.resetApiState());
+                    }}
+                    className="cbc-msb-tt-icon"
+                  />
+                </IconButton>
+              </span>
             </div>
           </div>
         </div>
@@ -137,7 +174,7 @@ const Chatbot = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Chatbot
+export default Chatbot;
