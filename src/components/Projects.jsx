@@ -1,5 +1,6 @@
 import "../assets/css/projects.css"
-import { Button, InputAdornment, TextField } from '@mui/material'
+import { InputAdornment, TextField } from '@mui/material'
+import { Button } from './ui/Button'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import DatasetOutlinedIcon from '@mui/icons-material/DatasetOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
@@ -8,6 +9,7 @@ import ProjectItem from "./ProjectItem";
 import PageTransition from "./PageTransition";
 import { useFetchUserProjectsQuery } from "../features/projects/ProjectApiSlice";
 import ArraySplicer from "../utils/ArraySplicer";
+import { Loader } from "./ui/Loader";
 
 const Projects = () => {
 
@@ -16,10 +18,11 @@ const Projects = () => {
     let content ;
     if (isLoading) {
           content = (
-            <div>Loading...</div>
+            <Loader/>
           )
     }else{
         let projects =ArraySplicer(data.results, 4);
+        // let projects = data.results;
         content = (
             <div className="projects-container" style={{ position: "relative" }}>
             <div className="pc-left">
@@ -28,7 +31,6 @@ const Projects = () => {
                     <div className="pc-lh-right">
                         <TextField
                             className='pc-lh-right-input'
-                            variant="outlined"
                             placeholder='Search'
                             InputProps={{
                                 startAdornment: (
@@ -38,10 +40,10 @@ const Projects = () => {
                                 )
                             }}
                         />
-                        <Button variant="outlined" className='pc-lh-right-button' onClick={() => navigate("/projects/create")}>
+                        <Button onClick={() => navigate("/projects/create")}>
                             <AddCircleOutlineIcon className='pc-lh-rb-icon' />
                         </Button>
-                        <Button variant="outlined" className='pc-lh-right-button' onClick={() => navigate("/library")}>
+                        <Button onClick={() => navigate("/library")}>
                             <DatasetOutlinedIcon className='pc-lh-rb-icon' />
                         </Button>
                     </div>

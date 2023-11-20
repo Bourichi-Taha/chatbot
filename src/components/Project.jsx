@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../assets/css/project.css";
-import { Button, InputAdornment, TextField } from "@mui/material";
+import { InputAdornment, TextField } from "@mui/material";
+import { Button } from "./ui/Button";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 import BorderColorOutlinedIcon from "@mui/icons-material/BorderColorOutlined";
 import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
@@ -10,6 +11,7 @@ import PageTransition from "./PageTransition";
 import FilesListItem from "./FilesListItem";
 import MarkChatReadIcon from "@mui/icons-material/MarkChatRead";
 import { useTranslation } from "react-i18next";
+import { Loader } from "./ui/Loader";
 
 import { Badge } from './ui/Badge';
 import {
@@ -78,8 +80,9 @@ const Project = () => {
     }
   };
 
+
   return isLoading ? (
-    <div>Loading...</div>
+    <Loader/>
   ) : (
     <div className="project-item-container" style={{ position: "relative" }}>
       <div className="pci-left">
@@ -99,7 +102,6 @@ const Project = () => {
           <div className="pci-lh-right">
             <TextField
               className="pci-lh-right-input"
-              variant="outlined"
               placeholder="Search"
               InputProps={{
                 startAdornment: (
@@ -110,15 +112,11 @@ const Project = () => {
               }}
             />
             <Button
-              variant="outlined"
-              className="pci-lh-right-button"
               onClick={deleteHandler}
             >
               <DeleteForeverOutlinedIcon className="pci-lh-rb-icon" />
             </Button>
             <Button
-              variant="outlined"
-              className="pci-lh-right-button"
               onClick={() => navigate("edit")}
             >
               <BorderColorOutlinedIcon className="pci-lh-rb-icon" />
@@ -156,33 +154,33 @@ const Project = () => {
                   <TextInput
                     value={project.werkinhood}
                     name="werkinhood"
-                    text="Work content"
+                    label="Work content"
                   />
 
                   <TextInput
                     value={project.enclosure}
                     name="enclosure"
-                    text="Enclosure"
+                    label="Enclosure"
                   />
                   <TextInput
                     value={project.contract_type}
                     name="contract_type"
-                    text="Contract type"
+                    label="Contract type"
                   />
                   <TextInput
                     value={project.client}
                     name="client"
-                    text="Client"
+                    label="Client"
                   />
                   <TextInput
                     value={project.status}
                     name="status"
-                    text="Status"
+                    label="Status"
                   />
                   <TextInput
                     value={project.result}
                     name="result"
-                    text="Result"
+                    label="Result"
                   />
                 </div>
               </div>
@@ -212,9 +210,9 @@ const Project = () => {
           <Badge value={project?.files?.length} />
         </div>
         <ul className="pci-right-history">
-          {project?.files?.map((f, index) => {
+          {project?.files ? project?.files?.map((f, index) => {
             return <FilesListItem key={index} item={f} />;
-          })}
+          }) : <span>No Files</span>}
         </ul>
         <div className="pci-right-footer">
           <FileUploader

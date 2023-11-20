@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import PageTransition from './PageTransition';
-import { Button, FormControl, InputAdornment, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { FormControl, InputAdornment, InputLabel, MenuItem, TextField } from '@mui/material';
+import { Button } from './ui/Button';
+import { TextArea } from './ui/TextArea';
 import FileUploader from './FileUploader';
 import MarkChatReadIcon from '@mui/icons-material/MarkChatRead';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
@@ -10,6 +12,9 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { useUploadFileMutation } from '../features/files/filesApiSlice';
 import "../assets/css/project.css"
 import { useAddProjectMutation } from '../features/projects/ProjectApiSlice';
+import { TextInput } from './ui/TextInput';
+import { Select } from './ui/Select';
+
 const ProjectCreate = () => {
     const navigate = useNavigate();
     const [project_name, setProject_Name] = useState("New project");
@@ -51,7 +56,6 @@ const ProjectCreate = () => {
                     <div className="pci-lh-right">
                         <TextField
                             className='pci-lh-right-input'
-                            variant="outlined"
                             placeholder='Search'
                             InputProps={{
                                 startAdornment: (
@@ -61,10 +65,10 @@ const ProjectCreate = () => {
                                 )
                             }}
                         />
-                        <Button variant="outlined" className='pci-lh-right-button'>
-                            <AddCircleOutlineIcon className='pci-lh-rb-icon' />
+                        <Button>
+                            <AddCircleOutlineIcon className='pci-lh-rb-icon ' />
                         </Button>
-                        <Button variant="outlined" className='pci-lh-right-button' onClick={() => navigate("/chat-files")}>
+                        <Button onClick={() => navigate("/chat-files")}>
                             <DatasetOutlinedIcon className='pci-lh-rb-icon' />
                         </Button>
                     </div>
@@ -73,44 +77,19 @@ const ProjectCreate = () => {
 <FileUploader setFile={setFiles} multi={false} type={type} setType={setType} />
                         <div className='pci-luc-form' >
                             <div className="pci-luc-form-left">
-                                <TextField label="Project name" variant='outlined' className='pci-luc-form-input' value={project_name} onChange={(e) => setProject_Name(e.target.value)} />
-                                <TextField label="client" variant='outlined' className='pci-luc-form-input' value={client} onChange={(e) => setClient(e.target.value)} />
-                                <TextField label="Enclosure" variant='outlined' className='pci-luc-form-input' value={enclosure} onChange={(e) => setEnclosure(e.target.value)} />
+                                <TextInput label="Project name" value={project_name} onChange={(e) => setProject_Name(e.target.value)} />
+                                <TextInput label="client" value={client} onChange={(e) => setClient(e.target.value)} />
+                                <TextInput label="Enclosure" value={enclosure} onChange={(e) => setEnclosure(e.target.value)} />
                             </div>
                             <div className="pci-luc-form-right">
-                                <FormControl fullWidth>
-                                    <InputLabel className='pci-luc-fi-label' id="demo-simple-select-label">Status</InputLabel>
-                                    <Select
-                                        labelId="demo-simple-select-label"
-                                        value={status}
-                                        label="Status"
-                                        onChange={(e) => setStatus(e.target.value)}
-                                        className='pci-luc-form-input'
-                                    >
-                                        <MenuItem value={"in progress"}>In progress</MenuItem>
-                                        <MenuItem value={"pending"}>Pending</MenuItem>
-                                        <MenuItem value={"finished"}>Finished</MenuItem>
-                                    </Select>
-                                </FormControl>
-                                <FormControl fullWidth>
-                                    <InputLabel className='pci-luc-fi-label' id="demo-simple-select-label-results">Result</InputLabel>
-                                    <Select
-                                        labelId="demo-simple-select-label-results"
-                                        value={result}
-                                        label="Result"
-                                        onChange={(e) => setResult(e.target.value)}
-                                        className='pci-luc-form-input'
-                                    >
-                                        <MenuItem value={"WON"}>Won</MenuItem>
-                                        <MenuItem value={"LOST"}>Lost</MenuItem>
-                                        <MenuItem value={"PENDING"}>Pending</MenuItem>
-                                    </Select>
-                                </FormControl>
-                                <TextField label="Contract type" variant='outlined' className='pci-luc-form-input' value={contract_type} onChange={(e) => setContractType(e.target.value)} />
+                                <Select label='Country' items={[{label: 'test', value: 'test'}]} />
+                                <Select label='Country' items={[{label: 'test', value: 'test'},{label: 'test', value: 'test'}]} />
+                              
+                                <TextInput label="Contract type" value={contract_type} onChange={(e) => setContractType(e.target.value)} />
                             </div>
                         </div>
-                        <TextField label="werkinhood" multiline maxRows={2} minRows={2} variant='outlined' className='pci-luc-form-input' value={werkinhood} onChange={(e) => setWerkinhood(e.target.value)} />
-                        <TextField label="Description" multiline maxRows={4} minRows={4} variant='outlined' className='pci-luc-form-input' value={desc} onChange={(e) => setDesc(e.target.value)} />
+                        <TextArea label="werkinhood" multiline maxRows={2} minRows={2} variant='outlined' className='pci-luc-form-input' value={werkinhood} onChange={(e) => setWerkinhood(e.target.value)} />
+                        <TextArea label="Description" multiline maxRows={4} minRows={4} variant='outlined' className='pci-luc-form-input' value={desc} onChange={(e) => setDesc(e.target.value)} />
                         <button type='submit' className='pci-rf-button-upload'>
                             <MarkChatReadIcon />
                             Create

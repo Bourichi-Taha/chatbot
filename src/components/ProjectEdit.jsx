@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import PageTransition from './PageTransition';
-import { Button, FormControl, InputAdornment, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { FormControl, InputAdornment, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { Button } from './ui/Button'
 import MarkChatReadIcon from '@mui/icons-material/MarkChatRead';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import DatasetOutlinedIcon from '@mui/icons-material/DatasetOutlined';
@@ -56,7 +57,6 @@ const ProjectEdit = () => {
                         <div className="pci-lh-right">
                             <TextField
                                 className='pci-lh-right-input'
-                                variant="outlined"
                                 placeholder='Search'
                                 InputProps={{
                                     startAdornment: (
@@ -66,10 +66,10 @@ const ProjectEdit = () => {
                                     )
                                 }}
                             />
-                            <Button variant="outlined" className='pci-lh-right-button'>
+                            <Button>
                                 <AddCircleOutlineIcon className='pci-lh-rb-icon' />
                             </Button>
-                            <Button variant="outlined" className='pci-lh-right-button' onClick={() => navigate("/chat-files")}>
+                            <Button onClick={() => navigate("/chat-files")}>
                                 <DatasetOutlinedIcon className='pci-lh-rb-icon' />
                             </Button>
                         </div>

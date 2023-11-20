@@ -118,7 +118,7 @@ const Library = () => {
                                     <FilesLibraryListItem item={it} key={ind} />
                                 )
                             })
-                            :  null
+                            :  <li className='flex'><span className='mx-auto font-bold text-lg'>No Files</span></li>
                         }
 
                     </ul>
@@ -136,7 +136,6 @@ const Library = () => {
                     <div className="lc-lh-right">
                         <TextField
                             className='lc-lh-right-input'
-                            variant="outlined"
                             placeholder='Search'
                             InputProps={{
                                 startAdornment: (
@@ -159,7 +158,6 @@ const Library = () => {
                         <div className="lc-lc-top-search">
                             <TextField
                                 className='lc-lc-top-search-input'
-                                variant="outlined"
                                 placeholder='Search Library'
                                 InputProps={{
                                     endAdornment: (

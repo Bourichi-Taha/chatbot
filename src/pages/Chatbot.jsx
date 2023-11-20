@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import { logOut } from "../features/auth/authSlice";
 import { apiSlice } from "../app/api/apiSlice";
 import { useTranslation } from "react-i18next";
+import { Switch } from '../components/ui/Switch';
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -73,13 +74,8 @@ const Chatbot = () => {
     t,
     i18n: { changeLanguage, language },
   } = useTranslation();
-  const [currentLanguage, setCurrentLanguage] = useState(language);
 
-  const handleChangeLanguage = () => {
-    const newLanguage = currentLanguage === "en" ? "nl" : "en";
-    setCurrentLanguage(newLanguage);
-    changeLanguage(newLanguage);
-  };
+ 
   return (
     <div className="chat-bot-container">
       <div className="cbc-main">
@@ -126,7 +122,7 @@ const Chatbot = () => {
                 <IconButton>
                   <BorderAllRoundedIcon className="cbc-msb-tt-icon" />
                 </IconButton>
-                My Projects
+                {t('my_projects')}
               </li>
               <li onClick={ClickHandler} className="cbc-msb-tb-item">
                 <IconButton>
@@ -138,7 +134,7 @@ const Chatbot = () => {
                 <IconButton>
                   <SettingsOutlinedIcon className="cbc-msb-tt-icon" />
                 </IconButton>
-                Settings
+                {t('settings')}
               </li>
               <li onClick={ClickHandler} className="cbc-msb-tb-item">
                 <IconButton>
@@ -151,11 +147,11 @@ const Chatbot = () => {
           <div className="cbc-msb-bottom">
             <div className="cbc-msb-bottom-bottom">
               <span>
-                <span onClick={handleChangeLanguage}> {language}</span>
+                <Switch items={[{text: 'NL', value: 'nl'}, {text: 'EN', value: 'en'}]} />
+                {/* <span> {language}</span> */}
               </span>
               <span>
                 {t("Logout")}
-
                 <IconButton>
                   <LogoutIcon
                     onClick={() => {

@@ -7,7 +7,7 @@ export const TextInput = (props) => {
         htmlFor={props.name}
         className="block text-lg font-medium leading-6 text-gray-900"
       >
-        {props.text}:
+        {props.label}:
       </label>
       <div className="mt-2">
         <input

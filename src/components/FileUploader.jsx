@@ -66,7 +66,7 @@ const FileUploader = ({ setFile, setFiles, multi, setType, type }) => {
 
 
     return (
-        <section className="container">
+        <section className="">
             <div {...getRootProps({ style })}>
                 <input className='file-uploader-input-field' {...getInputProps()} />
                 <em style={{ fontSize: "12px" }}>(Only *.pdf files will be accepted)</em>

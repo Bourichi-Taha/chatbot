@@ -142,7 +142,6 @@ const Chat = () => {
                         <div className="cc-lh-right">
                             <TextField
                                 className='cc-lh-right-input'
-                                variant="outlined"
                                 placeholder='Search'
                                 InputProps={{
                                     startAdornment: (
