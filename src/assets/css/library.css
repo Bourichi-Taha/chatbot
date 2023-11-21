@@ -2,6 +2,7 @@
     height : 100%;
     width  : 100%;
     display: flex;
+    position: relative;
 }
 
 .lc-left {
@@ -20,7 +21,7 @@
     align-items    : center;
     justify-content: space-between;
     background     : #ffffff;
-    border-radius  : 20px 0 0 0;
+    border-radius  : 20px 20px 0 0;
     border-bottom  : 1px solid #d0d0d0;
 }
 
@@ -30,7 +31,7 @@
     font-weight: bolder;
 }
 .lc-lh-left span:hover{
-    color: #ef6a36;
+    color: #3464c4;
 }
 
 .lc-lh-right {
@@ -59,8 +60,8 @@
 
 .MuiButtonBase-root.lc-lh-right-button,
 .MuiButtonBase-root.lc-lh-right-button:hover {
-    border-color: #d0d0d0;
-    color       : #d0d0d0;
+    border-color: #3464c4;
+    color       : #3464c4;
     min-width   : 0;
     box-shadow  : var(--box-shadow);
 }
@@ -86,11 +87,11 @@
     align-items: flex-start;
 }
 .lc-lc-top-search-input.MuiTextField-root label.Mui-focused,.lc-lc-top-search-input.MuiInputBase-root  {
-    color: #ef6a36;
+    color: #3464c4;
 }
 
 .lc-lc-top-search-input.MuiTextField-root .MuiInputBase-root.MuiOutlinedInput-root.Mui-focused fieldset,.lc-lc-top-search-input.MuiInputBase-root .Mui-focused fieldset{
-    border-color: #ef6a36;
+    border-color: #3464c4;
 }
 .lc-lc-top-buttons{
     display: flex;
@@ -109,7 +110,7 @@
 }
 
 .lc-right{
-    flex          : .25;
+    width: 25%;
     height        : 100%;
     /* border     : 1px solid blue; */
     background    : #f1f1f1;
@@ -118,11 +119,14 @@
     flex-direction: column;
     border-left: 1px solid #d9d9d9;
     transition: all .3s ease;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
 }
 .lc-right.closed{
     width: 0;
     opacity: 0;
-    flex: 0;
 }
 
 .lc-right-header {
@@ -232,11 +236,12 @@
 .lc-rf-button {
     flex           : .5;
     outline        : none;
-    border         : 1px solid #3d3d3d;
-    background     : transparent;
-    color          : #3d3d3d;
+    border         : 2px solid #3464c4;
+    background     : white;
+    color          : #3464c4;
     height         : 50px;
-    font-size      : 14px;
+    font-size      : 20px;
+    font-weight: normal;
     display        : flex;
     align-items    : center;
     justify-content: center;
@@ -244,12 +249,13 @@
     gap            : 10px;
     padding: 5px 10px;
     width: 100%;
+    box-shadow: var(--box-shadow);
 }
 
 .lc-rf-button:hover {
     cursor    : pointer;
-    background: #3d3d3d;
-    color     : #f1f1f1;
+    background: #3464c4;
+    color     : white;
 }
 
 .lc-left-upload-container {
@@ -263,9 +269,9 @@
 .lc-rf-button-upload {
     min-height         : 55px;
     outline        : none;
-    border         : 1px solid #ef6a36;
+    border         : 1px solid #3464c4;
     background     : transparent;
-    color          : #ef6a36;
+    color          : #3464c4;
     font-size      : 14px;
     display        : flex;
     align-items    : center;
@@ -278,20 +284,20 @@
     background: lightgray;
 }
 .lc-rf-form-input.MuiTextField-root label.Mui-focused,.lc-rf-form-input.MuiInputBase-root {
-    color: #ef6a36;
+    color: #3464c4;
     border: 1px solid black;
     background: transparent;
 }
 
 .lc-rf-form-input.MuiTextField-root .MuiInputBase-root.MuiOutlinedInput-root.Mui-focused fieldset,.lc-rf-form-input.MuiInputBase-root .Mui-focused fieldset{
     border: 1px solid black;
-    border-color: #ef6a36;
+    border-color: #3464c4;
     background: transparent;
 }
 
 .lc-rf-button-upload:hover {
     cursor    : pointer;
-    background: #ef6a36;
+    background: #3464c4;
     color     : #f1f1f1;
 }
 
@@ -315,20 +321,20 @@
 }
 
 .lc-luc-form-input.MuiTextField-root label.Mui-focused,.lc-luc-form-input.MuiInputBase-root {
-    color: #ef6a36;
+    color: #3464c4;
 }
 
 .lc-luc-form-input.MuiTextField-root .MuiInputBase-root.MuiOutlinedInput-root.Mui-focused fieldset,.lc-luc-form-input.MuiInputBase-root .Mui-focused fieldset{
-    border-color: #ef6a36;
+    border-color: #3464c4;
 }
 .lc-luc-fi-label.MuiInputLabel-root.Mui-focused{
-    color: #ef6a36;
+    color: #3464c4;
 }
 .lc-luc-form-input.MuiInputBase-root.Mui-focused .MuiSelect-icon{
-    color: #ef6a36;
+    color: #3464c4;
 }
 .lc-luc-form-input.MuiInputBase-root.Mui-focused fieldset{
-    border-color: #ef6a36;
+    border-color: #3464c4;
 }
 .lc-right-header.closed,.lc-right-history.closed,.lc-right-footer.closed
 {

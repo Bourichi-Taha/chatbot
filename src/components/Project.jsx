@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import "../assets/css/project.css"
-import { Button, InputAdornment, TextField } from '@mui/material';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import AttachFileIcon from '@mui/icons-material/AttachFile';
+import CloseIcon from '@mui/icons-material/Close';
 import { useNavigate, useParams } from 'react-router-dom';
 import PageTransition from './PageTransition';
 import FilesListItem from './FilesListItem';
@@ -14,9 +14,12 @@ import { selectCurrentSelectedFiles, toggleShow } from '../features/files/filesS
 import { useDispatch, useSelector } from 'react-redux';
 import { useDeleteProjectMutation, useFetchProjectByIdQuery } from '../features/projects/ProjectApiSlice';
 import FileUploader from './FileUploader';
+import ButtonNav from './ButtonNav';
+import BadgeWithName from './BadgeWithName';
 
 const Project = () => {
     const [files, setFiles] = useState(null);
+    const [open,setOpen] = useState(false);
     const [type, setType] = useState("guidelines");
     const project_id = useParams().projectId;
     const navigate = useNavigate();
@@ -69,11 +72,11 @@ const Project = () => {
                 const pair = (
                     <div className="pci-lc-row">
                         <div className="pci-lc-col">
-                            <h3 className="pci-lc-title" style={{ fontSize: 18, color: "#3d3d3d" }}>{array[i][0] + ":"}</h3>
+                            <h3 className="pci-lc-title" style={{ fontSize: 18, color: "#3464c4" }}>{array[i][0] + ":"}</h3>
                             <p className="pci-lc-desc">{array[i][1] || "Not Found"}</p>
                         </div>
                         <div className="pci-lc-col">
-                            <h3 className="pci-lc-title" style={{ fontSize: 18, color: "#3d3d3d" }}>{array[i+1][0] + ":"}</h3>
+                            <h3 className="pci-lc-title" style={{ fontSize: 18, color: "#3464c4" }}>{array[i+1][0] + ":"}</h3>
                             <p className="pci-lc-desc">{array[i+1][1] || "Not Found"}</p>
                         </div>
                     </div>
@@ -89,6 +92,24 @@ const Project = () => {
         }
 
     }
+    useEffect(() => {
+        const header = document.querySelector(".pci-right-header")
+        const body = document.querySelector(".pci-right-history")
+        const footer = document.querySelector(".pci-right-footer")
+        if (open) {
+            setTimeout(() => {
+                header?.classList.remove("closed")
+                body?.classList.remove("closed")
+                footer?.classList.remove("closed")
+            }, 200);
+        } else {
+            setTimeout(() => {
+                header?.classList.add("closed")
+                body?.classList.add("closed")
+                footer?.classList.add("closed")
+            }, 100);
+        }
+    }, [open]);
     let content;
     if (isLoading) {
         content = (
@@ -101,24 +122,9 @@ const Project = () => {
                     <div className="pci-left-header">
                         <div className="pci-lh-left" ><span style={{ cursor: "pointer" }} onClick={() => navigate("/projects")}>My Projects</span>/{project?.project_name}</div>
                         <div className="pci-lh-right">
-                            <TextField
-                                className='pci-lh-right-input'
-                                variant="outlined"
-                                placeholder='Search'
-                                InputProps={{
-                                    startAdornment: (
-                                        <InputAdornment position="start">
-                                            <SearchOutlinedIcon />
-                                        </InputAdornment>
-                                    )
-                                }}
-                            />
-                            <Button variant="outlined" className='pci-lh-right-button' onClick={deleteHandler}>
-                                <DeleteForeverOutlinedIcon className='pci-lh-rb-icon' />
-                            </Button>
-                            <Button variant="outlined" className='pci-lh-right-button' onClick={() => navigate("edit")}>
-                                <BorderColorOutlinedIcon className='pci-lh-rb-icon' />
-                            </Button>
+                            <ButtonNav Comp={DeleteForeverOutlinedIcon} text={"Delete"} onClick={deleteHandler} />
+                            <ButtonNav Comp={BorderColorOutlinedIcon} text={"Edit"} onClick={() => navigate("edit")} />
+                            <ButtonNav Comp={AttachFileIcon} text={"Files & Chat"} onClick={() => setOpen(true)} />
                         </div>
                     </div>
                     <div className="pci-left-content">
@@ -167,12 +173,12 @@ const Project = () => {
 
                     </div>
                 </div>
-                <div className="pci-right">
-                    <div className="pci-right-header">
-                        <p>Files</p>
-                        <div className='pci-rh-total'>{project?.files?.length}</div>
+                <div className={open ? "pci-right" : "pci-right closed"}>
+                    <div className={open ?"pci-right-header":"pci-right-header closed"}>
+                        <BadgeWithName length={project?.files?.length} name={"Files"} />
+                        <ButtonNav Comp={CloseIcon} text={"Close"} onClick={(e)=>{setOpen(false)}}/>
                     </div>
-                    <ul className="pci-right-history">
+                    <ul className={open ? "pci-right-history" : "pci-right-history closed"}>
                         {
                             project?.files?.map((f, index) => {
                                 return (
@@ -181,7 +187,7 @@ const Project = () => {
                             })
                         }
                     </ul>
-                    <div className="pci-right-footer">
+                    <div className={open ? "pci-right-footer" : "pci-right-footer closed"}>
                         <FileUploader type={type} setType={setType} setFile={setFiles} multi={false} />
                         {
                             files ?

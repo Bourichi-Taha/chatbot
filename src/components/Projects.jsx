@@ -1,13 +1,12 @@
 import "../assets/css/projects.css"
-import { Button, InputAdornment, TextField } from '@mui/material'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import DatasetOutlinedIcon from '@mui/icons-material/DatasetOutlined';
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { useNavigate } from 'react-router-dom';
 import ProjectItem from "./ProjectItem";
 import PageTransition from "./PageTransition";
 import { useFetchUserProjectsQuery } from "../features/projects/ProjectApiSlice";
 import ArraySplicer from "../utils/ArraySplicer";
+import ButtonNav from "./ButtonNav";
 
 const Projects = () => {
 
@@ -26,24 +25,8 @@ const Projects = () => {
                 <div className="pc-left-header">
                     <div className="pc-lh-left">My Projects</div>
                     <div className="pc-lh-right">
-                        <TextField
-                            className='pc-lh-right-input'
-                            variant="outlined"
-                            placeholder='Search'
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <SearchOutlinedIcon />
-                                    </InputAdornment>
-                                )
-                            }}
-                        />
-                        <Button variant="outlined" className='pc-lh-right-button' onClick={() => navigate("/projects/create")}>
-                            <AddCircleOutlineIcon className='pc-lh-rb-icon' />
-                        </Button>
-                        <Button variant="outlined" className='pc-lh-right-button' onClick={() => navigate("/library")}>
-                            <DatasetOutlinedIcon className='pc-lh-rb-icon' />
-                        </Button>
+                        <ButtonNav Comp={AddCircleOutlineIcon} text={"add"} onClick={() => navigate("/projects/create")}/>
+                        <ButtonNav Comp={DatasetOutlinedIcon} text={"Library"} onClick={() => navigate("/library")}/>
                     </div>
                 </div>
                 <div className="pc-left-content">

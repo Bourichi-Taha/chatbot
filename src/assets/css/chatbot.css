@@ -64,11 +64,11 @@ background: linear-gradient(142deg, rgba(247,247,247,1) 25%, rgba(239,106,54,1) 
 }
 .cbc-msb-tb-item.active .cbc-msb-tt-icon.MuiSvgIcon-root{
     font-size: 1.7rem;
-    color: #ef6a36;
+    color: #3464c4;
 }
 
 .cbc-msb-tt-icon.MuiSvgIcon-root.abs{
-    color: #ef6a36;
+    color: #3464c4;
 }
 
 .cbc-msb-top-bottom{
@@ -94,7 +94,7 @@ background: linear-gradient(142deg, rgba(247,247,247,1) 25%, rgba(239,106,54,1) 
 .cbc-msb-tb-item.active{
     background: #343541;
     border-radius: 8px;
-    color:#ef6a36 ;
+    color:#3464c4 ;
 }
 
 .cbc-msb-bottom{
@@ -106,7 +106,7 @@ background: linear-gradient(142deg, rgba(247,247,247,1) 25%, rgba(239,106,54,1) 
 .cbc-msb-bottom-top{
     height: 150px;
     width: 100%;
-    background: #ef6a36;
+    background: #3464c4;
     border-radius: 20px;
     display: flex;
     align-items: center;

@@ -4,28 +4,20 @@ import { useEffect, useState } from 'react';
 import { IconButton } from '@mui/material';
 import { useFetchLibraryQuery } from '../features/Library/LibraryApiSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectCurrentIsFiltered, selectCurrentIsOpen, selectCurrentLibraryFiltered, selectCurrentSidebar, selectCurrentSidebarFiles, setSidebarFiles, toggleSidebar } from '../features/Library/LibrarySlice';
+import { selectCurrentIsFiltered,  selectCurrentLibraryFiltered,   setSidebarFiles, toggleSidebar } from '../features/Library/LibrarySlice';
 import { useNavigate } from 'react-router-dom';
 
 export default function CustomDataGrid() {
 
   const { data, isLoading, isSuccess } = useFetchLibraryQuery();
   const isFiltered = useSelector(selectCurrentIsFiltered);
-  const open = useSelector(selectCurrentIsOpen);
-  const sidebar = useSelector(selectCurrentSidebar);
-  const sidebarFiles = useSelector(selectCurrentSidebarFiles);
   const filteredLibrary = useSelector(selectCurrentLibraryFiltered);
   const [projects, setProjects] = useState([]);
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const clickFiles = (files) => {
-    if (open && sidebar === "files" && files[0] === sidebarFiles[0]) {
-      dispatch(toggleSidebar({ sidebar: "files", isOpen: false }));
-      dispatch(setSidebarFiles(files));
-    } else {
       dispatch(toggleSidebar({ sidebar: "files", isOpen: true }));
       dispatch(setSidebarFiles(files))
-    }
   }
   const columns = [
     { field: "project_name", headerName: "Project name", width: 150, hide: true },
@@ -92,7 +84,7 @@ export default function CustomDataGrid() {
       });
     }
     setProjects(arr)
-  }, [isFiltered, filteredLibrary]);
+  }, [isFiltered, filteredLibrary,data]);
   const handleCellClick = (params) => {
     if (params.field !== "files") {
       navigate(`/projects/${params.id}`)

@@ -55,8 +55,8 @@
 
 .MuiButtonBase-root.pc-lh-right-button,
 .MuiButtonBase-root.pc-lh-right-button:hover {
-    border-color: #d0d0d0;
-    color       : #d0d0d0;
+    border-color: #3464c4;
+    color       : #3464c4;
     min-width   : 0;
     box-shadow  : var(--box-shadow);
 }
@@ -118,7 +118,7 @@
     font-weight    : lighter;
     color          : #202123;
     border-radius  : 0 20px 0 20px;
-    background     : #ef6a3665;
+    background     : #3464c465;
     transition     : all .3s ease;
 }
 

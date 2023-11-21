@@ -1,0 +1,21 @@
+.MuiButtonBase-root.button-nav-btn {
+    border-color: #3464c4;
+    color       : #3464c4;
+    min-width   : 0;
+    box-shadow  : var(--box-shadow);
+    transition: width .5s ease;
+}
+.button-nav-btn-text{
+    width: 0;
+    max-height: 26px;
+    overflow: hidden;
+    transition: width .4s ease;
+    text-transform: capitalize;
+}
+.MuiButtonBase-root.button-nav-btn:hover{
+    width: 168px;
+}
+.MuiButtonBase-root.button-nav-btn:hover .button-nav-btn-text{
+    width: 120px;
+    
+}

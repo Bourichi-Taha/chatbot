@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import "../assets/css/chat.css";
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, InputAdornment, Menu, MenuItem, Select, TextField } from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle,  Menu, MenuItem, Select, TextField } from '@mui/material';
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import UserMessage from './UserMessage';
 import BotMessage from './BotMessage';
 import UploadFileOutlinedIcon from '@mui/icons-material/UploadFileOutlined';
@@ -16,8 +15,9 @@ import { selectCurrentConversationId, selectCurrentSummary } from '../features/m
 import LanguageIcon from '@mui/icons-material/Language';
 import { selectCurrentSelectedFiles } from '../features/files/filesSlice';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { useNavigate, useParams } from 'react-router-dom';
+import {  useParams } from 'react-router-dom';
 import { useFetchProjectByIdQuery } from '../features/projects/ProjectApiSlice';
+import ButtonNav from './ButtonNav';
 const Chat = () => {
     const projectId = useParams().projectId;
     const { data: project, isSuccess } = useFetchProjectByIdQuery(projectId)
@@ -125,7 +125,6 @@ const Chat = () => {
             get_summary()
         }
     }, [isDialogAdded, summarize, selectedFileSumm]);
-    const navigate = useNavigate();
     let content;
     if (isLoading && !isSuccess) {
         content = (
@@ -138,24 +137,8 @@ const Chat = () => {
                     <div className="cc-left-header">
                         <div className="cc-lh-left">AI Chat Helper/{project?.project_name}/{selectedConversationId}</div>{/* get project Name by id */}
                         <div className="cc-lh-right">
-                            <TextField
-                                className='cc-lh-right-input'
-                                variant="outlined"
-                                placeholder='Search'
-                                InputProps={{
-                                    startAdornment: (
-                                        <InputAdornment position="start">
-                                            <SearchOutlinedIcon />
-                                        </InputAdornment>
-                                    )
-                                }}
-                            />
-                            <Button variant="outlined" className='cc-lh-right-button'>
-                                <NotificationsOutlinedIcon className='cc-lh-rb-icon' />
-                            </Button>
-                            <Button variant="outlined" className='cc-lh-right-button' onClick={() => { }}>
-                                <CloudUploadIcon className='cc-lh-rb-icon' />
-                            </Button>
+                            <ButtonNav Comp={NotificationsOutlinedIcon} text={"Notifications"}/>
+                            <ButtonNav Comp={CloudUploadIcon} text={"Upload"}/>
                         </div>
                     </div>
                     <div className="cc-left-messages-container">

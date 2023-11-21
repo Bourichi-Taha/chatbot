@@ -13,7 +13,7 @@ const baseStyle = {
     padding: '20px',
     borderWidth: 2,
     borderRadius: 2,
-    borderColor: '#ef6a36',
+    borderColor: '#3464c4',
     borderStyle: 'dashed',
     backgroundColor: 'white',
     color: '#bdbdbd',
@@ -22,11 +22,11 @@ const baseStyle = {
 };
 
 const focusedStyle = {
-    borderColor: '#ef6a36'
+    borderColor: '#3464c4'
 };
 
 const acceptStyle = {
-    borderColor: '#ef6a36'
+    borderColor: '#3464c4'
 };
 
 const rejectStyle = {
