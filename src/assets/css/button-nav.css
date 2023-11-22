@@ -19,3 +19,21 @@
     width: 120px;
     
 }
+@media screen and (max-width:1280px) {
+    .MuiButtonBase-root.button-nav-btn:hover{
+        max-width: 120px;
+
+    }
+    .MuiButtonBase-root.button-nav-btn{
+        padding: 5px;
+    }
+}
+@media screen and (max-width:480px) {
+    .MuiButtonBase-root.button-nav-btn:hover{
+        max-width: 80px;
+
+    }
+    .MuiButtonBase-root.button-nav-btn{
+        padding: 5px;
+    }
+}

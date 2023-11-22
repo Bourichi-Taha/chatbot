@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import "../assets/css/chatbot.css"
 import logo from "../assets/images/logo .png";
 import AutoAwesomeMosaicIcon from '@mui/icons-material/AutoAwesomeMosaic';
@@ -9,15 +9,23 @@ import BorderAllRoundedIcon from '@mui/icons-material/BorderAllRounded';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import HelpCenterOutlinedIcon from '@mui/icons-material/HelpCenterOutlined';
 import InsertChartOutlinedRoundedIcon from '@mui/icons-material/InsertChartOutlinedRounded';
-import { IconButton } from '@mui/material';
+import { IconButton, useMediaQuery } from '@mui/material';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from '../features/auth/authSlice';
 import { apiSlice } from '../app/api/apiSlice';
+import { selectCurrentOpen, toggleOpen } from '../features/sidebar/SidebarSlice';
 
 const Chatbot = () => {
-  const [isOpen, setIsOpen] = useState(true);
-  const sidebarTrigger = () => setIsOpen(prev => !prev);
+  const dispatch = useDispatch();
+  const isOpen = useSelector(selectCurrentOpen)
+  const sidebarTrigger = useCallback(() => dispatch(toggleOpen(!isOpen)),[dispatch,isOpen]) ;
+  // const isMatch = useMediaQuery("(max-width:720px)")
+  // useEffect(()=>{
+  //   if (isMatch) {
+  //     sidebarTrigger()
+  //   }
+  // },[isMatch])
   useEffect(() => {
     const sidebar = document.querySelector(".cbc-main-sidebar");
     const main = document.querySelector(".cbc-main");
@@ -35,29 +43,39 @@ const Chatbot = () => {
       }, 100);
     }
   }, [isOpen]);
+
   const navigate = useNavigate()
   const location = useLocation()
   useEffect(() => {
+    const allListItems = document.querySelectorAll(".cbc-msb-tb-item");
+    allListItems.forEach((item) => {
+      return item.classList.remove("active");
+    });
+
     if (location.pathname.split('/')[1] === "projects") {
-      const allListItems = document.querySelectorAll(".cbc-msb-tb-item");
-      allListItems.forEach((item) => {
-        return item.classList.remove("active");
-      });
-      document.querySelector('.projects').classList.add("active");
-    }else if (location.pathname.split('/')[1] === "library") {
-      const allListItems = document.querySelectorAll(".cbc-msb-tb-item");
-      allListItems.forEach((item) => {
-        return item.classList.remove("active");
-      });
-      document.querySelector('.library').classList.add("active");
-    }else if (location.pathname.split('/')[1] === "chatbot"){
-      const allListItems = document.querySelectorAll(".cbc-msb-tb-item");
-      allListItems.forEach((item) => {
-        return item.classList.remove("active");
-      });
-      document.querySelector('.chatbot').classList.add("active");
+      document.querySelector('.cbc-msb-tb-item.projects').classList.add("active");
+    } else if (location.pathname.split('/')[1] === "library") {
+      document.querySelector('.cbc-msb-tb-item.library').classList.add("active");
+    } else if (location.pathname.split('/')[1] === "chatbot") {
+      document.querySelector('.cbc-msb-tb-item.chatbot').classList.add("active");
     }
-  }, [location])
+  }, [location]);
+  useEffect(() => {
+    if (!isOpen) {
+      const allListItems = document.querySelectorAll(".cbc-msb-tt-icon.abs");
+      allListItems.forEach((item) => {
+        return item.classList.remove("active");
+      });
+
+      if (location.pathname.split('/')[1] === "projects") {
+        document.querySelector('.cbc-msb-tt-icon.abs.projects').classList.add("active");
+      } else if (location.pathname.split('/')[1] === "library") {
+        document.querySelector('.cbc-msb-tt-icon.abs.library').classList.add("active");
+      } else if (location.pathname.split('/')[1] === "chatbot") {
+        document.querySelector('.cbc-msb-tt-icon.abs.chatbot').classList.add("active");
+      }
+    }
+  }, [location, isOpen]);
   const ClickHandler = (e) => {
     if (e.target.innerText === "AI Chat Helper") {
       return;
@@ -67,18 +85,52 @@ const Chatbot = () => {
       navigate("/library")
     }
   }
-  const dispatch = useDispatch();
+  const ClickHandlerResponsive = (e) => {
+    console.log(e.target.classList)
+    if (e.target.classList.contains("chatbot")) {
+      return;
+    } else if (e.target.classList.contains("projects") || e.target.parentNode.classList.contains("projects")) {
+      navigate("/projects")
+    } else if (e.target.classList.contains("library") || e.target.parentNode.classList.contains("library")) {
+      navigate("/library")
+    } else {
+      return
+    }
+  }
 
   return (
     <div className="chat-bot-container">
       <div className="cbc-main">
-        <IconButton onClick={sidebarTrigger} sx={{ display: isOpen ? "none" : "flex", position: "fixed", top: "30px", left: "14px" }}>
-          <AutoAwesomeMosaicIcon className='cbc-msb-tt-icon abs' />
-        </IconButton>
+        <div className="cbc-responsive-sidebar" style={{ display: isOpen ? "none" : "flex", flexDirection: "column", justifyContent: "space-between" }} >
+          <IconButton onClick={sidebarTrigger} >
+            <AutoAwesomeMosaicIcon className='cbc-msb-tt-icon abs' />
+          </IconButton>
+          <IconButton onClick={ClickHandlerResponsive} className='chatbot responsive'>
+            <ChatBubbleOutlineIcon className='cbc-msb-tt-icon abs chatbot' />
+          </IconButton>
+          <IconButton onClick={ClickHandlerResponsive} className='library responsive'>
+            <DescriptionOutlinedIcon className='cbc-msb-tt-icon abs library' />
+          </IconButton>
+          <IconButton onClick={ClickHandlerResponsive} className='projects responsive'>
+            <BorderAllRoundedIcon className='cbc-msb-tt-icon abs projects' />
+          </IconButton>
+          <IconButton onClick={ClickHandlerResponsive} className='statistics responsive'>
+            <InsertChartOutlinedRoundedIcon className='cbc-msb-tt-icon abs statistics' />
+          </IconButton>
+          <IconButton onClick={ClickHandlerResponsive} className='settings responsive'>
+            <SettingsOutlinedIcon className='cbc-msb-tt-icon abs settings' />
+          </IconButton>
+          <IconButton onClick={ClickHandlerResponsive} className='faq responsive'>
+            <HelpCenterOutlinedIcon className='cbc-msb-tt-icon abs faq' />
+          </IconButton>
+          <IconButton onClick={() => { dispatch(logOut()); dispatch(apiSlice.util.resetApiState()); }}>
+            <LogoutIcon className='cbc-msb-tt-icon abs' />
+          </IconButton>
+        </div>
         <div className="cbc-main-sidebar">
           <div className="cbc-msb-top">
             <div className="cbc-msb-top-top">
-              <img src={logo} alt="" onClick={()=>{navigate("/login")}} className="cbc-msb-tt-logo" />
+              <img src={logo} alt="" onClick={() => { navigate("/login") }} className="cbc-msb-tt-logo" />
               <IconButton onClick={sidebarTrigger}>
                 <AutoAwesomeMosaicIcon className='cbc-msb-tt-icon' />
               </IconButton>
@@ -124,7 +176,7 @@ const Chatbot = () => {
           </div>
           <div className="cbc-msb-bottom">
 
-            <div className="cbc-msb-bottom-bottom" onClick={()=>{dispatch(logOut());dispatch(apiSlice.util.resetApiState());}}>
+            <div className="cbc-msb-bottom-bottom" onClick={() => { dispatch(logOut()); dispatch(apiSlice.util.resetApiState()); }}>
               <p>logout</p>
               <IconButton>
                 <LogoutIcon className='cbc-msb-tt-icon' />

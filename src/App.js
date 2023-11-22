@@ -13,8 +13,10 @@ import ProjectEdit from "./components/ProjectEdit";
 import RequireAuth from "./components/RequireAuth";
 
 
+
 function App() {
   const location = useLocation();
+  
   return (
     <Routes location={location} key={location.pathname}>
       <Route path="/" element={<Layout />}>

@@ -30,3 +30,11 @@
     border-radius: 55px 0 0 55px;
 
 }
+@media screen and (max-width:1280px) {
+    .badge-with-name{
+        min-width: 80px;
+    }
+    .badge-with-name-name, .badge-with-name-length{
+        font-size: 14px;
+    }
+}

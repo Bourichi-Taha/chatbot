@@ -15,14 +15,14 @@ background: linear-gradient(142deg, rgba(247,247,247,1) 25%, rgba(239,106,54,1) 
     width: 100vw;
     padding: 20px;
     display: flex;
-    gap: 20px;
+    position: relative;
 }
 .cbc-main.no-sb{
-    gap: 50px;
+    gap: 10px;
 }
 
 .cbc-main-sidebar{
-    flex: .17;
+    width: 20%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -31,6 +31,7 @@ background: linear-gradient(142deg, rgba(247,247,247,1) 25%, rgba(239,106,54,1) 
 }
 .cbc-main-sidebar.op-0{
     opacity: 0;
+    z-index: 0;
     visibility: hidden;
 }
 .cbc-main-sidebar.w-0{
@@ -68,6 +69,10 @@ background: linear-gradient(142deg, rgba(247,247,247,1) 25%, rgba(239,106,54,1) 
 }
 
 .cbc-msb-tt-icon.MuiSvgIcon-root.abs{
+    color: #f7f7f7;
+}
+
+.cbc-msb-tt-icon.MuiSvgIcon-root.abs:hover,.cbc-msb-tt-icon.MuiSvgIcon-root.abs.active{
     color: #3464c4;
 }
 
@@ -83,11 +88,10 @@ background: linear-gradient(142deg, rgba(247,247,247,1) 25%, rgba(239,106,54,1) 
 .cbc-msb-tb-item{
     cursor: pointer;
     height: 40px;
-    width: 100%;
+    width: 90%;
     font-size: 18px;
     display: flex;
     align-items: center;
-    padding-left: 20px;
     transition: all .3s ease;
 }
 
@@ -136,8 +140,68 @@ background: linear-gradient(142deg, rgba(247,247,247,1) 25%, rgba(239,106,54,1) 
 
 .cbc-main-content{
     flex: 1;
+    max-width: calc(100vw - 100px);
+    min-width: calc(100vw - 20vw - 60px);
     height: 100%;
     border-radius: 20px;
     background: #f7f7f7;
     display: flex;
+}
+
+@media screen and (max-width:960px) {
+    .cbc-main-sidebar{
+        width: 0;
+        position: fixed;
+        left: 0;
+        width: 40%;
+        top: 0;
+        bottom: 0;
+        opacity: 1;
+        background: #202123;
+        padding: 20px;
+        z-index: 99999;
+        transition: all .3s ease;
+    }
+    /* .cbc-main-sidebar.abs{
+        width: 50%;
+        opacity: 0;
+    } */
+}
+@media screen and (max-width:720px) {
+    .cbc-main-sidebar{
+        width: 0;
+        position: fixed;
+        left: 0;
+        width: 50%;
+        top: 0;
+        bottom: 0;
+        opacity: 1;
+        background: #202123;
+        padding: 20px;
+        z-index: 99999;
+        transition: all .3s ease;
+    }
+    /* .cbc-main-sidebar.abs{
+        width: 50%;
+        opacity: 0;
+    } */
+}
+@media screen and (max-width:480px) {
+    .cbc-main-sidebar{
+        width: 0;
+        position: fixed;
+        left: 0;
+        width: 100%;
+        top: 0;
+        bottom: 0;
+        opacity: 1;
+        background: #202123;
+        padding: 20px;
+        z-index: 99999;
+        transition: all .3s ease;
+    }
+    /* .cbc-main-sidebar.abs{
+        width: 50%;
+        opacity: 0;
+    } */
 }

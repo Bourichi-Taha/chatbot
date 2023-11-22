@@ -30,7 +30,7 @@ export default function CustomDataGrid() {
     { field: "status", headerName: "Status", width: 150, hide: true },
     { field: "contract_type", headerName: "Contract type", width: 150, hide: true },
     {
-      field: "files", headerName: "Files", width: 50, hide: false, renderCell: (params) => (
+      field: "files", headerName: "Files", width: 100, hide: false, renderCell: (params) => (
         <div style={{ display: 'flex' }}>
 
           <IconButton onClick={() => { clickFiles(params.value) }} >
@@ -95,7 +95,7 @@ export default function CustomDataGrid() {
     <div style={{ width: '100%', height: "100%", display: 'flex', alignItems: "center", justifyContent: "center" }}>
       <div style={{ height: "100%", width: '100%' }}>
         <DataGrid
-          sx={{ border: "none" }}
+          sx={{ border: "none",boxShadow:"var(--box-shadow)" }}
           // {...data}
           columns={columns}
           rows={projects}

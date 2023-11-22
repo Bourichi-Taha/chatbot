@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import "../assets/css/library.css"
-import {  InputAdornment, TextField } from '@mui/material'
+import {  TextField } from '@mui/material'
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined';
 import CachedOutlinedIcon from '@mui/icons-material/CachedOutlined';
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
 import PageTransition from './PageTransition';
@@ -86,7 +85,7 @@ const Library = () => {
 
                     <div className="lc-right-header">
                         <p>Filters</p>
-                        <ButtonNav Comp={CloseIcon} text={"close"} onClick={(e)=>{HandleCloseFilterBar()}} />
+                        <ButtonNav Comp={CloseIcon} text={"close"} onClick={(e) => { HandleCloseFilterBar() }} />
                     </div>
                     <ul className="lc-right-history">
                         <TextField label="Topic" variant='outlined' className='lc-rf-form-input' value={topic} onChange={(e) => setTopic(e.target.value)} />
@@ -115,17 +114,17 @@ const Library = () => {
                 <div className={open ? "lc-right" : "lc-right closed"}>
                     <div className="lc-right-header">
                         <BadgeWithName name={"Files"} length={sidebarFiles.length} />
-                        <ButtonNav Comp={CloseIcon} text={"close"} onClick={(e)=>{HandleCloseFileBar(sidebarFiles)}} />
+                        <ButtonNav Comp={CloseIcon} text={"close"} onClick={(e) => { HandleCloseFileBar(sidebarFiles) }} />
                     </div>
                     <ul className="lc-right-history">
                         {
                             sidebarFiles.length !== 0 ?
-                            sidebarFiles.map((it,ind)=>{
-                                return (
-                                    <FilesLibraryListItem item={it} key={ind} />
-                                )
-                            })
-                            :  null
+                                sidebarFiles.map((it, ind) => {
+                                    return (
+                                        <FilesLibraryListItem item={it} key={ind} />
+                                    )
+                                })
+                                : null
                         }
 
                     </ul>
@@ -142,12 +141,12 @@ const Library = () => {
                     <div className="lc-lh-left" ><span style={{ cursor: "pointer" }} onClick={() => navigate("/library")}>Library</span></div>
                     <div className="lc-lh-right">
                         <ButtonNav Comp={CachedOutlinedIcon} text={"refresh"} />
-                        <ButtonNav Comp={FilterAltOutlinedIcon} text={"filter"} onClick={clickFilters}/>
+                        <ButtonNav Comp={FilterAltOutlinedIcon} text={"filter"} onClick={clickFilters} />
                     </div>
                 </div>
                 <div className="lc-left-content">
                     <div className="lc-lc-top">
-                        <div className="lc-lc-top-search">
+                        {/* <div className="lc-lc-top-search">
                             <TextField
                                 className='lc-lc-top-search-input'
                                 variant="outlined"
@@ -160,17 +159,10 @@ const Library = () => {
                                     )
                                 }}
                             />
-                        </div>
+                        </div> */}
                         <div className="lc-lc-top-buttons">
-                            <button className='lc-rf-button' onClick={() => { }}>
-                                Export
-                                <FileUploadOutlinedIcon />
-
-                            </button>
-                            <button className='lc-rf-button' onClick={() => { }}>
-                                Import
-                                <FileDownloadOutlinedIcon />
-                            </button>
+                            <ButtonNav Comp={FileUploadOutlinedIcon} text={"Import"} />
+                            <ButtonNav Comp={FileDownloadOutlinedIcon} text={"Export"} />
                         </div>
                     </div>
                     <div className="lc-lc-bottom">

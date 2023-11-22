@@ -4,6 +4,7 @@ import authReducer from '../features/auth/authSlice';
 import historyReducer from '../features/history/historySlice';
 import messagesReducer from '../features/messages/messagesSlice';
 import filesReducer from '../features/files/filesSlice';
+import sidebarReducer from '../features/sidebar/SidebarSlice';
 import projectReducer from '../features/projects/ProjectSlice';
 import libraryReducer from '../features/Library/LibrarySlice';
 
@@ -15,6 +16,7 @@ export const store = configureStore({
         history:historyReducer,
         messages:messagesReducer,
         files:filesReducer,
+        sidebar:sidebarReducer,
         projects:projectReducer,
         library:libraryReducer,
     },

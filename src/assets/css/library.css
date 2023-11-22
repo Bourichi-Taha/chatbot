@@ -10,7 +10,8 @@
     height        : 100%;
     display       : flex;
     flex-direction: column;
-
+    max-width:calc(100vw - 100px);
+    min-width:calc(80vw - 60px);
 }
 
 .lc-left-header {
@@ -339,4 +340,23 @@
 .lc-right-header.closed,.lc-right-history.closed,.lc-right-footer.closed
 {
     display: none;
+}
+@media screen and (max-width:960px) {
+    
+    .lc-right{
+        width: 50%;
+    }
+}
+@media screen and (max-width:480px) {
+    
+    .lc-right{
+        width: 100%;
+        border-radius: 20px;
+    }
+    .lc-right-header{
+        border-radius: 20px 20px 0 0;
+    }
+    .library-container{
+        transform: translateZ(20px) perspective(200px);
+    }
 }
