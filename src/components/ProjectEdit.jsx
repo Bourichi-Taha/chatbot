@@ -5,9 +5,10 @@ import { Button, FormControl, InputAdornment, InputLabel, MenuItem, Select, Text
 import MarkChatReadIcon from '@mui/icons-material/MarkChatRead';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import DatasetOutlinedIcon from '@mui/icons-material/DatasetOutlined';
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import CancelIcon from '@mui/icons-material/Cancel';
 import "../assets/css/project.css"
 import { useFetchProjectByIdQuery, useUpdateProjectMutation } from '../features/projects/ProjectApiSlice';
+import ButtonNav from './ButtonNav';
 
 const ProjectEdit = () => {
     const navigate = useNavigate();
@@ -52,26 +53,10 @@ const ProjectEdit = () => {
             <div className='project-item-container' style={{ position: "relative" }}>
                 <div className="pci-left">
                     <div className="pci-left-header">
-                        <div className="pci-lh-left"><span style={{ cursor: "pointer" }} onClick={() => navigate("/projects")}>My Projects</span>/{project_name}</div>
+                        <div className="pci-lh-left">{project_name}</div>
                         <div className="pci-lh-right">
-                            <TextField
-                                className='pci-lh-right-input'
-                                variant="outlined"
-                                placeholder='Search'
-                                InputProps={{
-                                    startAdornment: (
-                                        <InputAdornment position="start">
-                                            <SearchOutlinedIcon />
-                                        </InputAdornment>
-                                    )
-                                }}
-                            />
-                            <Button variant="outlined" className='pci-lh-right-button'>
-                                <AddCircleOutlineIcon className='pci-lh-rb-icon' />
-                            </Button>
-                            <Button variant="outlined" className='pci-lh-right-button' onClick={() => navigate("/chat-files")}>
-                                <DatasetOutlinedIcon className='pci-lh-rb-icon' />
-                            </Button>
+                            <ButtonNav text={"Projects"} Comp={DatasetOutlinedIcon} onClick={(e)=>{navigate("/projects")}}/>
+                            <ButtonNav text={"Cancel"} Comp={CancelIcon} onClick={(e)=>{navigate(`/projects/${project_id}`)}}/>
                         </div>
                     </div>
                     <form className="pci-left-upload-container" onSubmit={submitHandler}>

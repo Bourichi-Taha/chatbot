@@ -356,7 +356,5 @@
     .lc-right-header{
         border-radius: 20px 20px 0 0;
     }
-    .library-container{
-        transform: translateZ(20px) perspective(200px);
-    }
+
 }

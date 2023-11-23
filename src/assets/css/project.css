@@ -9,6 +9,7 @@
 .pci-left {
     flex          : 1;
     height        : 100%;
+    width: 100%;
     display       : flex;
     flex-direction: column;
 
@@ -88,6 +89,7 @@
 
 .pci-lc-desc {
     font-size     : 16px;
+    word-wrap: break-word;
     line-height   : 1.5;
     letter-spacing: 1.5px;
     color         : #757575;
@@ -107,6 +109,7 @@
 
 .pci-lc-row {
     display        : flex;
+    flex-wrap: wrap;
     align-items    : center;
     justify-content: space-between;
 }
@@ -116,6 +119,7 @@
     flex-direction: column;
     gap           : 10px;
     flex          : .5;
+    max-width: 50%;
 }
 
 .pci-lc-row-item:last-child {
@@ -401,4 +405,41 @@
 
 .pci-luc-form-input.MuiInputBase-root.Mui-focused fieldset {
     border-color: #3464c4;
+}
+@media screen and (max-width:960px) {
+    
+    .pci-right{
+        width: 50%;
+    }
+}
+@media screen and (max-width:720px) {
+    .pci-lc-col{
+        flex: 1 1 auto;
+        max-width: 100%;
+        width: 100%;
+    }
+    .pci-lh-left{
+        font-size: 16px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    .pci-right{
+        width: 75%;
+    }
+}
+@media screen and (max-width:480px) {
+    
+    .pci-right{
+        width: 100%;
+        border-radius: 20px;
+    }
+    .pci-right-header{
+        border-radius: 20px 20px 0 0;
+    }
+    .pci-luc-form{
+        flex-direction: column;
+    }
+    .pci-luc-form-left,.pci-luc-form-right{
+        flex: 1;
+    }
 }

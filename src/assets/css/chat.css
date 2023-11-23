@@ -3,11 +3,13 @@
     width  : 100%;
     display: flex;
     user-select: text;
+    position: relative;
 }
 
 .cc-left {
     flex          : 1;
     height        : 100%;
+    width: 100%;
     display       : flex;
     flex-direction: column;
     border-right  : 1px solid #d0d0d0;
@@ -130,7 +132,7 @@
 .cc-lmc-bc-actions-left {
     display    : flex;
     align-items: center;
-    gap        : 20px;
+    gap        : 10px;
 }
 
 .cc-lmc-bc-actions-right {
@@ -153,10 +155,7 @@
     transition     : all .3s ease;
 }
 
-.cc-lmc-bc-actions-icon-holder:hover {
-    background: transparent;
-    border    : 1px solid black;
-}
+
 
 .cc-lmc-bc-actions-icon-holder.input-message {
     height: 55px;
@@ -208,7 +207,22 @@
     border-radius : 0 20px 20px 0;
     display       : flex;
     flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 25%;
+    transition: all .3s ease;
 
+}
+.cc-right.closed{
+    width: 0;
+    opacity: 0;
+
+}
+.cc-right-header.closed,.cc-right-history.closed,.cc-right-footer.closed
+{
+    display: none;
 }
 
 .cc-right-header {
@@ -488,5 +502,34 @@
 
     50% {
         transform: translateY(-4px);
+    }
+}
+@media screen and (max-width:960px) {
+    
+    .cc-right{
+        width: 50%;
+    }
+}
+@media screen and (max-width:720px) {
+
+    .cc-right{
+        width: 75%;
+    }
+    .cc-lmc-bc-actions {
+        padding: 0;
+    }
+    .cc-left-input-container{
+        padding: 10px;
+    }
+
+}
+@media screen and (max-width:480px) {
+    
+    .cc-right{
+        width: 100%;
+        border-radius: 20px;
+    }
+    .cc-right-header{
+        border-radius: 20px 20px 0 0;
     }
 }

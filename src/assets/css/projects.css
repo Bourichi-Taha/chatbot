@@ -7,6 +7,7 @@
 .pc-left {
     flex          : 1;
     height        : 100%;
+    width: 100%;
     display       : flex;
     flex-direction: column;
 }
@@ -75,6 +76,8 @@
     display    : flex;
     align-items: center;
     flex-wrap  : wrap;
+    row-gap: 30px;
+    column-gap: 20px;
 }
 
 .pc-lc-row-item {
@@ -83,19 +86,16 @@
     flex-direction: column;
     gap           : 10px;
     height        : 200px;
-    flex          : .25;
-    max-width     : calc(25% - 20px);
+    flex          : .25 1 auto;
+    max-width     : calc(25% - 15px);
     background    : white;
     border-radius : 20px;
     cursor        : pointer;
     transition    : all .3 ease;
-    margin-right  : 20px;
     border        : 1px solid #d0d0d0;
 }
 
-.pc-lc-row-item:last-child {
-    margin-right: 0;
-}
+
 
 .pc-lc-row-item:hover {
     transform : scale(1.05);
@@ -164,4 +164,25 @@
     align-self : flex-end;
     padding    : 0 10px 10px 10px;
 
+}
+@media screen and (max-width:1280px) {
+    .pc-lc-row-item{
+        flex: .33 1 auto;
+        max-width: calc(33.33% - 13.33px);
+        width: 33.33%;
+    }
+}
+@media screen and (max-width:980px) {
+    .pc-lc-row-item{
+        flex: .5 1 auto;
+        max-width: calc(50% - 10px);
+        width: 50%;
+    }
+}
+@media screen and (max-width:480px) {
+    .pc-lc-row-item{
+        flex: 1 1 auto;
+        max-width: 100%;
+        width: 100%;
+    }
 }

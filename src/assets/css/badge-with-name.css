@@ -38,3 +38,11 @@
         font-size: 14px;
     }
 }
+@media screen and (max-width:480px) {
+    .badge-with-name{
+        min-width: 110px;
+    }
+    .badge-with-name-name, .badge-with-name-length{
+        font-size: 14px;
+    }
+}

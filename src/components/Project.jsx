@@ -66,7 +66,7 @@ const Project = () => {
     }
     const renderScores = () => {
         if (project && project.extracted_scores !== null) {
-            const result = [];
+            const result = [<h3 className="pci-lc-title" style={{ fontWeight: "bolder" }}>Extracted scores:</h3>];
             const array = Object.entries(project.extracted_scores);
             for (let i = 0; i < array.length; i += 2) {
                 const pair = (
@@ -87,7 +87,7 @@ const Project = () => {
             return result;
         }else{
             return (
-                [<h3 className="pci-lc-title" style={{ fontWeight: "bolder",color:"crimson",textAlign:"center" }}>Scores will be affected after being proccessed ...</h3>]
+                []
             )
         }
 
@@ -120,7 +120,7 @@ const Project = () => {
             <div className='project-item-container' style={{ position: "relative" }}>
                 <div className="pci-left">
                     <div className="pci-left-header">
-                        <div className="pci-lh-left" ><span style={{ cursor: "pointer" }} onClick={() => navigate("/projects")}>My Projects</span>/{project?.project_name}</div>
+                        <div className="pci-lh-left" >{project?.project_name}</div>
                         <div className="pci-lh-right">
                             <ButtonNav Comp={DeleteForeverOutlinedIcon} text={"Delete"} onClick={deleteHandler} />
                             <ButtonNav Comp={BorderColorOutlinedIcon} text={"Edit"} onClick={() => navigate("edit")} />
@@ -162,7 +162,6 @@ const Project = () => {
                                 <p className="pci-lc-desc">{project.result || "Pending"}</p>
                             </div>
                         </div>
-                        <h3 className="pci-lc-title" style={{ fontWeight: "bolder" }}>Extracted scores:</h3>
                         {/* <p className="pci-lc-desc full">{project.extracted_scores || '"overall": "","Organisatie van het werk": "5,40","Borgen bereikbaarheid, veiligheid, voorkomen hinder": "5,00","Invulling digitalisering opdracht": "5,27","Voorbereiding en kostencalculatie deelopdrachten": "6,00","Inrichten groeiplaats": "4,72","Planten van bomen": "4,60","Nazorgfase": "5,35","Brandstoffen < 3500kg": "120.000","Brandstoffen > 3500kg": "0","CO2-prestatieladder": "275.000","Extra inzet SROI": "50.000"'}</p> */}
                         {
                             renderScores().map((itemScore) => {

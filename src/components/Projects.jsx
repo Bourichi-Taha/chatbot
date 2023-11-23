@@ -11,42 +11,37 @@ import ButtonNav from "./ButtonNav";
 const Projects = () => {
 
     const navigate = useNavigate();
-    const { data,isLoading } = useFetchUserProjectsQuery();
-    let content ;
+    const { data, isLoading } = useFetchUserProjectsQuery();
+    let content;
     if (isLoading) {
-          content = (
+        content = (
             <div>Loading...</div>
-          )
-    }else{
-        let projects =ArraySplicer(data.results, 4);
+        )
+    } else {
         content = (
             <div className="projects-container" style={{ position: "relative" }}>
-            <div className="pc-left">
-                <div className="pc-left-header">
-                    <div className="pc-lh-left">My Projects</div>
-                    <div className="pc-lh-right">
-                        <ButtonNav Comp={AddCircleOutlineIcon} text={"add"} onClick={() => navigate("/projects/create")}/>
-                        <ButtonNav Comp={DatasetOutlinedIcon} text={"Library"} onClick={() => navigate("/library")}/>
+                <div className="pc-left">
+                    <div className="pc-left-header">
+                        <div className="pc-lh-left">My Projects</div>
+                        <div className="pc-lh-right">
+                            <ButtonNav Comp={AddCircleOutlineIcon} text={"add"} onClick={() => navigate("/projects/create")} />
+                            <ButtonNav Comp={DatasetOutlinedIcon} text={"Library"} onClick={() => navigate("/library")} />
+                        </div>
                     </div>
-                </div>
-                <div className="pc-left-content">
-                        {projects?.map((arr,key) => {
-                            return (
-                                <div key={key} className="pc-lc-row" >
-                                    {
-                                        arr?.map((item, index) => {
-                                            return (<ProjectItem key={index} item={item} />)
-                                        })
-                                    }
-                                </div>
-                            )
-                        })}
-                </div>
+                    <div className="pc-left-content">
+                        <div className="pc-lc-row" >
+                            {
+                                data.results?.map((item, index) => {
+                                    return (<ProjectItem key={index} item={item} />)
+                                })
+                            }
+                        </div>
+                    </div>
 
 
+                </div>
+                <PageTransition />
             </div>
-            <PageTransition />
-        </div>
         )
     }
     return content

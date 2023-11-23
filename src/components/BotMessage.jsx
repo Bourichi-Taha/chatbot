@@ -3,10 +3,20 @@ import "../assets/css/chat.css"
 import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import ThumbDownOffAltOutlinedIcon from '@mui/icons-material/ThumbDownOffAltOutlined';
+import { IconButton } from '@mui/material';
 
 
 
-const BotMessage = ({msg}) => {
+const BotMessage = ({ msg }) => {
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text)
+            .then(() => {
+                console.log('Text successfully copied to clipboard');
+            })
+            .catch(err => {
+                console.error('Unable to copy text to clipboard', err);
+            });
+    }
     return (
         <div className="cc-lmc-bot-container">
             <div className="cc-lmc-bc-body">
@@ -16,7 +26,9 @@ const BotMessage = ({msg}) => {
                 <div className="cc-lmc-bc-actions">
                     <div className="cc-lmc-bc-actions-left">
                         <div className='cc-lmc-bc-actions-icon-holder'>
-                            <ContentCopyOutlinedIcon sx={{ fontSize: 18 }} />
+                            <IconButton onClick={(e)=>{copyToClipboard(msg.message_content)}}>
+                                <ContentCopyOutlinedIcon sx={{ fontSize: 18,color:"white" }} />
+                            </IconButton>
                         </div>
                         <div className='cc-lmc-bc-actions-icon-holder'>
                             <ThumbUpOutlinedIcon sx={{ fontSize: 18 }} />

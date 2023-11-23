@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import "../assets/css/chat.css";
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle,  Menu, MenuItem, Select, TextField } from '@mui/material';
-import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
+import HistoryIcon from '@mui/icons-material/History';
+import CloseIcon from '@mui/icons-material/Close';
 import UserMessage from './UserMessage';
 import BotMessage from './BotMessage';
 import UploadFileOutlinedIcon from '@mui/icons-material/UploadFileOutlined';
@@ -18,6 +19,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import {  useParams } from 'react-router-dom';
 import { useFetchProjectByIdQuery } from '../features/projects/ProjectApiSlice';
 import ButtonNav from './ButtonNav';
+import BadgeWithName from './BadgeWithName';
 const Chat = () => {
     const projectId = useParams().projectId;
     const { data: project, isSuccess } = useFetchProjectByIdQuery(projectId)
@@ -76,6 +78,26 @@ const Chat = () => {
             console.log(error)
         }
     }
+    const [open,setOpen] = useState(false);
+
+    useEffect(() => {
+        const header = document.querySelector(".cc-right-header")
+        const body = document.querySelector(".cc-right-history")
+        const footer = document.querySelector(".cc-right-footer")
+        if (open) {
+            setTimeout(() => {
+                header?.classList.remove("closed")
+                body?.classList.remove("closed")
+                footer?.classList.remove("closed")
+            }, 200);
+        } else {
+            setTimeout(() => {
+                header?.classList.add("closed")
+                body?.classList.add("closed")
+                footer?.classList.add("closed")
+            }, 100);
+        }
+    }, [open]);
     //Lang
     const [anchorEl, setAnchorEl] = useState(null);
 
@@ -111,6 +133,7 @@ const Chat = () => {
         setIsDialog(false);
         setIsDialogAdded(bool)
     }
+    
     useEffect(() => {
         const get_summary = async () => {
             try {
@@ -126,6 +149,7 @@ const Chat = () => {
         }
     }, [isDialogAdded, summarize, selectedFileSumm]);
     let content;
+
     if (isLoading && !isSuccess) {
         content = (
             <div>Loading ...</div>
@@ -135,10 +159,10 @@ const Chat = () => {
             <div className="chat-container">
                 <div className="cc-left">
                     <div className="cc-left-header">
-                        <div className="cc-lh-left">AI Chat Helper/{project?.project_name}/{selectedConversationId}</div>{/* get project Name by id */}
+                        <div className="cc-lh-left">{project?.project_name}/{selectedConversationId}</div>{/* get project Name by id */}
                         <div className="cc-lh-right">
-                            <ButtonNav Comp={NotificationsOutlinedIcon} text={"Notifications"}/>
-                            <ButtonNav Comp={CloudUploadIcon} text={"Upload"}/>
+                            <ButtonNav Comp={HistoryIcon} text={"History"} onClick={(e)=>{setOpen(prev=>!prev)}}/>
+                            <ButtonNav Comp={UploadFileOutlinedIcon} text={"Upload"} onClick={handleClick}/>
                         </div>
                     </div>
                     <div className="cc-left-messages-container">
@@ -157,29 +181,6 @@ const Chat = () => {
                         <div ref={messagesEndRef}></div>
                     </div>
                     <div className="cc-left-input-container">
-                        <div className='cc-lmc-bc-actions-icon-holder input-message' onClick={handleClick}>
-                            <UploadFileOutlinedIcon sx={{ fontSize: 18 }} />
-                        </div>
-                        <div className='cc-lmc-bc-actions-icon-holder input-message' onClick={handleLanguageMenuOpen}>
-                            <LanguageIcon sx={{ fontSize: 18 }} />
-
-                        </div>
-                        <Menu
-                            className='lang-menu'
-                            anchorEl={anchorEl}
-                            open={isLang}
-                            onClose={handleLanguageMenuClose}
-                        >
-                            <MenuItem onClick={() => handleLanguageChange("eng")}>
-                                English
-                            </MenuItem>
-                            <MenuItem onClick={() => handleLanguageChange("dutch")}>
-                                Dutch
-                            </MenuItem>
-                            <MenuItem onClick={() => handleLanguageChange("fr")}>
-                                French
-                            </MenuItem>
-                        </Menu>
                         <TextField
                             className='cc-left-ic-input'
                             variant="outlined"
@@ -204,18 +205,18 @@ const Chat = () => {
                         </div>
                     </div>
                 </div>
-                <div className="cc-right">
-                    <div className="cc-right-header">
-                        <p>History</p>
-                        <div className='cc-rh-total'>{history?.length}</div>
+                <div className={open?"cc-right":"cc-right closed"}>
+                    <div className={open ? "cc-right-header" : "cc-right-header closed"}>
+                        <BadgeWithName name={"History"} length={history?.length || 0} />
+                        <ButtonNav text={"close"} Comp={CloseIcon} onClick={(e)=>{setOpen(prev=>!prev)}} />
                     </div>
-                    <ul className="cc-right-history">
+                    <ul className={open ? "cc-right-history" : "cc-right-history closed"}>
                         {history && history?.map((item, index) => {
                         return <HistoryListItem key={index} item={item} />
                     })}
                         {/* <HistoryListItem /> */}
                     </ul>
-                    <div className="cc-right-footer">
+                    <div className={open ? "cc-right-footer" : "cc-right-footer closed"}>
                         <button className='cc-rf-button'>
                             <DeleteOutlineIcon />
                             Clear History
