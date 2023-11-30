@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import "../assets/css/chat.css";
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle,  Menu, MenuItem, Select, TextField } from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle,   MenuItem, Select, TextField } from '@mui/material';
 import HistoryIcon from '@mui/icons-material/History';
 import CloseIcon from '@mui/icons-material/Close';
 import UserMessage from './UserMessage';
@@ -13,9 +13,7 @@ import { useSelector } from 'react-redux';
 import { useGetAllQuery } from '../features/history/historyApiSlice';
 import { useGetAllMessagesQuery, useSendMessageMutation, useSummarizeMutation } from '../features/messages/messagesApiSlice';
 import { selectCurrentConversationId, selectCurrentSummary } from '../features/messages/messagesSlice';
-import LanguageIcon from '@mui/icons-material/Language';
 import { selectCurrentSelectedFiles } from '../features/files/filesSlice';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import {  useParams } from 'react-router-dom';
 import { useFetchProjectByIdQuery } from '../features/projects/ProjectApiSlice';
 import ButtonNav from './ButtonNav';
@@ -99,20 +97,8 @@ const Chat = () => {
         }
     }, [open]);
     //Lang
-    const [anchorEl, setAnchorEl] = useState(null);
 
-    const [isLang, setIsLang] = useState(false)
-    const handleLanguageMenuClose = () => {
-        setIsLang(false)
-    };
-    const handleLanguageMenuOpen = (e) => {
-        setAnchorEl(e.currentTarget);
-        setIsLang(true)
-    };
-    const handleLanguageChange = (language) => {
-        //call api
-        setIsLang(false)
-    };
+
     const keyHandler = (event) => {
         if (event.key === 'Enter' && !event.shiftKey ) {
             // Submit the form when the "Enter" key is pressed

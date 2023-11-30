@@ -9,7 +9,7 @@ import BorderAllRoundedIcon from '@mui/icons-material/BorderAllRounded';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import HelpCenterOutlinedIcon from '@mui/icons-material/HelpCenterOutlined';
 import InsertChartOutlinedRoundedIcon from '@mui/icons-material/InsertChartOutlinedRounded';
-import { IconButton, useMediaQuery } from '@mui/material';
+import { IconButton } from '@mui/material';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from '../features/auth/authSlice';
@@ -58,6 +58,8 @@ const Chatbot = () => {
       document.querySelector('.cbc-msb-tb-item.library').classList.add("active");
     } else if (location.pathname.split('/')[1] === "chatbot") {
       document.querySelector('.cbc-msb-tb-item.chatbot').classList.add("active");
+    } else if (location.pathname.split('/')[1] === "settings") {
+      document.querySelector('.cbc-msb-tb-item.settings').classList.add("active");
     }
   }, [location]);
   useEffect(() => {
@@ -73,6 +75,8 @@ const Chatbot = () => {
         document.querySelector('.cbc-msb-tt-icon.abs.library').classList.add("active");
       } else if (location.pathname.split('/')[1] === "chatbot") {
         document.querySelector('.cbc-msb-tt-icon.abs.chatbot').classList.add("active");
+      } else if (location.pathname.split('/')[1] === "settings") {
+        document.querySelector('.cbc-msb-tt-icon.abs.settings').classList.add("active");
       }
     }
   }, [location, isOpen]);
@@ -83,6 +87,8 @@ const Chatbot = () => {
       navigate("/projects")
     } else if (e.target.innerText === "Library") {
       navigate("/library")
+    }else if (e.target.innerText === "Settings") {
+      navigate("/settings")
     }
   }
   const ClickHandlerResponsive = (e) => {
@@ -93,8 +99,10 @@ const Chatbot = () => {
       navigate("/projects")
     } else if (e.target.classList.contains("library") || e.target.parentNode.classList.contains("library")) {
       navigate("/library")
-    } else {
-      return
+    }else if (e.target.classList.contains("settings") || e.target.parentNode.classList.contains("settings")) {
+      navigate("/settings")
+    }else {
+      return;
     }
   }
 
@@ -154,13 +162,13 @@ const Chatbot = () => {
                 </IconButton>
                 My Projects
               </li>
-              <li onClick={ClickHandler} className='cbc-msb-tb-item'>
+              <li onClick={ClickHandler} className='cbc-msb-tb-item statistics'>
                 <IconButton>
                   <InsertChartOutlinedRoundedIcon className='cbc-msb-tt-icon' />
                 </IconButton>
                 Statistics
               </li>
-              <li onClick={ClickHandler} className='cbc-msb-tb-item'>
+              <li onClick={ClickHandler} className='cbc-msb-tb-item settings'>
                 <IconButton>
                   <SettingsOutlinedIcon className='cbc-msb-tt-icon' />
                 </IconButton>

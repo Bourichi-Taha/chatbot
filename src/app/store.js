@@ -6,6 +6,7 @@ import messagesReducer from '../features/messages/messagesSlice';
 import filesReducer from '../features/files/filesSlice';
 import sidebarReducer from '../features/sidebar/SidebarSlice';
 import projectReducer from '../features/projects/ProjectSlice';
+import settingsReducer from '../features/settings/SettingsSlice';
 import libraryReducer from '../features/Library/LibrarySlice';
 
 
@@ -19,6 +20,7 @@ export const store = configureStore({
         sidebar:sidebarReducer,
         projects:projectReducer,
         library:libraryReducer,
+        settings:settingsReducer,
     },
     middleware: getDefaultMiddleware =>
         getDefaultMiddleware({serializableCheck: false}).concat(apiSlice.middleware),

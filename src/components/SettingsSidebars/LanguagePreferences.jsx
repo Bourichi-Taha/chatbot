@@ -1,0 +1,41 @@
+import React, { useEffect, useState } from 'react'
+import "../../assets/css/settings.css";
+import TranslateIcon from '@mui/icons-material/Translate';
+import { Button, MenuItem, Select } from '@mui/material';
+import { useFetchModelQuery, useUpdateModelMutation } from '../../features/settings/SettingsApiSlice';
+
+const LanguagePreferences = () => {
+    const { data, isLoading, isSuccess } = useFetchModelQuery();
+    const [updateModel] = useUpdateModelMutation();
+    const [language, setLanguage] = useState("EN");
+    useEffect(() => {
+        if (isSuccess) {
+            setLanguage(data.language);
+        }
+    }, [isSuccess, data]);
+    const HandleUpdate = (e) => {
+        updateModel({data:{language}});
+    }
+    return (
+        <div className="settings-right">
+            <div className="settings-right-header">
+                <h3 className="settings-right-header-title"><TranslateIcon className='settings-right-header-title-icon' /> Language Preferences</h3>
+            </div>
+            <div className="settings-right-body">
+                <p className="input-label-settings-right-body-row">Language Preferences :</p>
+                <Select
+                    sx={{ flex: "1" }}
+                    value={language}
+                    onChange={(e)=>setLanguage(e.target.value)}
+                >
+                    <MenuItem value={"EN"}>English</MenuItem>
+                    <MenuItem value={"FR"}>French</MenuItem>
+                    <MenuItem value={"NL"}>Dutch</MenuItem>
+                </Select>
+                <Button fullWidth variant="contained" className='input-settings-right-body-row' onClick={HandleUpdate}>Update Language</Button>
+            </div>
+        </div>
+    )
+}
+
+export default LanguagePreferences

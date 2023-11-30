@@ -129,7 +129,7 @@ const Project = () => {
                     </div>
                     <div className="pci-left-content">
                         <h3 className="pci-lc-title">Description:</h3>
-                        <p className="pci-lc-desc full">{project.description || "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas dolores voluptate reiciendis dignissimos, expedita earum nesciunt voluptatum omnis ut quod."}</p>
+                        <p className="pci-lc-desc full">{project.description || "Generating ..."}</p>
 
 
                         <div className="pci-lc-row">

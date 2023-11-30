@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import ProjectItem from "./ProjectItem";
 import PageTransition from "./PageTransition";
 import { useFetchUserProjectsQuery } from "../features/projects/ProjectApiSlice";
-import ArraySplicer from "../utils/ArraySplicer";
 import ButtonNav from "./ButtonNav";
 
 const Projects = () => {

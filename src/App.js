@@ -11,6 +11,7 @@ import ProjectCreate from "./components/ProjectCreate";
 import Library from "./components/Library";
 import ProjectEdit from "./components/ProjectEdit";
 import RequireAuth from "./components/RequireAuth";
+import Settings from "./components/Settings";
 
 
 
@@ -36,6 +37,8 @@ function App() {
             <Route path="/library" element={<Library />} />
 
             {/* end library routes */}
+            <Route path="/settings" element={<Settings />} />
+
           </Route>
         </Route>
       </Route>

@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import PageTransition from './PageTransition';
-import { Button, FormControl, InputAdornment, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import {  FormControl,  InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import FileUploader from './FileUploader';
 import MarkChatReadIcon from '@mui/icons-material/MarkChatRead';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import DatasetOutlinedIcon from '@mui/icons-material/DatasetOutlined';
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { useUploadFileMutation } from '../features/files/filesApiSlice';
 import "../assets/css/project.css"
 import { useAddProjectMutation } from '../features/projects/ProjectApiSlice';
@@ -29,16 +27,18 @@ const ProjectCreate = () => {
         e.preventDefault();
         try {
             const obj = { project_name, werkinhood, client, contract_type, status, enclosure, description: desc, result };
-            const res = await addProject(obj);
-            if (files.length !== 0) {
+            const res = await addProject(obj).unwrap();
+            console.log(res)
+            if (files && files.length !== 0) {
                 const formData = new FormData();
                 formData.append('uploaded_file', files);
-                formData.append('project_id', res.data.project_id);
+                formData.append('project_id', res.project_id);
                 formData.append('type', type);
-                uploadFile(formData);
+                await uploadFile(formData);
                 setFiles(null)
             }
-            navigate(`/projects/${res.data.project_id}`);
+            navigate(`/projects/${res.project_id}`);
+            console.log(`/projects/${res.project_id}`)
         } catch (error) {
             console.log(error);
         }
