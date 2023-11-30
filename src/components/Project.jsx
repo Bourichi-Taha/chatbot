@@ -16,6 +16,7 @@ import { useDeleteProjectMutation, useFetchProjectByIdQuery } from '../features/
 import FileUploader from './FileUploader';
 import ButtonNav from './ButtonNav';
 import BadgeWithName from './BadgeWithName';
+import { CircularProgress} from '@mui/material';
 
 const Project = () => {
     const [files, setFiles] = useState(null);
@@ -66,17 +67,17 @@ const Project = () => {
     }
     const renderScores = () => {
         if (project && project.extracted_scores !== null) {
-            const result = [<h3 className="pci-lc-title" style={{ fontWeight: "bolder" }}>Extracted scores:</h3>];
+            const result = [<div className='banner'></div>,<h3 className="pci-lc-title" style={{ fontWeight: "bolder" }}>Extracted scores:</h3>];
             const array = Object.entries(project.extracted_scores);
             for (let i = 0; i < array.length; i += 2) {
                 const pair = (
                     <div className="pci-lc-row">
                         <div className="pci-lc-col">
-                            <h3 className="pci-lc-title" style={{ fontSize: 18, color: "#3464c4" }}>{array[i][0] + ":"}</h3>
+                            <h3 className="pci-lc-title" style={{ fontSize: 18, color: "#333333" }}>{array[i][0] + ":"}</h3>
                             <p className="pci-lc-desc">{array[i][1] || "Not Found"}</p>
                         </div>
                         <div className="pci-lc-col">
-                            <h3 className="pci-lc-title" style={{ fontSize: 18, color: "#3464c4" }}>{array[i+1][0] + ":"}</h3>
+                            <h3 className="pci-lc-title" style={{ fontSize: 18, color: "#333333" }}>{array[i+1][0] + ":"}</h3>
                             <p className="pci-lc-desc">{array[i+1][1] || "Not Found"}</p>
                         </div>
                     </div>
@@ -87,7 +88,9 @@ const Project = () => {
             return result;
         }else{
             return (
-                []
+                [
+                    
+                ]
             )
         }
 
@@ -113,7 +116,7 @@ const Project = () => {
     let content;
     if (isLoading) {
         content = (
-            <div>Loading...</div>
+            <div className="projects-container" style={{justifyContent:"center",alignItems:"center"}}><CircularProgress sx={{color:"#3464c4"}}/></div>
         )
     } else {
         content = (
@@ -134,7 +137,7 @@ const Project = () => {
 
                         <div className="pci-lc-row">
                             <div className="pci-lc-col">
-                                <h3 className="pci-lc-title">Werkinhoud:</h3>
+                                <h3 className="pci-lc-title">Work content:</h3>
                                 <p className="pci-lc-desc">{project.werkinhood || "NAN"}</p>
                             </div>
                             <div className="pci-lc-col">

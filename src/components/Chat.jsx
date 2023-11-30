@@ -193,7 +193,7 @@ const Chat = () => {
                 </div>
                 <div className={open?"cc-right":"cc-right closed"}>
                     <div className={open ? "cc-right-header" : "cc-right-header closed"}>
-                        <BadgeWithName name={"History"} length={history?.length || 0} />
+                        <BadgeWithName name={"History"} length={history && history?.length} />
                         <ButtonNav text={"close"} Comp={CloseIcon} onClick={(e)=>{setOpen(prev=>!prev)}} />
                     </div>
                     <ul className={open ? "cc-right-history" : "cc-right-history closed"}>

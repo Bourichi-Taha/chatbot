@@ -12,6 +12,7 @@ import Library from "./components/Library";
 import ProjectEdit from "./components/ProjectEdit";
 import RequireAuth from "./components/RequireAuth";
 import Settings from "./components/Settings";
+import Statistics from "./components/Statistics";
 
 
 
@@ -38,6 +39,7 @@ function App() {
 
             {/* end library routes */}
             <Route path="/settings" element={<Settings />} />
+            <Route path="/statistics" element={<Statistics />} />
 
           </Route>
         </Route>

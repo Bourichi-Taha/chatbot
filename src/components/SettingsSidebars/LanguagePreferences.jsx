@@ -5,7 +5,7 @@ import { Button, MenuItem, Select } from '@mui/material';
 import { useFetchModelQuery, useUpdateModelMutation } from '../../features/settings/SettingsApiSlice';
 
 const LanguagePreferences = () => {
-    const { data, isLoading, isSuccess } = useFetchModelQuery();
+    const { data,  isSuccess } = useFetchModelQuery();
     const [updateModel] = useUpdateModelMutation();
     const [language, setLanguage] = useState("EN");
     useEffect(() => {

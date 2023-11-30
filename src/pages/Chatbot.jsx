@@ -89,6 +89,8 @@ const Chatbot = () => {
       navigate("/library")
     }else if (e.target.innerText === "Settings") {
       navigate("/settings")
+    }else if (e.target.innerText === "statistics") {
+      navigate("/statistics")
     }
   }
   const ClickHandlerResponsive = (e) => {
@@ -101,6 +103,8 @@ const Chatbot = () => {
       navigate("/library")
     }else if (e.target.classList.contains("settings") || e.target.parentNode.classList.contains("settings")) {
       navigate("/settings")
+    }else if (e.target.classList.contains("statistics") || e.target.parentNode.classList.contains("statistics")) {
+      navigate("/statistics")
     }else {
       return;
     }

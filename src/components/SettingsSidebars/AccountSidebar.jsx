@@ -6,10 +6,21 @@ import img from "../../assets/images/user.png";
 import { useFetchImageQuery, useFetchUserQuery, useGenerateImageMutation, useUpdateUserMutation } from '../../features/settings/SettingsApiSlice';
 import CircularProgress from '@mui/material/CircularProgress';
 const AccountSidebar = () => {
+    const [startPolling, setStartPolling] = useState(false);
+
     const { data, isLoading, isSuccess } = useFetchUserQuery();
-    const { data: imageData, isLoading: isImageLoading, isSuccess: isImageSuccess } = useFetchImageQuery({},{
-        pollingInterval: 4000,
+    const { data: imageData, isSuccess: isImageSuccess, refetch } = useFetchImageQuery({}, {
+        pollingInterval:startPolling ? 4000 : 0,
     });
+
+
+    useEffect(()=>{
+        if (startPolling) {
+            refetch({ pollingInterval:4000 });
+        }else{
+            refetch({ pollingInterval:0 });
+        }
+    },[startPolling]);
     const [username, setUsername] = useState("");
     const [firstname, setFirstname] = useState("");
     const [lastname, setLastname] = useState("");
@@ -30,10 +41,11 @@ const AccountSidebar = () => {
     useEffect(() => {
         if (isImageSuccess && !imageData.image_is_generating) {
             setImage(imageData.image_url);
-            setWithAi(false)
+            setWithAi(false);
+            setStartPolling(false);
         }
         // console.log(isImageSuccess)
-    }, [isImageSuccess,imageData?.image_is_generating]);
+    }, [isImageSuccess, imageData?.image_is_generating]);
     const submitHandler = async (e) => {
         e.preventDefault();
         try {
@@ -45,6 +57,7 @@ const AccountSidebar = () => {
     const clickGenerator = async (e) => {
         if (description !== "") {
             await generateImage({ data: { description } });
+            setStartPolling(true);
         }
     }
     let content;
@@ -110,7 +123,7 @@ const AccountSidebar = () => {
                     <p className="input-label-settings-right-body-row">Profile picture :</p>
                     <div className="settings-right-body-row">
                         <div className="settings-right-body-row-half">
-                            <img src={(image!==null && image !== "") ? image : img} alt="" />
+                            <img src={(image !== null && image !== "") ? image : img} alt="" />
                         </div>
                         <div className="settings-right-body-row-half">
                             <Button fullWidth variant="contained" className='input-settings-right-body-row' onClick={(e) => { setWithAi(prev => !prev) }}>{withAi ? "Cancel generation" : "Generate with AI"}</Button>
@@ -130,7 +143,7 @@ const AccountSidebar = () => {
                             onChange={(e) => setDescription(e.target.value)}
                         />
                     </div>
-                    <Button fullWidth variant="contained" className={withAi ? 'input-settings-right-body-row' : 'input-settings-right-body-row closed'} onClick={clickGenerator} >{imageData?.image_is_generating ? <CircularProgress sx={{color:"white"}}/> :"Generate"}</Button>
+                    <Button fullWidth variant="contained" className={withAi ? 'input-settings-right-body-row' : 'input-settings-right-body-row closed'} onClick={clickGenerator} >{imageData?.image_is_generating ? <CircularProgress sx={{ color: "white" }} /> : "Generate"}</Button>
                     <p className="input-label-settings-right-body-row">User information :</p>
                     <div className="settings-right-body-row" >
                         <TextField

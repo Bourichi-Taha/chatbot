@@ -6,6 +6,7 @@ import ProjectItem from "./ProjectItem";
 import PageTransition from "./PageTransition";
 import { useFetchUserProjectsQuery } from "../features/projects/ProjectApiSlice";
 import ButtonNav from "./ButtonNav";
+import { CircularProgress } from "@mui/material";
 
 const Projects = () => {
 
@@ -14,7 +15,7 @@ const Projects = () => {
     let content;
     if (isLoading) {
         content = (
-            <div>Loading...</div>
+            <div className="projects-container" style={{justifyContent:"center",alignItems:"center"}}><CircularProgress sx={{color:"#3464c4"}}/></div>
         )
     } else {
         content = (

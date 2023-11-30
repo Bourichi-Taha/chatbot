@@ -1,5 +1,5 @@
 import { apiSlice } from "../../app/api/apiSlice";
-import { getLang, getModel, getSecurity, getUser } from "./SettingsSlice";
+import { getLang, getModel,  getUser } from "./SettingsSlice";
 
 export const SettingsApiSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
@@ -84,7 +84,7 @@ export const SettingsApiSlice = apiSlice.injectEndpoints({
             async onQueryStarted(args, { dispatch, queryFulfilled }) {
                 try {
 
-                    const { data } = await queryFulfilled;
+                    await queryFulfilled;
                    
                 } catch (error) {
                     console.log(error);
@@ -102,7 +102,7 @@ export const SettingsApiSlice = apiSlice.injectEndpoints({
             async onQueryStarted(args, { dispatch, queryFulfilled }) {
                 try {
 
-                    const { data } = await queryFulfilled;
+                    await queryFulfilled;
                    
                 } catch (error) {
                     console.log(error);
@@ -120,7 +120,7 @@ export const SettingsApiSlice = apiSlice.injectEndpoints({
             async onQueryStarted(args, { dispatch, queryFulfilled }) {
                 try {
 
-                    const { data } = await queryFulfilled;
+                    await queryFulfilled;
                    
                 } catch (error) {
                     console.log(error);
@@ -136,7 +136,7 @@ export const SettingsApiSlice = apiSlice.injectEndpoints({
             async onQueryStarted(args, { dispatch, queryFulfilled }) {
                 try {
 
-                    const { data } = await queryFulfilled;
+                    await queryFulfilled;
                    
                 } catch (error) {
                     console.log(error);

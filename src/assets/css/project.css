@@ -83,7 +83,7 @@
     margin         : 0;
     font-size      : 24px;
     font-weight    : bolder;
-    color          : #333333;
+    color          : #4470c8;
 }
 
 
@@ -93,13 +93,15 @@
     line-height   : 1.5;
     letter-spacing: 1.5px;
     color         : #757575;
-    border: 1.5px solid #757575;
+    /* border: 1.5px solid #757575; */
     padding       : 10px;
     width         : 90%;
     background    : white;
     border-radius : 8px;
-    box-shadow    :  -10px -10px 15px rgba(70, 70, 70, 0.12), 
-     10px 10px 15px rgba(70, 70, 70, 0.12);
+    border            : 1.5px solid #3464c4;
+    -webkit-box-shadow: .5px .5px 1px 0px rgba(52, 100, 196, 1);
+    -moz-box-shadow   : .5px .5px 1px 0px rgba(52, 100, 196, 1);
+    box-shadow        : .5px .5px 1px 0px rgba(52, 100, 196, 1);
 }
 .pci-lc-desc.full{
     width: 95%;
@@ -406,6 +408,27 @@
 .pci-luc-form-input.MuiInputBase-root.Mui-focused fieldset {
     border-color: #3464c4;
 }
+
+
+
+.banner{
+    height: 6px;
+    width: 100%;
+    position: relative;
+    margin-bottom: 10px;
+}
+.banner::after{
+    content: "";
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    background: #969696;
+    border-radius: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
 @media screen and (max-width:960px) {
     
     .pci-right{
