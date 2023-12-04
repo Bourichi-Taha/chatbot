@@ -8,9 +8,12 @@ import PolicyIcon from '@mui/icons-material/Policy';
 import AccountSidebar from './SettingsSidebars/AccountSidebar';
 import ModelConfiguration from './SettingsSidebars/ModelConfiguration';
 import LanguagePreferences from './SettingsSidebars/LanguagePreferences';
+import PageTransition from "./PageTransition"
 import SecurityPreferences from './SettingsSidebars/SecurityPreferences';
+import { useTranslation } from 'react-i18next';
 const Settings = () => {
   const [selected, setSelected] = useState("account");
+  const {t} = useTranslation();
   const clickHandler = (e) => {
     setSelected(e.target.id);
     const clickables = document.querySelectorAll(".settings-left-body-row");
@@ -41,7 +44,7 @@ const Settings = () => {
         return (
           <SecurityPreferences />
         )
-    
+
       default:
         return (
           <AccountSidebar />
@@ -53,7 +56,7 @@ const Settings = () => {
       <div className="settings-left">
         <div className="settings-header">
           <div className="settings-header-left">
-            <span>Settings</span>
+            <span>{t("Settings")}</span>
           </div>
           <div className="settings-header-right">
             {/* <ButtonNav text={""}/> */}
@@ -62,29 +65,31 @@ const Settings = () => {
         <div className="settings-left-body">
           <div className="settings-left-body-row active " id='account' onClick={clickHandler}>
             <AccountCircleIcon className='settings-left-body-row-icon' />
-            <p>Account Settings</p>
+            <p>{t("Account Settings")}</p>
           </div>
           <div className="settings-left-body-row " id='model' onClick={clickHandler}>
             <ModelTrainingIcon className='settings-left-body-row-icon' />
-            <p>Model Configuration</p>
+            <p>{t("Model Configuration")}</p>
           </div>
           <div className="settings-left-body-row " id='language' onClick={clickHandler}>
             <TranslateIcon className='settings-left-body-row-icon' />
-            <p>Language Preferences</p>
+            <p>{t("Language Preferences")}</p>
           </div>
           <div className="settings-left-body-row " id='security' onClick={clickHandler}>
             <SecurityIcon className='settings-left-body-row-icon' />
-            <p>Security</p>
+            <p>{t("Security")}</p>
           </div>
           <div className="settings-left-body-row " id='privacy' onClick={clickHandler}>
             <PolicyIcon className='settings-left-body-row-icon' />
-            <p>Privacy & Policy</p>
+            <p>{t("Privacy & Policy")}</p>
           </div>
         </div>
       </div>
       {
         renderSidebar()
       }
+      <PageTransition />
+
     </div>
   )
 }

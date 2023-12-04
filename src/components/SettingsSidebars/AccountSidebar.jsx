@@ -5,9 +5,10 @@ import { Button, TextField } from '@mui/material';
 import img from "../../assets/images/user.png";
 import { useFetchImageQuery, useFetchUserQuery, useGenerateImageMutation, useUpdateUserMutation } from '../../features/settings/SettingsApiSlice';
 import CircularProgress from '@mui/material/CircularProgress';
+import { useTranslation } from 'react-i18next';
 const AccountSidebar = () => {
     const [startPolling, setStartPolling] = useState(false);
-
+    const {t} = useTranslation();
     const { data, isLoading, isSuccess } = useFetchUserQuery();
     const { data: imageData, isSuccess: isImageSuccess, refetch } = useFetchImageQuery({}, {
         pollingInterval:startPolling ? 4000 : 0,
@@ -20,7 +21,7 @@ const AccountSidebar = () => {
         }else{
             refetch({ pollingInterval:0 });
         }
-    },[startPolling]);
+    },[startPolling,refetch]);
     const [username, setUsername] = useState("");
     const [firstname, setFirstname] = useState("");
     const [lastname, setLastname] = useState("");
@@ -45,7 +46,7 @@ const AccountSidebar = () => {
             setStartPolling(false);
         }
         // console.log(isImageSuccess)
-    }, [isImageSuccess, imageData?.image_is_generating]);
+    }, [isImageSuccess, imageData?.image_is_generating,imageData?.image_url]);
     const submitHandler = async (e) => {
         e.preventDefault();
         try {
@@ -65,30 +66,30 @@ const AccountSidebar = () => {
         content = (
             <div className="settings-right">
                 <div className="settings-right-header">
-                    <h3 className="settings-right-header-title"><AccountCircleIcon className='settings-right-header-title-icon' /> Account Preferences</h3>
+                    <h3 className="settings-right-header-title"><AccountCircleIcon className='settings-right-header-title-icon' /> {t("Update Profile")}</h3>
                 </div>
                 <div className="settings-right-body">
-                    <p className="input-label-settings-right-body-row">Profile picture :</p>
+                    <p className="input-label-settings-right-body-row">{t("Profile picture")} :</p>
                     <div className="settings-right-body-row">
                         <div className="settings-right-body-row-half">
                             <img src={img} alt="" />
                         </div>
                         <div className="settings-right-body-row-half">
-                            <Button disabled fullWidth variant="contained" className='input-settings-right-body-row' type='button'>Generate with AI</Button>
-                            <Button disabled fullWidth variant="contained" className='input-settings-right-body-row' type='button'>Upload from device</Button>
+                            <Button disabled fullWidth variant="contained" className='input-settings-right-body-row' type='button'>{t("Generate with AI")}</Button>
+                            <Button disabled fullWidth variant="contained" className='input-settings-right-body-row' type='button'>{t("Upload from device")}</Button>
                         </div>
                     </div>
-                    <p className="input-label-settings-right-body-row">User information :</p>
+                    <p className="input-label-settings-right-body-row">{t("User information")} :</p>
                     <div className="settings-right-body-row" >
                         <TextField
                             className='settings-right-body-row-item'
-                            label="Firstname"
+                            label={t("Firstname")}
                             type="text"
                             required
                         />
                         <TextField
                             className='settings-right-body-row-item'
-                            label="Lastname"
+                            label={t("Lastname")}
                             type="text"
                             required
                         />
@@ -96,20 +97,19 @@ const AccountSidebar = () => {
                     <div className="settings-right-body-row" >
                         <TextField
                             className='settings-right-body-row-item'
-                            label="Username"
+                            label={t("Username")}
                             type="text"
                             required
                         />
                         <TextField
                             className='settings-right-body-row-item'
-                            label="Email"
+                            label={t("Email")}
                             type="email"
                             required
 
                         />
                     </div>
-                    <Button fullWidth disabled variant="contained" className='input-settings-right-body-row'>Update Temperature</Button>
-                    <Button fullWidth disabled variant="contained" className='input-settings-right-body-row'>Reset Default</Button>
+                    <Button fullWidth disabled variant="contained" className='input-settings-right-body-row'>{t("Update Profile")}</Button>
                 </div>
             </div>
         )
@@ -117,23 +117,23 @@ const AccountSidebar = () => {
         content = (
             <div className="settings-right">
                 <div className="settings-right-header">
-                    <h3 className="settings-right-header-title"><AccountCircleIcon className='settings-right-header-title-icon' /> Account Preferences</h3>
+                    <h3 className="settings-right-header-title"><AccountCircleIcon className='settings-right-header-title-icon' /> {t("Account Preferences")}</h3>
                 </div>
                 <form className="settings-right-body" onSubmit={submitHandler}>
-                    <p className="input-label-settings-right-body-row">Profile picture :</p>
+                    <p className="input-label-settings-right-body-row">{t("Profile picture")} :</p>
                     <div className="settings-right-body-row">
                         <div className="settings-right-body-row-half">
                             <img src={(image !== null && image !== "") ? image : img} alt="" />
                         </div>
                         <div className="settings-right-body-row-half">
-                            <Button fullWidth variant="contained" className='input-settings-right-body-row' onClick={(e) => { setWithAi(prev => !prev) }}>{withAi ? "Cancel generation" : "Generate with AI"}</Button>
-                            <Button fullWidth variant="contained" className='input-settings-right-body-row'>Upload from device</Button>
+                            <Button fullWidth variant="contained" className='input-settings-right-body-row' onClick={(e) => { setWithAi(prev => !prev) }}>{withAi ? t("Cancel generation") : t("Generate with AI")}</Button>
+                            <Button fullWidth variant="contained" className='input-settings-right-body-row'>{t("Upload from device")}</Button>
                         </div>
                     </div>
                     <div className={withAi ? "settings-right-body-row" : "settings-right-body-row closed"} >
                         <TextField
                             className='settings-right-body-row-item-textField'
-                            label="Describe your desired image"
+                            label={t("Describe your desired image")}
                             type="text"
                             required
                             multiline
@@ -143,12 +143,12 @@ const AccountSidebar = () => {
                             onChange={(e) => setDescription(e.target.value)}
                         />
                     </div>
-                    <Button fullWidth variant="contained" className={withAi ? 'input-settings-right-body-row' : 'input-settings-right-body-row closed'} onClick={clickGenerator} >{imageData?.image_is_generating ? <CircularProgress sx={{ color: "white" }} /> : "Generate"}</Button>
-                    <p className="input-label-settings-right-body-row">User information :</p>
+                    <Button fullWidth variant="contained" className={withAi ? 'input-settings-right-body-row' : 'input-settings-right-body-row closed'} onClick={clickGenerator} >{imageData?.image_is_generating ? <CircularProgress sx={{ color: "white" }} /> : t("Generate")}</Button>
+                    <p className="input-label-settings-right-body-row">{t("User information")} :</p>
                     <div className="settings-right-body-row" >
                         <TextField
                             className='settings-right-body-row-item'
-                            label="Firstname"
+                            label={t("Firstname")}
                             type="text"
                             required
                             value={firstname}
@@ -156,7 +156,7 @@ const AccountSidebar = () => {
                         />
                         <TextField
                             className='settings-right-body-row-item'
-                            label="Lastname"
+                            label={t("Lastname")}
                             type="text"
                             required
                             value={lastname}
@@ -166,7 +166,7 @@ const AccountSidebar = () => {
                     <div className="settings-right-body-row" >
                         <TextField
                             className='settings-right-body-row-item'
-                            label="Username"
+                            label={t("Username")}
                             type="text"
                             required
                             value={username}
@@ -174,14 +174,14 @@ const AccountSidebar = () => {
                         />
                         <TextField
                             className='settings-right-body-row-item'
-                            label="Email"
+                            label={t("Email")}
                             type="email"
                             required
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
-                    <Button fullWidth variant="contained" className='input-settings-right-body-row' type='submit'>Update Temperature</Button>
+                    <Button fullWidth variant="contained" className='input-settings-right-body-row' type='submit'>{t("Update Profile")}</Button>
                 </form>
             </div>
         )

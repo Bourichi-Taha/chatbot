@@ -3,6 +3,7 @@ import SecurityIcon from '@mui/icons-material/Security';
 import "../../assets/css/settings.css";
 import { Button, TextField } from '@mui/material';
 import { useUpdatePassMutation } from '../../features/settings/SettingsApiSlice';
+import { t } from 'i18next';
 
 const SecurityPreferences = () => {
 
@@ -35,14 +36,14 @@ const SecurityPreferences = () => {
     return (
         <div className="settings-right">
             <div className="settings-right-header">
-                <h3 className="settings-right-header-title"><SecurityIcon className='settings-right-header-title-icon' /> Security</h3>
+                <h3 className="settings-right-header-title"><SecurityIcon className='settings-right-header-title-icon' /> {t("Security")}</h3>
             </div>
             <form className="settings-right-body" onSubmit={SubmitHandler}>
-                <p className="input-label-settings-right-body-row">Change Password :</p>
+                <p className="input-label-settings-right-body-row">{t("Change Password")} :</p>
                 <div className="settings-right-body-row">
                     <TextField
                         className='settings-right-body-row-item'
-                        label="Current Password"
+                        label={t("Current Password")}
                         type="password"
                         required
                         value={oldPassword}
@@ -50,35 +51,35 @@ const SecurityPreferences = () => {
                     />
                     <TextField
                         className='settings-right-body-row-item'
-                        label="New Password"
+                        label={t("New Password")}
                         type="password"
                         required
                         value={password}
                         onChange={(e)=>setPassword(e.target.value)}
-                        helperText={isError ? "Passwords don't match!" : ""}
+                        helperText={isError ? t("Passwords don't match!") : ""}
                         error={isError}
                     />
                 </div>
                 <div className="settings-right-body-row">
                     <TextField
                         className='settings-right-body-row-item'
-                        label="Retype Password"
+                        label={t("Retype Password")}
                         type="password"
                         required
                         value={rePassword}
                         onChange={(e)=>setRePassword(e.target.value)}
                         error={isError}
-                        helperText={isError ? "Passwords don't match!" : ""}
+                        helperText={isError ? t("Passwords don't match!") : ""}
                     />
-                    <Button type='submit' variant="contained" className='input-settings-right-body-row item'>Update Password</Button>
+                    <Button type='submit' variant="contained" className='input-settings-right-body-row item'>{t("Update Password")}</Button>
                 </div>
-                <p className="input-label-settings-right-body-row">Bring your open AI key :</p>
+                <p className="input-label-settings-right-body-row">{t("Bring your open AI key")} :</p>
                 <TextField
                         className='settings-right-body-row-item full'
-                        label="API Key"
+                        label={t("API Key")}
                         type="text"
                     />
-                <Button type='button' variant="contained" className='input-settings-right-body-row'>Update Key</Button>
+                <Button type='button' variant="contained" className='input-settings-right-body-row'>{t("Update Key")}</Button>
             </form>
         </div>
     )

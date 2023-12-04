@@ -12,12 +12,14 @@ import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../features/auth/authApiSlice";
 import { selectCurrentToken } from "../features/auth/authSlice";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 const Login = () => {
 
     const navigate = useNavigate();
     const token = useSelector(selectCurrentToken);
     const location = useLocation();
+    const {t} = useTranslation();
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -69,10 +71,10 @@ const Login = () => {
                             transition={{ duration: 0.5, delay: 0.6, ease: "easeIn" }} // Animation duration
                             className="login-form-flex" >
                             <AccountCircleOutlinedIcon sx={{ fontSize: "4rem", color: "#343e8b" }} className="icon-login" />
-                            <p className="lf-text">SIGN IN</p>
+                            <p className="lf-text">{t("SIGN IN")}</p>
                             {/* {responseError && <p className="lf-text-error"><ErrorOutlineOutlinedIcon sx={{ color: "red" }} />{responseError}</p>} */}
                             {/* {responseSuccess && <p className="lf-text-success"><CheckCircleOutlineOutlinedIcon sx={{ color: "green" }} />{responseSuccess}</p>} */}
-                            <TextField label="Username" variant="outlined"
+                            <TextField label={t("Username")} variant="outlined"
                                 id="username"
                                 type="text"
                                 value={username}
@@ -87,7 +89,7 @@ const Login = () => {
                                     ),
                                 }}
                             />
-                            <TextField label="Password" variant="outlined" type={showPassword ? "text" : "password"}
+                            <TextField label={t("Password")} variant="outlined" type={showPassword ? "text" : "password"}
                                 id="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
@@ -105,11 +107,11 @@ const Login = () => {
                                     ),
                                 }}
                             />
-                            <Button type="submit" variant="outlined" sx={{ color: "#343e8b", borderColor: "#343e8b", fontSize: "1rem", fontWeight: "bold", letterSpacing: ".2rem", ":hover": { color: "#f9f1fe", bgcolor: "#343e8b", scale: "1.1" }, transition: "all .3s ease" }}>Login</Button>
+                            <Button type="submit" variant="outlined" sx={{ color: "#343e8b", borderColor: "#343e8b", fontSize: "1rem", fontWeight: "bold", letterSpacing: ".2rem", ":hover": { color: "#f9f1fe", bgcolor: "#343e8b", scale: "1.1" }, transition: "all .3s ease" }}>{t("Login")}</Button>
                         </motion.form>
                     </motion.div>
                 </div>
-                <div className="copyright" onClick={() => { navigate("/projects") }}>&copy; 2023 AiAutomationAgency. All rights reserved.</div>
+                <div className="copyright">&copy; 2023 GloboPeople. All rights reserved.</div>
             </div>
         )
     }

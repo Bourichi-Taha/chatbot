@@ -28,7 +28,7 @@
 }
 .badge-with-name-name{
     border-radius: 55px 0 0 55px;
-
+    font-size: 10px;
 }
 @media screen and (max-width:1280px) {
     .badge-with-name{
@@ -37,12 +37,15 @@
     .badge-with-name-name, .badge-with-name-length{
         font-size: 14px;
     }
+    .badge-with-name-name{
+        font-size: 10px;
+    }
 }
 @media screen and (max-width:480px) {
     .badge-with-name{
         min-width: 110px;
     }
     .badge-with-name-name, .badge-with-name-length{
-        font-size: 14px;
+        font-size: 10px;
     }
 }

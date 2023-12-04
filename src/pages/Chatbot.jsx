@@ -15,9 +15,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from '../features/auth/authSlice';
 import { apiSlice } from '../app/api/apiSlice';
 import { selectCurrentOpen, toggleOpen } from '../features/sidebar/SidebarSlice';
+import { useTranslation } from 'react-i18next';
 
 const Chatbot = () => {
   const dispatch = useDispatch();
+  const {t} = useTranslation();
+
   const isOpen = useSelector(selectCurrentOpen)
   const sidebarTrigger = useCallback(() => dispatch(toggleOpen(!isOpen)),[dispatch,isOpen]) ;
   // const isMatch = useMediaQuery("(max-width:720px)")
@@ -60,6 +63,8 @@ const Chatbot = () => {
       document.querySelector('.cbc-msb-tb-item.chatbot').classList.add("active");
     } else if (location.pathname.split('/')[1] === "settings") {
       document.querySelector('.cbc-msb-tb-item.settings').classList.add("active");
+    } else if (location.pathname.split('/')[1] === "statistics") {
+      document.querySelector('.cbc-msb-tb-item.statistics').classList.add("active");
     }
   }, [location]);
   useEffect(() => {
@@ -77,19 +82,21 @@ const Chatbot = () => {
         document.querySelector('.cbc-msb-tt-icon.abs.chatbot').classList.add("active");
       } else if (location.pathname.split('/')[1] === "settings") {
         document.querySelector('.cbc-msb-tt-icon.abs.settings').classList.add("active");
+      } else if (location.pathname.split('/')[1] === "statistics") {
+        document.querySelector('.cbc-msb-tt-icon.abs.statistics').classList.add("active");
       }
     }
   }, [location, isOpen]);
   const ClickHandler = (e) => {
-    if (e.target.innerText === "AI Chat Helper") {
+    if (e.target.classList.contains("chatbot")) {
       return;
-    } else if (e.target.innerText === "My Projects") {
+    } else if (e.target.classList.contains("projects")) {
       navigate("/projects")
-    } else if (e.target.innerText === "Library") {
+    } else if (e.target.classList.contains("library")) {
       navigate("/library")
-    }else if (e.target.innerText === "Settings") {
+    }else if (e.target.classList.contains("settings")) {
       navigate("/settings")
-    }else if (e.target.innerText === "statistics") {
+    }else if (e.target.classList.contains("statistics")) {
       navigate("/statistics")
     }
   }
@@ -152,44 +159,44 @@ const Chatbot = () => {
                 <IconButton>
                   <ChatBubbleOutlineIcon className='cbc-msb-tt-icon' />
                 </IconButton>
-                AI Chat Helper
+                {t("AI Chat Helper")}
               </li>
               <li onClick={ClickHandler} className='cbc-msb-tb-item library'>
                 <IconButton>
                   <DescriptionOutlinedIcon className='cbc-msb-tt-icon' />
                 </IconButton>
-                Library
+                {t("Library")}
               </li>
               <li onClick={ClickHandler} className='cbc-msb-tb-item projects'>
                 <IconButton>
                   <BorderAllRoundedIcon className='cbc-msb-tt-icon' />
                 </IconButton>
-                My Projects
+                {t("My Projects")}
               </li>
               <li onClick={ClickHandler} className='cbc-msb-tb-item statistics'>
                 <IconButton>
                   <InsertChartOutlinedRoundedIcon className='cbc-msb-tt-icon' />
                 </IconButton>
-                Statistics
+                {t("Statistics")}
               </li>
               <li onClick={ClickHandler} className='cbc-msb-tb-item settings'>
                 <IconButton>
                   <SettingsOutlinedIcon className='cbc-msb-tt-icon' />
                 </IconButton>
-                Settings
+                {t("Settings")}
               </li>
               <li onClick={ClickHandler} className='cbc-msb-tb-item'>
                 <IconButton>
                   <HelpCenterOutlinedIcon className='cbc-msb-tt-icon' />
                 </IconButton>
-                Updates & FAQ
+                {t("Updates & FAQ")}
               </li>
             </ul>
           </div>
           <div className="cbc-msb-bottom">
 
             <div className="cbc-msb-bottom-bottom" onClick={() => { dispatch(logOut()); dispatch(apiSlice.util.resetApiState()); }}>
-              <p>logout</p>
+              <p>{t("Logout")}</p>
               <IconButton>
                 <LogoutIcon className='cbc-msb-tt-icon' />
               </IconButton>

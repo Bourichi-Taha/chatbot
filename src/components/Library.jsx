@@ -15,8 +15,10 @@ import { selectCurrentIsFiltered, selectCurrentIsOpen, selectCurrentSidebar, sel
 import FilesLibraryListItem from './FilesLibraryListItem';
 import BadgeWithName from './BadgeWithName';
 import ButtonNav from './ButtonNav';
+import { useTranslation } from 'react-i18next';
 const Library = () => {
     const navigate = useNavigate();
+    const {t} = useTranslation();
     const [topic, setTopic] = useState("");
     const [mesure, setMesure] = useState("");
     const open = useSelector(selectCurrentIsOpen);
@@ -84,12 +86,12 @@ const Library = () => {
                 <div className={open ? "lc-right" : "lc-right closed"}>
 
                     <div className="lc-right-header">
-                        <p>Filters</p>
-                        <ButtonNav Comp={CloseIcon} text={"close"} onClick={(e) => { HandleCloseFilterBar() }} />
+                        <p>{t("Filters")}</p>
+                        <ButtonNav Comp={CloseIcon} text={t("Close")} onClick={(e) => { HandleCloseFilterBar() }} />
                     </div>
                     <ul className="lc-right-history">
-                        <TextField label="Topic" variant='outlined' className='lc-rf-form-input' value={topic} onChange={(e) => setTopic(e.target.value)} />
-                        <TextField label="Mesure" variant='outlined' className='lc-rf-form-input' value={mesure} onChange={(e) => setMesure(e.target.value)} />
+                        <TextField label={t("Topic")} variant='outlined' className='lc-rf-form-input' value={topic} onChange={(e) => setTopic(e.target.value)} />
+                        <TextField label={t("Measure")} variant='outlined' className='lc-rf-form-input' value={mesure} onChange={(e) => setMesure(e.target.value)} />
 
                     </ul>
                     <div className="lc-right-footer" style={{ flexDirection: 'column' }}>
@@ -97,14 +99,14 @@ const Library = () => {
                             isFiltered ?
                                 <button className='lc-rf-button' onClick={CancelFilter}>
                                     <FilterAltOutlinedIcon />
-                                    Cancel
+                                    {t("Cancel")}
                                 </button>
                                 :
                                 null
                         }
                         <button className='lc-rf-button' onClick={FilterHandler}>
                             <FilterAltOutlinedIcon fontSize='30px' />
-                            Filter
+                            {t("Filter")}
                         </button>
                     </div>
                 </div>
@@ -113,8 +115,8 @@ const Library = () => {
             content = (
                 <div className={open ? "lc-right" : "lc-right closed"}>
                     <div className="lc-right-header">
-                        <BadgeWithName name={"Files"} length={sidebarFiles.length} />
-                        <ButtonNav Comp={CloseIcon} text={"close"} onClick={(e) => { HandleCloseFileBar(sidebarFiles) }} />
+                        <BadgeWithName name={t("Files")} length={sidebarFiles.length} />
+                        <ButtonNav Comp={CloseIcon} text={t("Close")} onClick={(e) => { HandleCloseFileBar(sidebarFiles) }} />
                     </div>
                     <ul className="lc-right-history">
                         {
@@ -138,10 +140,10 @@ const Library = () => {
         <div className='library-container' style={{ position: "relative" }}>
             <div className="lc-left">
                 <div className="lc-left-header" style={!open ? { borderRadius: " 20px 20px 0 0" } : null}>
-                    <div className="lc-lh-left" ><span style={{ cursor: "pointer" }} onClick={() => navigate("/library")}>Library</span></div>
+                    <div className="lc-lh-left" ><span style={{ cursor: "pointer" }} onClick={() => navigate("/library")}>{t("Library")}</span></div>
                     <div className="lc-lh-right">
-                        <ButtonNav Comp={CachedOutlinedIcon} text={"refresh"} />
-                        <ButtonNav Comp={FilterAltOutlinedIcon} text={"filter"} onClick={clickFilters} />
+                        <ButtonNav Comp={CachedOutlinedIcon} text={t("Refresh")} />
+                        <ButtonNav Comp={FilterAltOutlinedIcon} text={t("Filter")} onClick={clickFilters} />
                     </div>
                 </div>
                 <div className="lc-left-content">
@@ -161,8 +163,8 @@ const Library = () => {
                             />
                         </div> */}
                         <div className="lc-lc-top-buttons">
-                            <ButtonNav Comp={FileUploadOutlinedIcon} text={"Import"} />
-                            <ButtonNav Comp={FileDownloadOutlinedIcon} text={"Export"} />
+                            <ButtonNav Comp={FileUploadOutlinedIcon} text={t("Import")} />
+                            <ButtonNav Comp={FileDownloadOutlinedIcon} text={t("Export")} />
                         </div>
                     </div>
                     <div className="lc-lc-bottom">

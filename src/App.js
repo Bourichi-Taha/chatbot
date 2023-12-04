@@ -13,12 +13,21 @@ import ProjectEdit from "./components/ProjectEdit";
 import RequireAuth from "./components/RequireAuth";
 import Settings from "./components/Settings";
 import Statistics from "./components/Statistics";
+import { useFetchModelQuery } from "./features/settings/SettingsApiSlice";
+import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 
 
 
 function App() {
   const location = useLocation();
-  
+  const { data } = useFetchModelQuery();
+  const { i18n } = useTranslation();
+  useEffect(() => {
+    if (data?.language) {
+      i18n.changeLanguage(data?.language.toLowerCase());
+    }
+  }, [data?.language,i18n]);
   return (
     <Routes location={location} key={location.pathname}>
       <Route path="/" element={<Layout />}>

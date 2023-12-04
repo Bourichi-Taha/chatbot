@@ -6,9 +6,10 @@ import { useFetchLibraryQuery } from '../features/Library/LibraryApiSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentIsFiltered,  selectCurrentLibraryFiltered,   setSidebarFiles, toggleSidebar } from '../features/Library/LibrarySlice';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export default function CustomDataGrid() {
-
+  const {t} = useTranslation();
   const { data, isLoading, isSuccess } = useFetchLibraryQuery();
   const isFiltered = useSelector(selectCurrentIsFiltered);
   const filteredLibrary = useSelector(selectCurrentLibraryFiltered);
@@ -20,17 +21,17 @@ export default function CustomDataGrid() {
       dispatch(setSidebarFiles(files))
   }
   const columns = [
-    { field: "project_name", headerName: "Project name", width: 150, hide: true },
-    { field: "werkinhood", headerName: "Werkinhoud", width: 150, hide: true },
-    { field: "client", headerName: "Client", width: 150, hide: true },
-    { field: "timestamp", headerName: "Created date", width: 150, hide: true },
-    // { field: "status",headerName:"Status",width:150, hide: true },
-    { field: "result", headerName: "Result", width: 150, hide: true },
-    { field: "enclosure", headerName: "Enclosure", width: 150, hide: true },
-    { field: "status", headerName: "Status", width: 150, hide: true },
-    { field: "contract_type", headerName: "Contract type", width: 150, hide: true },
+    { field: "project_name", headerName: t("Project name"), width: 150, hide: true },
+    { field: "werkinhood", headerName: t("Work content"), width: 150, hide: true },
+    { field: "client", headerName: t("Client"), width: 150, hide: true },
+    { field: "timestamp", headerName: t("Created date"), width: 150, hide: true },
+    // { field: "status",headerName:t("Status"),width:150, hide: true },
+    { field: "result", headerName: t("Result"), width: 150, hide: true },
+    { field: "enclosure", headerName: t("Enclosure"), width: 150, hide: true },
+    { field: "status", headerName: t("Status"), width: 150, hide: true },
+    { field: "contract_type", headerName: t("Contract type"), width: 150, hide: true },
     {
-      field: "files", headerName: "Files", width: 100, hide: false, renderCell: (params) => (
+      field: "files", headerName: t("Files"), width: 100, hide: false, renderCell: (params) => (
         <div style={{ display: 'flex' }}>
 
           <IconButton onClick={() => { clickFiles(params.value) }} >

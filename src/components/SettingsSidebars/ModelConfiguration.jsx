@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import "../../assets/css/settings.css";
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
-import { Button, MenuItem, Select, Slider } from '@mui/material';
+import { Button, CircularProgress, MenuItem, Select, Slider } from '@mui/material';
 import { useFetchModelQuery, useUpdateModelMutation } from '../../features/settings/SettingsApiSlice';
+import { useTranslation } from 'react-i18next';
 
 const ModelConfiguration = () => {
     const {  data,isLoading,isSuccess } = useFetchModelQuery();
     const [updateModel] = useUpdateModelMutation();
+    const {t} = useTranslation();
     function valuetext(value) {
         return `${value}`;
     }
@@ -31,10 +33,10 @@ const ModelConfiguration = () => {
         content = (
             <div className="settings-right">
                 <div className="settings-right-header">
-                    <h3 className="settings-right-header-title"><ModelTrainingIcon className='settings-right-header-title-icon' /> Model Configuration</h3>
+                    <h3 className="settings-right-header-title"><ModelTrainingIcon className='settings-right-header-title-icon' /> {t("Model Configuration")}</h3>
                 </div>
                 <div className="settings-right-body">
-                    <p className="input-label-settings-right-body-row">Loading</p>
+                    <CircularProgress />
                 </div>
             </div>
         )
@@ -42,10 +44,10 @@ const ModelConfiguration = () => {
         content = (
             <div className="settings-right">
                 <div className="settings-right-header">
-                    <h3 className="settings-right-header-title"><ModelTrainingIcon className='settings-right-header-title-icon' /> Model Configuration</h3>
+                    <h3 className="settings-right-header-title"><ModelTrainingIcon className='settings-right-header-title-icon' /> {t("Model Configuration")}</h3>
                 </div>
                 <div className="settings-right-body">
-                    <p className="input-label-settings-right-body-row">GBT Model :</p>
+                    <p className="input-label-settings-right-body-row">{t("GBT Model")} :</p>
                     <div className="settings-right-body-row">
                         <Select
                             sx={{ flex: "1" }}
@@ -53,14 +55,14 @@ const ModelConfiguration = () => {
                             // setModel(e.target.value)
                             onChange={(e)=>{setModel(e.target.value)}}
                         >
-                            <MenuItem value={"gpt-4-1106-preview"}>GPT-4 Turbo</MenuItem>
-                            <MenuItem value={"gpt-4-vision-preview"}>GPT-4 Turbo with vision</MenuItem>
-                            <MenuItem value={"gpt-4"}>GPT-4</MenuItem>
-                            <MenuItem value={"gpt-3.5-turbo-1106"}>GPT-3.5 Turbo</MenuItem>
+                            <MenuItem value={"gpt-4-1106-preview"}>{t("GPT-4 Turbo")}</MenuItem>
+                            <MenuItem value={"gpt-4-vision-preview"}>{t("GPT-4 Turbo with vision")}</MenuItem>
+                            <MenuItem value={"gpt-4"}>{t("GPT-4")}</MenuItem>
+                            <MenuItem value={"gpt-3.5-turbo-1106"}>{t("GPT-3.5 Turbo")}</MenuItem>
                         </Select>
-                        <Button variant="contained" className='input-settings-right-body-row'  onClick={UpdateHandler}>Update Model</Button>
+                        <Button variant="contained" className='input-settings-right-body-row'  onClick={UpdateHandler}>{t("Update Model")}</Button>
                     </div>
-                    <p className="input-label-settings-right-body-row">Model Temperature :</p>
+                    <p className="input-label-settings-right-body-row">{t("Model Temperature")} :</p>
                     <div className="settings-right-body-row" style={{ marginBottom: "20px" }}>
                         <Slider
                             sx={{ color: "#3464c4" }}
@@ -74,12 +76,12 @@ const ModelConfiguration = () => {
                             onChange={(e)=>{setLlm_temperature(e.target.value)}}
                         />
                         <div className="abs-items-settings-right-body-row">
-                            <p>0.0 (Reserved)</p>
-                            <p>(Creative) 1.0</p>
+                            <p>0.0 ({t("Reserved")})</p>
+                            <p>({t("Creative")}) 1.0</p>
                         </div>
                     </div>
-                    <Button fullWidth variant="contained" className='input-settings-right-body-row' onClick={UpdateHandler}>Update Temperature</Button>
-                    <Button fullWidth variant="contained" className='input-settings-right-body-row'>Reset Default</Button>
+                    <Button fullWidth variant="contained" className='input-settings-right-body-row' onClick={UpdateHandler}>{t("Update Temperature")}</Button>
+                    <Button fullWidth variant="contained" className='input-settings-right-body-row'>{t("Reset Default")}</Button>
                 </div>
             </div>
         )

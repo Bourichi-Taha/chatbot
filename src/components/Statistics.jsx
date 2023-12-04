@@ -2,6 +2,7 @@ import React from 'react'
 import "../assets/css/statistics.css"
 import { Doughnut,Bar, Line, Pie, Radar    } from 'react-chartjs-2';
 import { Chart, ArcElement, Tooltip, Legend, Title,CategoryScale,LinearScale,BarElement,PointElement,LineElement, RadialLinearScale } from 'chart.js'
+import PageTransition from './PageTransition';
 Chart.register(ArcElement, Tooltip, Legend, Title,CategoryScale,LinearScale,BarElement,PointElement,LineElement,RadialLinearScale);
 const Statistics = () => {
     const data = {
@@ -160,6 +161,7 @@ const Statistics = () => {
                     </div>
                 </div>
             </div>
+            <PageTransition />
         </div>
     )
 }

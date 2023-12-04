@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import "../assets/css/chat.css";
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle,   MenuItem, Select, TextField } from '@mui/material';
+import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, MenuItem, Select, TextField } from '@mui/material';
 import HistoryIcon from '@mui/icons-material/History';
 import CloseIcon from '@mui/icons-material/Close';
 import UserMessage from './UserMessage';
@@ -14,16 +14,19 @@ import { useGetAllQuery } from '../features/history/historyApiSlice';
 import { useGetAllMessagesQuery, useSendMessageMutation, useSummarizeMutation } from '../features/messages/messagesApiSlice';
 import { selectCurrentConversationId, selectCurrentSummary } from '../features/messages/messagesSlice';
 import { selectCurrentSelectedFiles } from '../features/files/filesSlice';
-import {  useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useFetchProjectByIdQuery } from '../features/projects/ProjectApiSlice';
 import ButtonNav from './ButtonNav';
 import BadgeWithName from './BadgeWithName';
+import PageTransition from './PageTransition';
+import { useTranslation } from 'react-i18next';
 const Chat = () => {
+    const {t} = useTranslation();
     const projectId = useParams().projectId;
     const { data: project, isSuccess } = useFetchProjectByIdQuery(projectId)
     const selectedConversationId = useSelector(selectCurrentConversationId);
     const { data: history, isLoading } = useGetAllQuery();
-    const { data: messages, isError } = useGetAllMessagesQuery(selectedConversationId||-1);
+    const { data: messages, isError } = useGetAllMessagesQuery(selectedConversationId || -1);
     const [sendMessage] = useSendMessageMutation();
     const [instantMessages, setInstantMessages] = useState([]);
     const summary = useSelector(selectCurrentSummary);
@@ -36,7 +39,7 @@ const Chat = () => {
 
     }
     useEffect(() => {
-        if (!isError && messages ) {
+        if (!isError && messages) {
             setInstantMessages(messages)
         }
 
@@ -60,7 +63,7 @@ const Chat = () => {
                 "conv": selectedConversationId,
                 "project_id": projectId
             }
-        }else{
+        } else {
             obj = {
                 "user_input": userInput,
                 "project_id": projectId
@@ -76,7 +79,7 @@ const Chat = () => {
             console.log(error)
         }
     }
-    const [open,setOpen] = useState(false);
+    const [open, setOpen] = useState(false);
 
     useEffect(() => {
         const header = document.querySelector(".cc-right-header")
@@ -100,7 +103,7 @@ const Chat = () => {
 
 
     const keyHandler = (event) => {
-        if (event.key === 'Enter' && !event.shiftKey ) {
+        if (event.key === 'Enter' && !event.shiftKey) {
             // Submit the form when the "Enter" key is pressed
             sendMessageUser(event)
         }
@@ -119,7 +122,7 @@ const Chat = () => {
         setIsDialog(false);
         setIsDialogAdded(bool)
     }
-    
+
     useEffect(() => {
         const get_summary = async () => {
             try {
@@ -138,7 +141,52 @@ const Chat = () => {
 
     if (isLoading && !isSuccess) {
         content = (
-            <div>Loading ...</div>
+            <div className="chat-container">
+                <div className="cc-left">
+                    <div className="cc-left-header">
+                        <div className="cc-lh-left">{t("Loading")}
+                            <div className="typingDots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>{/* get project Name by id */}
+                        <div className="cc-lh-right">
+                            <ButtonNav Comp={HistoryIcon} text={t("History")} onClick={(e) => { setOpen(prev => !prev) }} />
+                            <ButtonNav Comp={UploadFileOutlinedIcon} text={t("Upload")} onClick={handleClick} />
+                        </div>
+                    </div>
+                    <div className="cc-left-messages-container">
+                        <CircularProgress />
+                        <div ref={messagesEndRef}></div>
+                    </div>
+                    <div className="cc-left-input-container">
+                        <TextField
+                            className='cc-left-ic-input'
+                            variant="outlined"
+                            placeholder={t('Start typing')}
+                            multiline
+                            maxRows={3}
+                            value={userInput}
+                            onChange={(e) => {
+                                if (selectedFiles?.length !== 0) {
+                                    setUserInput(e.target.value)
+                                }
+                            }}
+                            onKeyDown={keyHandler}
+                        />
+                        <div className='cc-lmc-bc-actions-icon-holder input-message' onClick={sendMessageUser}>
+                            {!loading ? <SendIcon sx={{ fontSize: 18 }} /> :
+                                <div className="typingDots">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>}
+                        </div>
+                    </div>
+                </div>
+                <PageTransition />
+            </div>
         )
     } else {
         content = (
@@ -147,8 +195,8 @@ const Chat = () => {
                     <div className="cc-left-header">
                         <div className="cc-lh-left">{project?.project_name}/{selectedConversationId}</div>{/* get project Name by id */}
                         <div className="cc-lh-right">
-                            <ButtonNav Comp={HistoryIcon} text={"History"} onClick={(e)=>{setOpen(prev=>!prev)}}/>
-                            <ButtonNav Comp={UploadFileOutlinedIcon} text={"Upload"} onClick={handleClick}/>
+                            <ButtonNav Comp={HistoryIcon} text={t("History")} onClick={(e) => { setOpen(prev => !prev) }} />
+                            <ButtonNav Comp={UploadFileOutlinedIcon} text={t("Upload")} onClick={handleClick} />
                         </div>
                     </div>
                     <div className="cc-left-messages-container">
@@ -170,7 +218,7 @@ const Chat = () => {
                         <TextField
                             className='cc-left-ic-input'
                             variant="outlined"
-                            placeholder='Start typing'
+                            placeholder={t('Start typing')}
                             multiline
                             maxRows={3}
                             value={userInput}
@@ -191,38 +239,38 @@ const Chat = () => {
                         </div>
                     </div>
                 </div>
-                <div className={open?"cc-right":"cc-right closed"}>
+                <div className={open ? "cc-right" : "cc-right closed"}>
                     <div className={open ? "cc-right-header" : "cc-right-header closed"}>
-                        <BadgeWithName name={"History"} length={history && history?.length} />
-                        <ButtonNav text={"close"} Comp={CloseIcon} onClick={(e)=>{setOpen(prev=>!prev)}} />
+                        <BadgeWithName name={t("History")} length={history && history?.length} />
+                        <ButtonNav text={t("Close")} Comp={CloseIcon} onClick={(e) => { setOpen(prev => !prev) }} />
                     </div>
                     <ul className={open ? "cc-right-history" : "cc-right-history closed"}>
                         {history && history?.map((item, index) => {
-                        return <HistoryListItem key={index} item={item} />
-                    })}
+                            return <HistoryListItem key={index} item={item} />
+                        })}
                         {/* <HistoryListItem /> */}
                     </ul>
                     <div className={open ? "cc-right-footer" : "cc-right-footer closed"}>
                         <button className='cc-rf-button'>
                             <DeleteOutlineIcon />
-                            Clear History
+                            {t("Clear History")}
                         </button>
                     </div>
                 </div>
                 <Dialog open={isDialog} onClose={handleCloseDialog}>
-                    <DialogTitle>Select a File for summarization</DialogTitle>
+                    <DialogTitle>{t("Select a File for summarization")}</DialogTitle>
                     <DialogContent>
                         <DialogContentText>
-                            Please shoose from below
+                            {t("Please shoose from below")}
                         </DialogContentText>
                         <Select
                             value={selectedFileSumm}
                             fullWidth
-                            label="Files"
+                            label={t("Files")}
                             onChange={(e) => setSelectedFileSumm(e.target.value)}
                         >
                             <MenuItem value="">
-                                <em>None</em>
+                                <em>{t("None")}</em>
                             </MenuItem>
                             {
                                 selectedFiles.map((item, index) => {
@@ -235,10 +283,10 @@ const Chat = () => {
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={() => handleCloseDialog(false)} color="primary">
-                            Cancel
+                            {t("Cancel")}
                         </Button>
                         <Button onClick={() => handleCloseDialog(true)} color="primary">
-                            Confirm
+                            {t("Confirm")}
                         </Button>
                     </DialogActions>
                 </Dialog>

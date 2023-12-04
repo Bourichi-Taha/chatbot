@@ -7,6 +7,7 @@ import PageTransition from "./PageTransition";
 import { useFetchUserProjectsQuery } from "../features/projects/ProjectApiSlice";
 import ButtonNav from "./ButtonNav";
 import { CircularProgress } from "@mui/material";
+import { t } from "i18next";
 
 const Projects = () => {
 
@@ -22,10 +23,10 @@ const Projects = () => {
             <div className="projects-container" style={{ position: "relative" }}>
                 <div className="pc-left">
                     <div className="pc-left-header">
-                        <div className="pc-lh-left">My Projects</div>
+                        <div className="pc-lh-left">{t("My Projects")}</div>
                         <div className="pc-lh-right">
-                            <ButtonNav Comp={AddCircleOutlineIcon} text={"add"} onClick={() => navigate("/projects/create")} />
-                            <ButtonNav Comp={DatasetOutlinedIcon} text={"Library"} onClick={() => navigate("/library")} />
+                            <ButtonNav Comp={AddCircleOutlineIcon} text={t("add")} onClick={() => navigate("/projects/create")} />
+                            <ButtonNav Comp={DatasetOutlinedIcon} text={t("Library")} onClick={() => navigate("/library")} />
                         </div>
                     </div>
                     <div className="pc-left-content">
