@@ -4,21 +4,21 @@ import { useEffect, useState } from 'react';
 import { IconButton } from '@mui/material';
 import { useFetchLibraryQuery } from '../features/Library/LibraryApiSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectCurrentIsFiltered,  selectCurrentLibraryFiltered,   setSidebarFiles, toggleSidebar } from '../features/Library/LibrarySlice';
+import { selectCurrentIsFiltered, selectCurrentLibraryFiltered, setSidebarFiles, toggleSidebar } from '../features/Library/LibrarySlice';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 export default function CustomDataGrid() {
-  const {t} = useTranslation();
-  const { data, isLoading, isSuccess } = useFetchLibraryQuery();
+  const { t } = useTranslation();
+  const { data, isLoading, isSuccess, refetch } = useFetchLibraryQuery();
   const isFiltered = useSelector(selectCurrentIsFiltered);
   const filteredLibrary = useSelector(selectCurrentLibraryFiltered);
   const [projects, setProjects] = useState([]);
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const clickFiles = (files) => {
-      dispatch(toggleSidebar({ sidebar: "files", isOpen: true }));
-      dispatch(setSidebarFiles(files))
+    dispatch(toggleSidebar({ sidebar: "files", isOpen: true }));
+    dispatch(setSidebarFiles(files))
   }
   const columns = [
     { field: "project_name", headerName: t("Project name"), width: 150, hide: true },
@@ -52,10 +52,10 @@ export default function CustomDataGrid() {
           timestamp: p.timestamp.split('T')[0],
           files: p.files,
           status: p.status || "in progress",
-          contract_type : p.contract_type || "NAN",
-          enclosure : p.enclosure || "NAN",
-          result : p.result || "Pending",
-          client : p.client || "NAN",
+          contract_type: p.contract_type || "NAN",
+          enclosure: p.enclosure || "NAN",
+          result: p.result || "Pending",
+          client: p.client || "NAN",
         }
         return arr.push(obj);
       });
@@ -85,35 +85,76 @@ export default function CustomDataGrid() {
       });
     }
     setProjects(arr)
-  }, [isFiltered, filteredLibrary,data]);
+  }, [isFiltered, filteredLibrary, data]);
   const handleCellClick = (params) => {
     if (params.field !== "files") {
       navigate(`/projects/${params.id}`)
     }
 
   }
-  return (
-    <div style={{ width: '100%', height: "100%", display: 'flex', alignItems: "center", justifyContent: "center" }}>
-      <div style={{ height: "100%", width: '100%' }}>
-        <DataGrid
-          sx={{ border: "none",boxShadow:"var(--box-shadow)" }}
-          // {...data}
-          columns={columns}
-          rows={projects}
-          loading={isLoading}
-          initialState={{
-            pagination: {
-              paginationModel: {
-                pageSize: 10,
+  useEffect(() => {
+    const reFetch = async () => {
+      await refetch();
+    }
+    let isMounted = true;
+    if (isMounted) {
+      reFetch()
+    }
+    return () => {
+      isMounted = false;
+    }
+  },[refetch]);
+  let content;
+  if (isLoading) {
+    content = (
+      <div style={{ width: '100%', height: "100%", display: 'flex', alignItems: "center", justifyContent: "center" }}>
+        <div style={{ height: "100%", width: '100%' }}>
+          <DataGrid
+            sx={{ border: "none", boxShadow: "var(--box-shadow)" }}
+            // {...data}
+            columns={columns}
+            rows={projects}
+            loading={true}
+            initialState={{
+              pagination: {
+                paginationModel: {
+                  pageSize: 10,
+                },
               },
-            },
-          }}
-          pageSizeOptions={[5, 10, 15]}
-          checkboxSelection
-          disableRowSelectionOnClick
-          onCellClick={handleCellClick}
-        />
+            }}
+            pageSizeOptions={[5, 10, 15]}
+            checkboxSelection
+            disableRowSelectionOnClick
+            onCellClick={handleCellClick}
+          />
+        </div>
       </div>
-    </div>
-  );
+    )
+  } else {
+    content = (
+      <div style={{ width: '100%', height: "100%", display: 'flex', alignItems: "center", justifyContent: "center" }}>
+        <div style={{ height: "100%", width: '100%' }}>
+          <DataGrid
+            sx={{ border: "none", boxShadow: "var(--box-shadow)" }}
+            // {...data}
+            columns={columns}
+            rows={projects}
+            loading={false}
+            initialState={{
+              pagination: {
+                paginationModel: {
+                  pageSize: 10,
+                },
+              },
+            }}
+            pageSizeOptions={[5, 10, 15]}
+            checkboxSelection
+            disableRowSelectionOnClick
+            onCellClick={handleCellClick}
+          />
+        </div>
+      </div>
+    )
+  }
+  return content;
 }
