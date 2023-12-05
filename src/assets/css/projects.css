@@ -86,8 +86,9 @@
     flex-direction: column;
     gap           : 10px;
     height        : 200px;
-    flex          : .25 1 auto;
-    max-width     : calc(25% - 15px);
+    flex          : .2 1 auto;
+    max-width     : calc(20% - 20px);
+    width: calc(20% - 20px);
     background    : white;
     border-radius : 20px;
     cursor        : pointer;
