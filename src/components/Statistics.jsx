@@ -7,12 +7,12 @@ Chart.register(ArcElement, Tooltip, Legend, Title,CategoryScale,LinearScale,BarE
 const Statistics = () => {
     const data = {
         labels: [
-            'Red',
-            'Blue',
-            'Yellow'
+            'Lost',
+            'Won',
+            'Pending'
         ],
         datasets: [{
-            label: 'My First Dataset',
+            label: 'Bids',
             data: [300, 50, 100],
             backgroundColor: [
                 'rgb(255, 99, 132)',
@@ -27,7 +27,7 @@ const Statistics = () => {
     const data2 = {
         labels: labels,
         datasets: [{
-            label: 'My First Dataset',
+            label: 'Bids',
             data: [65, 59, 80, 81, 56, 55, 40],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -61,7 +61,7 @@ const Statistics = () => {
           'Running'
         ],
         datasets: [{
-          label: 'My First Dataset',
+          label: 'User 1',
           data: [65, 59, 90, 81, 56, 55, 40],
           fill: true,
           backgroundColor: 'rgba(255, 99, 132, 0.2)',
@@ -71,7 +71,7 @@ const Statistics = () => {
           pointHoverBackgroundColor: '#fff',
           pointHoverBorderColor: 'rgb(255, 99, 132)'
         }, {
-          label: 'My Second Dataset',
+          label: 'User 1',
           data: [28, 48, 40, 19, 96, 27, 100],
           fill: true,
           backgroundColor: 'rgba(54, 162, 235, 0.2)',
@@ -100,7 +100,7 @@ const Statistics = () => {
                                     },
                                     title: {
                                         display: true,
-                                        text: 'Chart.js Doughnut Chart'
+                                        text: 'Average Bids Status'
                                     }
                                 }
                             }} />
@@ -113,7 +113,7 @@ const Statistics = () => {
                                     },
                                     title: {
                                         display: true,
-                                        text: 'Chart.js Doughnut Chart'
+                                        text: 'Bids per Month'
                                     }
                                 }
                             }} />
@@ -126,12 +126,12 @@ const Statistics = () => {
                                     },
                                     title: {
                                         display: true,
-                                        text: 'Chart.js Doughnut Chart'
+                                        text: 'Bids per Month'
                                     }
                                 }
                             }} />
                         </div>
-                        <div className="statistics-left-body-row-item">
+                        {/* <div className="statistics-left-body-row-item">
                             <Pie  data={data} options={{
                                 responsive: true, plugins: {
                                     legend: {
@@ -143,16 +143,16 @@ const Statistics = () => {
                                     }
                                 }
                             }} />
-                        </div>
+                        </div> */}
                         <div className="statistics-left-body-row-item">
-                            <Radar  height={300}  data={data3} options={{
+                            <Radar  height={200}  data={data3} options={{
                                 responsive: true, plugins: {
                                     legend: {
                                         position: 'top',
                                     },
                                     title: {
                                         display: true,
-                                        text: 'Chart.js Doughnut Chart'
+                                        text: 'Average Activity'
                                     }
                                 }
                             }} />

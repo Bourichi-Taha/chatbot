@@ -16,7 +16,7 @@ const Projects = () => {
     let content;
     if (isLoading) {
         content = (
-            <div className="projects-container" style={{justifyContent:"center",alignItems:"center"}}><CircularProgress sx={{color:"#3464c4"}}/></div>
+            <div className="projects-container" style={{ justifyContent: "center", alignItems: "center" }}><CircularProgress sx={{ color: "#3464c4" }} /></div>
         )
     } else {
         content = (
@@ -38,8 +38,6 @@ const Projects = () => {
                             }
                         </div>
                     </div>
-
-
                 </div>
                 <PageTransition />
             </div>
