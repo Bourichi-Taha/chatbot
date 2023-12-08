@@ -1,5 +1,5 @@
 import { apiSlice } from "../../app/api/apiSlice";
-import { setConversation, setMessages, setSummary } from "./messagesSlice";
+import { setConversation, setGeneralMessages, setMessages, setSummary } from "./messagesSlice";
 
 export const messagesApiSlice = apiSlice.injectEndpoints({
     endpoints : builder => ({
@@ -53,7 +53,25 @@ export const messagesApiSlice = apiSlice.injectEndpoints({
             },
             invalidatesTags:["Messages","History"]
         }),
+        sendGeneralMessage : builder.mutation({
+            query : (formData) =>({
+                url: "/general_chat/",
+                method: "POST",
+                body:formData
+            }),
+            async onQueryStarted(args, {dispatch, queryFulfilled}) {
+                try {
+                    
+                    const {data}=await queryFulfilled;
+                    return data;
+                    // dispatch(setSummary(data.response));
+                } catch (error) {
+                    console.log(error);
+                }
+            },
+            invalidatesTags:["Messages"]
+        }),
     })
 })
 
-export const {useGetAllMessagesQuery,useSummarizeMutation,useSendMessageMutation} = messagesApiSlice
+export const {useSendGeneralMessageMutation,useGetAllMessagesQuery,useSummarizeMutation,useSendMessageMutation} = messagesApiSlice

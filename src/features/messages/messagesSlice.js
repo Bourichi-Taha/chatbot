@@ -2,10 +2,13 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const messagesSlice = createSlice({
     name:'messages',
-    initialState : {messages:[],selectedConversation:null,summary:""},
+    initialState : {messages:[],selectedConversation:null,summary:"",generaleChat:[]},
     reducers: {
         setMessages : (state,action) => {
             state.messages = action.payload
+        },
+        setGeneralMessages : (state,action) => {
+            state.generaleChat = [...state.generaleChat,action.payload]
         },
         setConversation : (state,action) => {
             state.selectedConversation = action.payload;
@@ -19,10 +22,11 @@ const messagesSlice = createSlice({
     }
 })
 
-export const {setMessages,setConversation,setSummary,updateMessages} = messagesSlice.actions;
+export const {setMessages,setConversation,setSummary,updateMessages,setGeneralMessages} = messagesSlice.actions;
 
 export default messagesSlice.reducer;
 
 export const selectCurrentMessages = (state) => state.messages.messages
 export const selectCurrentConversationId = (state) => state.messages.selectedConversation
 export const selectCurrentSummary = (state) => state.messages.summary
+export const selectCurrentGeneralMessages = (state) => state.messages.generaleChat

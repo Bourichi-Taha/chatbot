@@ -16,6 +16,7 @@ import Statistics from "./components/Statistics";
 import { useFetchModelQuery } from "./features/settings/SettingsApiSlice";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
+import NormalChat from "./components/NormalChat";
 
 
 
@@ -37,6 +38,7 @@ function App() {
           <Route path="/" element={<Chatbot />} >
             <Route path="/chat-files" element={<ChatFiles />} />
             {/* project routes */}
+            <Route exact path="/chatbot" element={<NormalChat />} />
             <Route path="/chatbot/:projectId" element={<Chat />} />
             <Route path="/projects" element={<Projects />} />
             <Route exact path="/projects/:projectId" element={<Project />} />

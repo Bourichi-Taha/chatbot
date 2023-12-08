@@ -29,10 +29,10 @@ const ProjectEdit = () => {
             setProject_Name(project.project_name);
             setWerkinhood(project.werkinhood);
             setClient(project.client);
-            setContractType("NAN");
+            setContractType(project.contract_type);
             setStatus(project.status || "in progress");
             setDesc(project.description);
-            setResult(project.result || "in progress");
+            setResult(project.results || "in progress");
             setEnclosure(project.enclosure || "NAN");
         }
     }, [project, isSuccess])

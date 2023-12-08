@@ -26,7 +26,7 @@ const Chat = () => {
     const { data: project, isSuccess } = useFetchProjectByIdQuery(projectId)
     const selectedConversationId = useSelector(selectCurrentConversationId);
     const { data: history, isLoading } = useGetAllQuery();
-    const { data: messages, isError } = useGetAllMessagesQuery(selectedConversationId || -1);
+    const { data: messages, isError,refetch } = useGetAllMessagesQuery(selectedConversationId);
     const [sendMessage] = useSendMessageMutation();
     const [instantMessages, setInstantMessages] = useState([]);
     const summary = useSelector(selectCurrentSummary);
@@ -38,6 +38,15 @@ const Chat = () => {
         setIsDialog(true)
 
     }
+    useEffect(() => {
+        const refetcher = async () => {
+            await refetch(selectedConversationId)
+        }
+        if (selectedConversationId) {
+            refetcher()
+        }
+
+    }, [selectedConversationId,refetch]);
     useEffect(() => {
         if (!isError && messages) {
             setInstantMessages(messages)

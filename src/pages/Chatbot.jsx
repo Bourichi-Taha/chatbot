@@ -89,7 +89,7 @@ const Chatbot = () => {
   }, [location, isOpen]);
   const ClickHandler = (e) => {
     if (e.target.classList.contains("chatbot")) {
-      return;
+      navigate("/chatbot");
     } else if (e.target.classList.contains("projects")) {
       navigate("/projects")
     } else if (e.target.classList.contains("library")) {
@@ -103,7 +103,7 @@ const Chatbot = () => {
   const ClickHandlerResponsive = (e) => {
     console.log(e.target.classList)
     if (e.target.classList.contains("chatbot")) {
-      return;
+      navigate("/chatbot");
     } else if (e.target.classList.contains("projects") || e.target.parentNode.classList.contains("projects")) {
       navigate("/projects")
     } else if (e.target.classList.contains("library") || e.target.parentNode.classList.contains("library")) {
