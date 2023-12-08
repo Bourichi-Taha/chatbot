@@ -8,7 +8,7 @@ import { useState } from "react";
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { motion } from "framer-motion";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../features/auth/authApiSlice";
 import { selectCurrentToken } from "../features/auth/authSlice";
 import { useSelector } from "react-redux";
@@ -108,6 +108,7 @@ const Login = () => {
                                 }}
                             />
                             <Button type="submit" variant="outlined" sx={{ color: "#343e8b", borderColor: "#343e8b", fontSize: "1rem", fontWeight: "bold", letterSpacing: ".2rem", ":hover": { color: "#f9f1fe", bgcolor: "#343e8b", scale: "1.1" }, transition: "all .3s ease" }}>{t("Login")}</Button>
+                            <Link to={""} style={{color:"#343e8b"}} >{t("Forgot password ?")}</Link>
                         </motion.form>
                     </motion.div>
                 </div>

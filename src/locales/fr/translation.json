@@ -118,5 +118,7 @@
     "The latest GPT-3.5 Turbo model with improved instruction following, JSON mode, reproducible outputs, parallel function calling, and more, also a lot faster than GPT4": "Le dernier modèle GPT-3.5 Turbo avec une meilleure prise en compte des instructions, le mode JSON, des sorties reproductibles, des appels de fonctions parallèles, et plus encore, est également beaucoup plus rapide que GPT4",
     "Ability to understand images, in addition to all other GPT-4 Turbo capabilities.": "Capacité à comprendre les images, en plus de toutes les autres capacités de GPT-4 Turbo.",
     "Temperature is a parameter that controls the 'creativity' or randomness of the text generated. A higher temperature (e.g., 0.7) results in more diverse and creative output, while a lower temperature (e.g., 0.2) makes the output more deterministic and focused": "La température est un paramètre qui contrôle la 'créativité' ou l'aléatoire du texte généré. Une température plus élevée (par exemple, 0,7) donne une production plus diversifiée et créative, tandis qu'une température plus basse (par exemple, 0,2) rend la production plus déterministe et concentrée",
-    "legacy gpt 4 model with less token capabilities but less hallucination": "modèle GPT-4 hérité avec moins de capacités de jetons mais moins d'hallucinations"
+    "legacy gpt 4 model with less token capabilities but less hallucination": "modèle GPT-4 hérité avec moins de capacités de jetons mais moins d'hallucinations",
+    "Forgot password ?":"Mot de passe oublié ?"
+
 }
