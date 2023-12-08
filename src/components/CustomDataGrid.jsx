@@ -7,9 +7,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentIsFiltered, selectCurrentLibraryFiltered, setSidebarFiles, toggleSidebar } from '../features/Library/LibrarySlice';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { nlNL,frFR,enUS } from '@mui/x-data-grid';
+import { selectCurrentLang } from '../features/settings/SettingsSlice';
 
 export default function CustomDataGrid() {
   const { t } = useTranslation();
+  const language = useSelector(selectCurrentLang);
   const { data, isLoading, isSuccess, refetch } = useFetchLibraryQuery();
   const isFiltered = useSelector(selectCurrentIsFiltered);
   const filteredLibrary = useSelector(selectCurrentLibraryFiltered);
@@ -104,6 +107,15 @@ export default function CustomDataGrid() {
       isMounted = false;
     }
   },[refetch]);
+  const LanguageChanger = () => {
+    if (language === "FR") {
+      return frFR.components.MuiDataGrid.defaultProps.localeText
+    }else if (language === "NL") {
+      return nlNL.components.MuiDataGrid.defaultProps.localeText
+    }else{
+      return enUS.components.MuiDataGrid.defaultProps.localeText
+    }
+  }
   let content;
   if (isLoading) {
     content = (
@@ -147,6 +159,7 @@ export default function CustomDataGrid() {
                 },
               },
             }}
+            localeText={LanguageChanger()}
             pageSizeOptions={[5, 10, 15]}
             checkboxSelection
             disableRowSelectionOnClick

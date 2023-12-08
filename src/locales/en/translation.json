@@ -28,7 +28,7 @@
     "Describe your desired image":"Describe your desired image",
     "Generate":"Generate",
     "Model Configuration":"Model Configuration",
-    "GBT Model":"GBT Model",
+    "GPT Model":"GPT Model",
     "GPT-4 Turbo":"GPT-4 Turbo",
     "GPT-4 Turbo with vision":"GPT-4 Turbo with vision",
     "GPT-4":"GPT-4",
@@ -95,8 +95,30 @@
     "Filter":"Filter",
     "Refresh":"Refresh",
     "Import":"Import",
-    "Export":"Export"
-
+    "Export":"Export",
+    "Average Activity":"Average Activity",
+    "Bids per Month":"Bids per Month",
+    "Average Bids Status":"Average Bids Status",
+    "Running":"Running",
+    "Cycling":"Cycling",
+    "Coding":"Coding",
+    "Designing":"Designing",
+    "Sleeping":"Sleeping",
+    "Drinking":"Drinking",
+    "Eating":"Eating",
+    "Bids":"Bids",
+    "January":"January",
+    "February":"February",
+    "March":"March",
+    "April":"April",
+    "May":"May",
+    "June":"June",
+    "July":"July",
+    "The latest GPT-4 and the most capable model with improved instruction following, JSON mode, reproducible outputs, parallel function calling, and more, tends to be a little bit slower":"The latest GPT-4 and the most capable model with improved instruction following, JSON mode, reproducible outputs, parallel function calling, and more, tends to be a little bit slower",
+    "The latest GPT-3.5 Turbo model with improved instruction following, JSON mode, reproducible outputs, parallel function calling, and more, also alot faster than GPT4":"The latest GPT-3.5 Turbo model with improved instruction following, JSON mode, reproducible outputs, parallel function calling, and more, also alot faster than GPT4",
+    "Ability to understand images, in addition to all other GPT-4 Turbo capabilties.":"Ability to understand images, in addition to all other GPT-4 Turbo capabilties.",
+    "Temperature is a parameter that controls the “creativity” or randomness of the text generated. A higher temperature (e.g., 0.7) results in more diverse and creative output, while a lower temperature (e.g., 0.2) makes the output more deterministic and focused":"Temperature is a parameter that controls the “creativity” or randomness of the text generated. A higher temperature (e.g., 0.7) results in more diverse and creative output, while a lower temperature (e.g., 0.2) makes the output more deterministic and focused",
+    "legacy gpt 4 model with less token capabilities but less halucination":"legacy gpt 4 model with less token capabilities but less halucination"
 
 
 }

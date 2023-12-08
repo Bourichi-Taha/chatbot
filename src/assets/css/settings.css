@@ -141,6 +141,15 @@ overflow-y:scroll ;
     color    : #6E6E6E;
     margin   : 0;
 }
+.input-label-settings-right-body-row-desc {
+    font-size: 14px;
+    color    : #6E6E6E;
+    margin   : 0;
+    opacity: .8;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
 
 .settings-right-body-row {
     width          : 100%;
