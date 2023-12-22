@@ -19,6 +19,8 @@ const Tasks = () => {
     const [status, setStatus] = useState("");
     const navigate = useNavigate();
     const usersList = ["TAHA Bourichi", "TAHA Farija", "ALI Mesbahi"]
+    const projectsList = ["P1", "P2", "P3","P4","P5"]
+
     const { data, isLoading } = useFetchUserTasksQuery();
     const [updateTask] = useUpdateTaskMutation();
 
@@ -143,7 +145,12 @@ const Tasks = () => {
                         </div>
                         <div className="tasks-container-right-content">
                             <TextField type='text' label="Task title" />
-
+                            <Autocomplete
+                                disablePortal
+                                options={projectsList}
+                                fullWidth
+                                renderInput={(params) => <TextField {...params} label="Projects" />}
+                            />
                             <TextField type='date' InputLabelProps={{ shrink: true }} label="Task Due Date" />
                             <Autocomplete
                                 options={usersList}

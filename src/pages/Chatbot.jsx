@@ -84,6 +84,8 @@ const Chatbot = () => {
         document.querySelector('.cbc-msb-tt-icon.abs.settings').classList.add("active");
       } else if (location.pathname.split('/')[1] === "statistics") {
         document.querySelector('.cbc-msb-tt-icon.abs.statistics').classList.add("active");
+      } else if (location.pathname.split('/')[1] === "tasks") {
+        document.querySelector('.cbc-msb-tt-icon.abs.tasks').classList.add("active");
       }
     }
   }, [location, isOpen]);
@@ -98,6 +100,8 @@ const Chatbot = () => {
       navigate("/settings")
     }else if (e.target.classList.contains("statistics")) {
       navigate("/statistics")
+    }else if (e.target.classList.contains("tasks")) {
+      navigate("/tasks")
     }
   }
   const ClickHandlerResponsive = (e) => {
@@ -112,6 +116,8 @@ const Chatbot = () => {
       navigate("/settings")
     }else if (e.target.classList.contains("statistics") || e.target.parentNode.classList.contains("statistics")) {
       navigate("/statistics")
+    }else if (e.target.classList.contains("tasks") || e.target.parentNode.classList.contains("tasks")) {
+      navigate("/tasks")
     }else {
       return;
     }
@@ -139,8 +145,8 @@ const Chatbot = () => {
           <IconButton onClick={ClickHandlerResponsive} className='settings responsive'>
             <SettingsOutlinedIcon className='cbc-msb-tt-icon abs settings' />
           </IconButton>
-          <IconButton onClick={ClickHandlerResponsive} className='faq responsive'>
-            <HelpCenterOutlinedIcon className='cbc-msb-tt-icon abs faq' />
+          <IconButton onClick={ClickHandlerResponsive} className='tasks responsive'>
+            <HelpCenterOutlinedIcon className='cbc-msb-tt-icon abs tasks' />
           </IconButton>
           <IconButton onClick={() => { dispatch(logOut()); dispatch(apiSlice.util.resetApiState()); }}>
             <LogoutIcon className='cbc-msb-tt-icon abs' />
@@ -185,11 +191,11 @@ const Chatbot = () => {
                 </IconButton>
                 {t("Settings")}
               </li>
-              <li onClick={ClickHandler} className='cbc-msb-tb-item'>
+              <li onClick={ClickHandler} className='cbc-msb-tb-item tasks'>
                 <IconButton>
                   <HelpCenterOutlinedIcon className='cbc-msb-tt-icon' />
                 </IconButton>
-                {t("Updates & FAQ")}
+                {t("Tasks")}
               </li>
             </ul>
           </div>
