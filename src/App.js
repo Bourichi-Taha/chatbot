@@ -17,6 +17,8 @@ import { useFetchModelQuery } from "./features/settings/SettingsApiSlice";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import NormalChat from "./components/NormalChat";
+import Tasks from "./components/Tasks";
+import Task from "./components/Task";
 
 
 
@@ -50,6 +52,8 @@ function App() {
 
             {/* end library routes */}
             <Route path="/settings" element={<Settings />} />
+            <Route path="/tasks" element={<Tasks />} />
+            <Route path="/task/:taskId" element={<Task />} />
             <Route path="/statistics" element={<Statistics />} />
 
           </Route>

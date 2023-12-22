@@ -7,10 +7,10 @@ import PageTransition from "./PageTransition";
 import { useFetchUserProjectsQuery } from "../features/projects/ProjectApiSlice";
 import ButtonNav from "./ButtonNav";
 import { CircularProgress } from "@mui/material";
-import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 
 const Projects = () => {
-
+    const {t} = useTranslation()
     const navigate = useNavigate();
     const { data, isLoading } = useFetchUserProjectsQuery();
     let content;

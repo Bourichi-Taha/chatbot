@@ -8,6 +8,7 @@ import sidebarReducer from '../features/sidebar/SidebarSlice';
 import projectReducer from '../features/projects/ProjectSlice';
 import settingsReducer from '../features/settings/SettingsSlice';
 import libraryReducer from '../features/Library/LibrarySlice';
+import taskReducer from '../features/tasks/TaskSlice';
 
 
 export const store = configureStore({
@@ -21,6 +22,7 @@ export const store = configureStore({
         projects:projectReducer,
         library:libraryReducer,
         settings:settingsReducer,
+        tasks:taskReducer
     },
     middleware: getDefaultMiddleware =>
         getDefaultMiddleware({serializableCheck: false}).concat(apiSlice.middleware),
