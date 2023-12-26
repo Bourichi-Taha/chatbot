@@ -7,10 +7,8 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import MarkChatReadIcon from '@mui/icons-material/MarkChatRead';
 import FilesListItem from './FilesListItem';
 import FileUploader from './FileUploader';
-import { useGetAllFilesQuery, useSelectFilesMutation, useUploadFileMutation } from '../features/files/filesApiSlice';
-import { useSelector } from 'react-redux';
-import { selectCurrentSelectedFiles } from '../features/files/filesSlice';
-import { useNavigate } from 'react-router-dom';
+import {  useUploadFileMutation } from '../features/files/filesApiSlice';
+
 import PageTransition from './PageTransition';
 
 
@@ -24,11 +22,7 @@ const ChatFiles = () => {
     const [status, setStatus] = useState("");
     const [results, setResults] = useState("");
     const [categories, setCategories] = useState("");
-    const { data: files, isError } = useGetAllFilesQuery();
-    const selectedFiles = useSelector(selectCurrentSelectedFiles);
-    const [selectFile] = useSelectFilesMutation();
     const [uploadFile] = useUploadFileMutation();
-    const navigate = useNavigate()
     const submitHandler = async (e) => {
         e.preventDefault();
         let bodyFormData = new FormData();
@@ -54,17 +48,17 @@ const ChatFiles = () => {
         }
     }
     const startChatting = async (e) => {
-        e.preventDefault();
-        try {
-            await selectFile({ fileNames: selectedFiles })
-            navigate("/chatbot")
-        } catch (error) {
-            console.log(error)
+        // e.preventDefault();
+        // try {
+        //     await selectFile({ fileNames: selectedFiles })
+        //     navigate("/chatbot")
+        // } catch (error) {
+        //     console.log(error)
 
-        }
+        // }
     }
     return (
-        <div className="chat-container" style={{position:'relative'}}>
+        <div className="chat-container" style={{ position: 'relative' }}>
             <div className="cc-left">
                 <div className="cc-left-header">
                     <div className="cc-lh-left">AI Chat Helper</div>
@@ -118,16 +112,10 @@ const ChatFiles = () => {
             <div className="cc-right">
                 <div className="cc-right-header">
                     <p>Files</p>
-                    <div className='cc-rh-total'>{files?.length}</div>
+                    <div className='cc-rh-total'>8</div>
                 </div>
                 <ul className="cc-right-history">
-                    {
-                        !isError && files && files.map((item, index) => {
-                            return (
-                                <FilesListItem item={item} key={index} />
-                            )
-                        })
-                    }
+                    <FilesListItem  />
                 </ul>
                 <div className="cc-right-footer">
                     <button className='cc-rf-button' onClick={startChatting}>

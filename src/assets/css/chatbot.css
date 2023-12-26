@@ -18,7 +18,7 @@ background: linear-gradient(142deg, rgba(247,247,247,1) 25%, rgba(239,106,54,1) 
     gap: 20px;
 }
 .cbc-main.no-sb{
-    gap: 0;
+    gap: 50px;
 }
 
 .cbc-main-sidebar{

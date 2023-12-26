@@ -5,7 +5,7 @@ export const historyApiSlice = apiSlice.injectEndpoints({
     endpoints : builder => ({
         getAll : builder.query({
             query: () => ({
-                url:"/get_conversations/admin",
+                url:"/user-conversations/",
                 method : 'GET',
 
             }),
@@ -13,7 +13,7 @@ export const historyApiSlice = apiSlice.injectEndpoints({
                 try {
                     
                     const {data}=await queryFulfilled
-                    dispatch(setHistory(data.conversations));
+                    dispatch(setHistory(data));
                 } catch (error) {
                     console.log(error);
                 }

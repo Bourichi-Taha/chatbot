@@ -17,10 +17,10 @@ const FilesListItem = ({item}) => {
         }else{
             setActive(true);
         }
-        if (selectedFiles.indexOf(item.filename) !== -1) {
-            setUpdated(selectedFiles.filter((itm)=>itm!==item.filename))
+        if (selectedFiles && selectedFiles.indexOf(item.file_name) !== -1) {
+            setUpdated(selectedFiles.filter((itm)=>itm!==item.file_name))
         }else{
-            setUpdated([...selectedFiles,item.filename]);
+            setUpdated([...selectedFiles,item.file_name]);
         }
     }
     useEffect(()=>{
@@ -32,10 +32,10 @@ const FilesListItem = ({item}) => {
             <Checkbox className='cc-rh-fi-checkbox' checked={active} />
             <div className="cc-rh-fi-content">
                 <div className="cc-rh-fi-title">
-                    {item.filename}
+                    {item.file_name}
                 </div>
                 <div className="cc-rh-fi-desc">
-                    {item.categories[0]}
+                    {item.type}
                 </div>
             </div>
         </li>

@@ -14,8 +14,8 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <AnimatedRoutes />
         <NoneAnimatedRoutes />
+        <AnimatedRoutes />
       </BrowserRouter>
     </Provider>
 

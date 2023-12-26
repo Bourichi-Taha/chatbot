@@ -5,7 +5,7 @@ export const messagesApiSlice = apiSlice.injectEndpoints({
     endpoints : builder => ({
         getAllMessages : builder.query({
             query: (conversationId) => ({
-                url:`/get_messages/${conversationId}`,
+                url:`/conversation-messages/${conversationId}/`,
                 method : 'GET',
 
             }),
@@ -13,7 +13,7 @@ export const messagesApiSlice = apiSlice.injectEndpoints({
                 try {
                     
                     const {data}=await queryFulfilled
-                    dispatch(setMessages(data.messages));
+                    dispatch(setMessages(data));
                 } catch (error) {
                     console.log(error);
                 }
@@ -22,7 +22,7 @@ export const messagesApiSlice = apiSlice.injectEndpoints({
         }),
         summarize : builder.mutation({
             query : (fileName) =>({
-                url: `/summarize/${fileName}`,
+                url: `/summarize/${fileName}/`,
                 method: "GET",
             }),
             async onQueryStarted(args, {dispatch, queryFulfilled}) {
@@ -37,16 +37,15 @@ export const messagesApiSlice = apiSlice.injectEndpoints({
         }),
         sendMessage : builder.mutation({
             query : (formData) =>({
-                url: "/response",
+                url: "/chat/",
                 method: "POST",
-                formData: true,
                 body:formData
             }),
             async onQueryStarted(args, {dispatch, queryFulfilled}) {
                 try {
                     
                     const {data}=await queryFulfilled
-                    dispatch(setConversation(data.conv));
+                    dispatch(setConversation(data.conv_id));
                     // dispatch(setSummary(data.response));
                 } catch (error) {
                     console.log(error);
