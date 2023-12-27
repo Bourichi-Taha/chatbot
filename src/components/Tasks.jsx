@@ -5,7 +5,6 @@ import ButtonNav from './ButtonNav'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import DatasetOutlinedIcon from '@mui/icons-material/DatasetOutlined';
 import CloseIcon from '@mui/icons-material/Close';
-import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import WaterfallItem from './WaterfallItem';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -17,7 +16,6 @@ const Tasks = () => {
     const [isCreateOpen, setIsCreateOpen] = useState(false);
     const [taskId, setTaskId] = useState(-1);
     const [status, setStatus] = useState("");
-    const navigate = useNavigate();
     const usersList = ["TAHA Bourichi", "TAHA Farija", "ALI Mesbahi"]
     const projectsList = ["P1", "P2", "P3","P4","P5"]
 
